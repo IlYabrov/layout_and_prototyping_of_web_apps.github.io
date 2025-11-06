@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./index.css" />
+		<title>Ябров Илья - Web-проекты</title>
+	</head>
+	<body>
+		<div class="page">
+			<main class="page__content">
+				<header class="header">
+					<div class="logo">
+						<div class="logo__circle">
+							<span class="logo__initials">ЯИ</span>
+						</div>
+						<div class="logo__text">
+							<span class="logo__name">Ябров Илья</span>
+							<span class="logo__title">Frontend enjoyer</span>
+						</div>
+					</div>
+					<nav class="nav">
+						<a href="#about" class="nav__link">Обо мне</a>
+						<a href="#projects" class="nav__link">Web-проекты</a>
+					</nav>
+				</header>
+				<section class="first-display" id="about">
+					<div class="first-display__content">
+						<div class="section__label">Software engineering student</div>
+						<h1 class="title title_h1">Привет, меня зовут Ябров Илья!</h1>
+						<p class="first-display__descr">
+							Живу в прекрасном городе на Неве - Санкт-Петербурге. Студент
+							"Прикладной информатики" в СПБПУ Петра Великого. Здесь делюсь
+							проектами в рамках курса "Верстка и прототипирование
+							веб-приложений". P.S. Этот минималистичный сайт тоже проект,
+							хе-хе:) Enjoy.
+						</p>
+						<div class="first-display__actions">
+							<a href="#projects" class="btn btn_primary">Web-проекты</a>
+							<a
+								href="https://vk.com/il_yabrov"
+								class="btn btn_outline"
+								target="_blank"
+								>Мой ВК</a
+							>
+							<a href="https://t.me/zhit_zdorov0" class="btn btn_primary"
+								>Телеграм канал</a
+							>
+						</div>
+					</div>
+					<img
+						src="./src/assets/img_opt/my_first_display_bg.jpg"
+						alt="Madelyn Torff"
+						class="first-display__bg"
+					/>
+				</section>
+				<section class="projects" id="projects">
+					<h2 class="title title_h2 title_decorated">Web-проекты</h2>
+					<div class="projects__list">
+						<div class="card">
+							<div class="card__content">
+								<h3 class="card__title">Рисунок CSS</h3>
+								<p class="card__descr">
+									Нарисовал пейзаж с пчелкой на чистом CSS в жанре африканского
+									кубизма с базовым размером 200x200px. Пикассо научил. И Елена
+									Викторовна Комарова. Обоих уважаю.
+								</p>
+								<a href="picture-css/pic.html" class="btn btn_round"
+									>Поглядеть</a
+								>
+							</div>
+							<img
+								src="./src/assets/img_opt/project_1_bee_landscape.jpg"
+								alt=""
+								class="card__img"
+							/>
+						</div>
+						<div class="card card_direction_reverse">
+							<div class="card__content">
+								<h3 class="card__title">Flexbox-ролик</h3>
+								<p class="card__descr">
+									Создал компонент анимированного ролика с базовым размером
+									200x200px. Сюжет как из фильмов Квентина Тарантино, саспиенс
+									нагоняется неведением на рисунок мыши, кульминация происходит
+									при нажатии ПКМ на рисунок. Даже лодка при наведении качается
+									от моей работы.
+								</p>
+								<a
+									href="flexbox_animation/flexbox-animation.html"
+									class="btn btn_round"
+									>Поглядеть</a
+								>
+							</div>
+							<img
+								src="./src/assets/img_opt/project_2_flexbox_animation.jpg"
+								alt=""
+								class="card__img"
+							/>
+						</div>
+						<div class="card">
+							<div class="card__content">
+								<h3 class="card__title">DOM-Тест. Грамотность</h3>
+								<p class="card__descr">
+									Тест на грамотность. Требования: Использование массивов.
+									Существует какое-то количество вопросов и к каждому несколько
+									ответов, один из которых правильный. На странице существует
+									область для динамического добавления элементов. Вопросы и
+									ответы выводятся в случайном, не повторяющемся порядке.
+									Вопросы должны быть пронумерованы. Когда Вопросы
+									заканчиваются, то, над областью для динамического добавления
+									элементов, появляется надпись "Вопросы закончились". Вопросы и
+									ответы выводятся в отдельных блоках. Если ответ выбран
+									правильно, то блок с этим ответом увеличивается и появляется
+									дополнительное пояснение. В поле вопроса появляется маркер
+									правильного ответа (в примере зеленая галочка). Все
+									неправильные ответы перемещаются по направлению, указанному в
+									вашем варианте. Потом исчезает правильный ответ. Если ответ
+									выбран неверно, то все блоки перемещаются по направлению,
+									указанному в вашем варианте. В поле вопроса появляется маркер
+									не правильного ответа (например, красный крестик). Все ответы
+									перемещаются по направлению, указанному в вашем варианте.
+									Когда вопросы закончатся, выводится статистика, сколько
+									правильных вопросов было выбрано из общего количества. Если
+									Вопрос выбран, пока на него не ответили, нет возможности
+									выбрать следующий ответ. Когда все вопросы выбраны, появляется
+									возможность нажать на вопрос и появится блок с правильным
+									ответом. У остальных вопросов в это время правильные ответы не
+									видны. Оформление, цветовая палитра, шрифты выбираются
+									произвольно. Соблюдается принцип адаптивной верстки для
+									компьютера.
+								</p>
+								<a href="DOM-Test/DOM-Test.html" class="btn btn_round"
+									>Пройти тест</a
+								>
+							</div>
+							<img
+								src="./src/assets/img_opt/DOM-Test.png"
+								alt=""
+								class="card__img"
+							/>
+						</div>
+					</div>
+				</section>
+				<footer class="footer">
+					<p class="copyright">
+						Спасибо, что уделили время! Всегда на связи в ВК. С уважением, Ябров
+						Илья.
+					</p>
+				</footer>
+			</main>
+			<img src="./src/assets/icons/Vector.svg" alt="" class="footer__decor" />
+		</div>
+	</body>
+</html>

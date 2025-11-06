@@ -1,0 +1,147 @@
+.backgroundshelf {
+	position: relative;
+	width: 200px;
+	height: 200px;
+	background-image: url('images_flexbox/toy1.png');
+	background-size: cover; /*масштабирование*/
+	overflow: hidden; /*Скрывает любую часть содержимого, которая выходит за пределы заданных размеров*/
+	cursor: pointer; /*курсор-указатель для всего блока, чтобы показать его интерактивность */
+}
+
+.overlay-title {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -40px;
+	height: 40px;
+	display: flex;
+	align-items: center; /* центрирование по-вертикали*/
+	justify-content: center; /* центрирование по-горизонтали*/
+	background: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	font-size: 15px;
+	letter-spacing: 0.5px;
+	transition: transform 0.3s ease, bottom 0.5s ease; /* плавность выезжания заголовка*/
+}
+
+.backgroundshelf:hover .overlay-title {
+	bottom: 0;
+}
+
+.car {
+	position: absolute;
+	left: 30px;
+	top: 24px;
+	width: 50px;
+	height: 32px;
+	background-image: url('images_flexbox/toy3.png');
+	background-size: 50px 32px;
+}
+
+@keyframes car-drive {
+	0% {
+		transform: translateX(0);
+	}
+	50% {
+		transform: translateX(90px);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+.backgroundshelf:hover .car {
+	animation: car-drive 1.5s ease-in-out infinite; /* ease-in-out означает, что анимация начинается медленно, затем ускоряется в середине, и снова замедляется к концу.*/
+}
+
+.ship {
+	position: absolute;
+	left: 80px;
+	top: 105px;
+	width: 50px;
+	height: 32px;
+	background-image: url('images_flexbox/toy2.png');
+	background-size: 50px 32px;
+}
+
+@keyframes ship-rock {
+	0% {
+		transform: rotate(0deg) translateY(0);
+	}
+	25% {
+		transform: rotate(-7deg) translateY(2px);
+	}
+	50% {
+		transform: rotate(0deg) translateY(0);
+	}
+	75% {
+		transform: rotate(7deg) translateY(2px);
+	}
+	100% {
+		transform: rotate(0deg) translateY(0);
+	}
+}
+
+.ship:hover {
+	transform-origin: 50% 60%; /*Устанавливает точку вращения и масштабирования для элемента. */
+	animation: ship-rock 1s ease-in-out infinite;
+}
+
+.man {
+	position: absolute;
+	left: 0px;
+	top: 55px;
+	width: 60px;
+	height: 80px;
+	background-image: url('images_flexbox/toy4.png');
+	background-size: 60px 80px;
+	transform: translateX(-70px); /*Сдвигает человечка на 70px влево по оси Х*/
+	opacity: 0; /*человек-невидимка*/
+	filter: sepia(0);
+	transition: transform 0.5s ease, opacity 0.4s ease; /*плавность transform, opacity */
+}
+
+.buy-label {
+	position: absolute;
+	top: 4px;
+	right: 4px;
+	padding: 2px 6px;
+	background: #4cc617;
+	border: 1px solid #0a0902;
+	color: #3c2f00;
+	font-size: 12px;
+	border-radius: 4px;
+	opacity: 0;
+	transform: translateY(-6px);
+	transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.backgroundshelf:active .buy-label {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@keyframes man-hop-right {
+	0% {
+		transform: translate(0, 0);
+		filter: sepia(0);
+	}
+	30% {
+		transform: translate(25px, -18px);
+		filter: sepia(0);
+	}
+	60% {
+		transform: translate(55px, 0);
+		filter: sepia(0);
+	}
+	100% {
+		transform: translate(150px, -6px);
+		filter: sepia(100);
+	}
+}
+
+.backgroundshelf:active .man {
+	opacity: 1;
+	transform: translateX(0);
+	animation: man-hop-right 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; /*Кривая Безье третьего порядка */
+}

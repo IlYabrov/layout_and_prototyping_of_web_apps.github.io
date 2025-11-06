@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>DOM-Тест: Орфография</title>
+		<link rel="stylesheet" href="DOM-Test.css" />
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>Проверка орфографии</h1>
+				<p>Тест на знание правил русского языка</p>
+			</header>
+
+			<main>
+				<div id="quiz-area">
+					<!-- Здесь будут динамически добавляться вопросы -->
+				</div>
+
+				<div id="no-questions" class="hidden">
+					<h2>Вопросы закончились</h2>
+				</div>
+
+				<div id="controls">
+					<button id="next-btn" class="btn hidden">Следующий вопрос</button>
+					<button id="finish-btn" class="btn hidden">Завершить тест</button>
+				</div>
+
+				<div id="results" class="hidden">
+					<h2>Результаты теста</h2>
+					<p>
+						Правильных ответов: <span id="correct-count">0</span> из
+						<span id="total-questions">0</span>
+					</p>
+					<button id="restart-btn" class="btn">Начать заново</button>
+				</div>
+			</main>
+		</div>
+		<script src="DOM-Test.js"></script>
+	</body>
+</html>

@@ -1,0 +1,190 @@
+/* Градиентная рамка для всего рисунка */
+
+.frame {
+	position: relative;
+	width: 220px;
+	height: 220px;
+	padding: 10px; /* внутренние отступы со всех сторон*/
+	box-sizing: content-box;
+	background: linear-gradient(210deg, #d9d8df, #0b4bfd);
+	display: grid; /* батя */
+	place-items: center; /*центрируем по г-ли и в-ли все дочерние элементы относительно центра */
+}
+
+/* Создаем желтые круглешки */
+
+.frame::before {
+	content: ''; /* обязательный элемент псевдоэлемента */
+	position: absolute;
+	top: 5px; /* смещение относительно .frame */
+	left: 5px;
+	width: 13px;
+	height: 13px;
+	background: transparent; /* делаем псеводоэлемент создаем множество кружочков */
+	border-radius: 50%; /* превращаем квадрат в круг */
+	box-shadow: /* создаем тени (копии по периметру) желтых круглешков */
+    /* верхняя сторона  */ 20px
+			0 #f7a600,
+		65px 0 #f7a600, 110px 0 #f7a600, 155px 0 #f7a600, 200px 0 #f7a600,
+		/* правая сторона */ 220px 20px #f7a600, 220px 65px #f7a600,
+		220px 110px #f7a600, 220px 155px #f7a600, 220px 200px #f7a600,
+		/* нижняя сторона */ 20px 220px #f7a600, 65px 220px #f7a600,
+		110px 220px #f7a600, 155px 220px #f7a600, 200px 220px #f7a600,
+		/* левая сторона */ 0 20px #f7a600, 0 65px #f7a600, 0 110px #f7a600,
+		0 155px #f7a600, 0 200px #f7a600;
+}
+
+/* Холст */
+.pic {
+	background: linear-gradient(135deg, #2043c2, #ffffff);
+	width: 200px;
+	height: 200px;
+
+	/* блок центрирования */
+	display: flex; /* превращаем холст в flex-контейнер */
+	justify-content: center; /* выравнивание по горизонтали по центру. */
+	align-items: center; /* выравнивание по вертикали по центру. */
+
+	position: relative; /* Делает .pic системой координат для вложенных элементов с position: absolute. */
+	overflow: hidden; /* любая часть дочернего элемента, которая выходит за пределы  квадрата 200x200px, будет скрыта*/
+}
+
+/* Родительский класс. Отвечает за расположение облаков */
+.clouds {
+	position: absolute;
+	left: 30px;
+	top: -5px;
+}
+
+/* Задание формы и цвета облаков*/
+.clouds .cloud {
+	position: absolute;
+	width: 90px;
+	height: 45px;
+	background: radial-gradient(
+		circle at 25% 30%,
+		#ffffff,
+		#2044c7
+	); /* круговая форма градиента, %-смещение градиента */
+	border-radius: 90px / 40px;
+} /* радиус облака горизонт / радиус облака вертикаль*/
+
+/* Родительский контейнер пчелы*/
+.bee {
+	position: absolute;
+	left: 100px;
+	top: 65px;
+	width: 64px;
+	height: 38px;
+}
+
+/* Тело пчелы */
+.bee .body {
+	position: absolute;
+	width: 45px;
+	height: 15px;
+	border-radius: 100px / 50px; /* превращаем прямоугольник в овал*/
+	background: #eaca29;
+	border: 1.5px solid #988519;
+	z-index: 1; /* порядок наложения */
+}
+
+/* Крылья пчелы */
+.bee .wing {
+	position: absolute;
+	width: 35px;
+	height: 13px;
+	border-radius: 100px / 50px;
+	background: #6f7ad0;
+	border: 2px solid #293593;
+}
+
+/* Голова пчелы */
+.bee .head {
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	background: #eaca29;
+	border: 1.5px solid #988519;
+	border-radius: 50%; /* квадрат в круг */
+	top: 15px;
+	left: -5px;
+	z-index: 2; /* голова находится поверх тела */
+}
+
+/* Глаза пчелы */
+.bee .eye {
+	position: absolute;
+	width: 5.5px;
+	height: 5.5px;
+	background: #000;
+	border-radius: 50%;
+	z-index: 3; /* поверх головы */
+}
+
+/* Грибы родительский класс */
+
+.mushroom {
+	position: absolute;
+	display: flex;
+	flex-direction: column; /* Указывает Flexbox располагать дочерние элементы друг под другом.*/
+	align-items: center;
+	z-index: 2;
+	margin-left: -15px;
+}
+
+/* Ножка гриба дочерний класс */
+.mushroom .stem {
+	width: 30px;
+	height: 80px;
+	background-color: #d2c4ac;
+	border: 2px solid #6e3627;
+	border-radius: 50%; /* делаем вертикальные края ножки закруглёнными (как колонну), поскольку высота (80px) намного больше ширины (30px). */
+	z-index: 0;
+}
+
+/* Ножка гриба дочерний класс */
+.mushroom .cap {
+	width: 90px;
+	height: 45px;
+	background: radial-gradient(circle at 50% 50%, #60352d, #9c4939);
+	border-radius: 50% 50% 50% 50% / 100% 100% 0 0; /* созданиен эллиптической формы */
+	/* 50% 50% 50% 50% -горизонтальные радиусы (верх-лево, верх-право, низ-право, низ-лево). 100% 100% 0 0 - вертикальные радиусы*/
+	margin-bottom: -25px; /* Отрицательный внешний отступ. Затягиваем шляпку гриба вниз на 25px, чтобы перекрыть ножку гриба*/
+	z-index: 2;
+}
+
+/* Трава родительский класс */
+
+.grass {
+	position: absolute;
+	left: 0; /* Растягиваем траву на всю ширину холста */
+	right: 0; /* -//- */
+	bottom: 0; /* Размещаем контейнер в нижней части холста */
+	display: flex;
+	z-index: 3;
+}
+
+/* Дочерний класс - рисуем треугольники и раскрашиваем их*/
+.grass .stripe {
+	width: 80px;
+	height: 45px;
+	background: repeating-linear-gradient(
+		10deg,
+		#00ff1e,
+		/* #cb4d0e 4px, */ /* #9c23d4 4px, */ #0b7a29 8px
+	);
+	clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+	z-index: 3;
+	margin-right: -15px;
+}
+
+/* Сдвиги первого и последнего элементов за края холста */
+
+.grass .stripe:first-child {
+	margin-left: -10px;
+}
+
+.grass .stripe:last-child {
+	margin-right: -10px;
+}
