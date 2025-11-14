@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Вариант 3 - Обработка слов</title>
+		<link rel="stylesheet" href="styles_variant3.css" />
+	</head>
+	<body>
+		<!-- Блок с описанием-->
+		<div class="block block-info">
+			<h2>Как это работает?</h2>
+			<ul class="instructions">
+				<li>Введите слова, разделённые дефисом (-) в красное поле вверху</li>
+				<li>
+					Нажмите кнопку "Разобрать" — слова отсортируются в левом зелёном блоке
+				</li>
+				<li>
+					Слова группируются по типам:
+					<ul>
+						<li>
+							<strong>a</strong> — слова со строчной буквы (а1, а2, а3...)
+						</li>
+						<li>
+							<strong>b</strong> — слова с заглавной буквы (b1, b2, b3...)
+						</li>
+						<li><strong>n</strong> — цифры по возрастанию (n1, n2, n3...)</li>
+					</ul>
+				</li>
+				<li>Перетащите слова из левого зелёного блока в правый синий блок</li>
+				<li>
+					В синем блоке вы можете менять их порядок, перетаскивая друг на друга
+				</li>
+				<li>Каждое перенесённое слово получит случайный цвет</li>
+				<li>Нажмите на слово в синем блоке — оно появится в красном поле</li>
+				<li>
+					Перетащите слово обратно в зелёный блок — оно вернётся на исходное
+					место
+				</li>
+			</ul>
+		</div>
+
+		<div class="container">
+			<!-- Блок 3 -->
+			<div class="block block-3">
+				<div class="input-section">
+					<input type="text" id="input-text" placeholder="кирк лес лес" />
+					<button id="parse-btn">Разобрать</button>
+				</div>
+				<div id="block-3-info" class="info-display"></div>
+			</div>
+
+			<div class="blocks-wrapper">
+				<!-- Блок 2 -->
+				<div class="block block-2">
+					<div id="block-2" class="drop-zone sorted-items"></div>
+				</div>
+
+				<!-- Блок 1 -->
+				<div class="block block-1">
+					<div id="block-1" class="drop-zone draggable-items"></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="script_variant3.js"></script>
+	</body>
+</html>

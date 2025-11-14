@@ -14,17 +14,21 @@
 			</header>
 
 			<main>
-				<div id="quiz-area">
-					<!-- Здесь будут динамически добавляться вопросы -->
-				</div>
-
 				<div id="no-questions" class="hidden">
 					<h2>Вопросы закончились</h2>
 				</div>
 
+				<div id="quiz-area">
+					<!-- Здесь будут динамически добавляться вопросы -->
+				</div>
+
 				<div id="controls">
-					<button id="next-btn" class="btn hidden">Следующий вопрос</button>
-					<button id="finish-btn" class="btn hidden">Завершить тест</button>
+					<button type="button" id="next-btn" class="btn hidden">
+						Следующий вопрос
+					</button>
+					<button type="button" id="finish-btn" class="btn hidden">
+						Завершить тест
+					</button>
 				</div>
 
 				<div id="results" class="hidden">
@@ -33,7 +37,9 @@
 						Правильных ответов: <span id="correct-count">0</span> из
 						<span id="total-questions">0</span>
 					</p>
-					<button id="restart-btn" class="btn">Начать заново</button>
+					<button type="button" id="restart-btn" class="btn">
+						Начать заново
+					</button>
 				</div>
 			</main>
 		</div>

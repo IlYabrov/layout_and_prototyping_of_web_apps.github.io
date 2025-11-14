@@ -122,6 +122,9 @@ main {
 	transition: all 0.3s ease;
 	position: relative;
 	overflow: hidden;
+	will-change: transform, opacity;
+	transition: transform 600ms cubic-bezier(0.22, 0.8, 0.2, 1),
+		opacity 450ms ease;
 }
 
 .answer-block:hover {
@@ -147,6 +150,20 @@ main {
 	background: #f8d7da;
 }
 
+/* Плавный уезд вниз: переводим на transition вместо keyframes */
+.answer-block.slide-down {
+	transform: translateY(60px);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Плавный уезд вверх (если нужно) */
+.answer-block.slide-up {
+	transform: translateY(-60px);
+	opacity: 0;
+	pointer-events: none;
+}
+
 .explanation {
 	margin-top: 15px;
 	padding: 15px;
@@ -154,28 +171,27 @@ main {
 	border-radius: 8px;
 	border-left: 4px solid #007bff;
 	display: none;
+	transition: transform 300ms ease, opacity 300ms ease;
+}
+
+/* правильное пояснение */
+.explanation.correct {
+	background: #d4edda;
+	border-left-color: #28a745;
+	color: #155724;
+}
+
+/* неправильное пояснение */
+.explanation.incorrect {
+	background: #f8d7da;
+	border-left-color: #dc3545;
+	color: #721c24;
 }
 
 .explanation.show {
 	display: block;
-	animation: fadeIn 0.5s ease;
-}
-
-.slide-down {
-	animation: slideDown 1s ease forwards;
-}
-
-.slide-up {
-	animation: slideUp 1s ease forwards;
-}
-
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+	opacity: 1;
+	transform: translateY(0);
 }
 
 @keyframes slideDown {
@@ -184,7 +200,7 @@ main {
 		opacity: 1;
 	}
 	100% {
-		transform: translateY(100px);
+		transform: translateY(60px);
 		opacity: 0;
 	}
 }
@@ -197,6 +213,15 @@ main {
 	100% {
 		transform: translateY(-100px);
 		opacity: 0;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
 
