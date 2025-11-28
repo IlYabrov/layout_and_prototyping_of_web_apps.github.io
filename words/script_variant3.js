@@ -9,16 +9,31 @@ let draggedElement = null;
 
 function getRandomColor() {
 	const colors = [
-		'#FF6B6B',
-		'#4ECDC4',
-		'#45B7D1',
-		'#FFA07A',
-		'#98D8C8',
-		'#F7DC6F',
-		'#BB8FCE',
-		'#85C1E2',
-		'#F8B88B',
-		'#52C4A1',
+		'#FF6B6B', // Красный
+		'#4ECDC4', // Бирюзовый
+		'#45B7D1', // Голубой
+		'#FFA07A', // Лососевый
+		'#98D8C8', // Мятный
+		'#F7DC6F', // Желтый
+		'#BB8FCE', // Фиолетовый
+		'#85C1E2', // Светло-синий
+		'#F8B88B', // Персиковый
+		'#52C4A1', // Зеленый
+		'#FF85A1', // Розовый
+		'#FFB347', // Оранжевый
+		'#A8E6CF', // Светло-зеленый
+		'#FFD700', // Золотой
+		'#DDA0DD', // Сливовый
+		'#87CEEB', // Небесно-голубой
+		'#FFA500', // Апельсиновый
+		'#9370DB', // Средний фиолетовый
+		'#20B2AA', // Морская волна
+		'#FA8072', // Лососево-красный
+		'#FFB6C1', // Светло-розовый
+		'#00CED1', // Темная бирюза
+		'#FFDAB9', // Персиковый пудровый
+		'#B0E0E6', // Пудрово-голубой
+		'#DEB887', // Песочный
 	];
 	return colors[Math.floor(Math.random() * colors.length)];
 }
@@ -31,9 +46,9 @@ function parseAndSort() {
 	}
 
 	const words = text
-		.split('-')
-		.map(w => w.trim())
-		.filter(w => w.length > 0);
+		.split('-') // Разделяем по дефисам
+		.map(w => w.trim()) // Убираем лишние пробелы
+		.filter(w => w.length > 0); // Убираем пустые строки
 
 	const lowercase = [];
 	const uppercase = [];
@@ -41,6 +56,7 @@ function parseAndSort() {
 
 	words.forEach(word => {
 		if (/^\d+$/.test(word)) {
+			// Проверяем, что слово состоит только из цифр
 			numbers.push(word);
 		} else if (
 			word[0] === word[0].toUpperCase() &&
@@ -90,8 +106,8 @@ function parseAndSort() {
 	});
 
 	renderBlock2();
-	block1.innerHTML = '';
-	block3Info.textContent = '';
+	block1.innerHTML = ''; // Очищаем блок 1
+	block3Info.textContent = ''; // Очищаем блок 3
 }
 
 function renderBlock2() {
@@ -159,16 +175,19 @@ function createItemBlock1(word, key, color, index) {
 		item.classList.remove('dragging');
 	});
 
-	// Показываем в блоке 3 ключ и слово
+	// Добавляем слово в блок 3 при клике
 	item.addEventListener('click', () => {
-		block3Info.textContent = `${key} ${word}`;
+		// Если в блоке 3 уже есть текст, добавляем пробел перед новым словом
+		if (block3Info.textContent.trim() !== '') {
+			block3Info.textContent += ' ';
+		}
+		block3Info.textContent += word;
 	});
 
 	return item;
 }
 
 function setupDropZones() {
-	// Блок 1 (синий) - можно перетаскивать из блока 2 и переставлять местами
 	block1.addEventListener('dragover', e => {
 		e.preventDefault();
 		e.dataTransfer.dropEffect = 'move';
@@ -202,12 +221,12 @@ function setupDropZones() {
 
 			const newItem = createItemBlock1(word, key, randomColor, index);
 
-			const afterElement = getDragAfterElement(block1, e.clientY);
-			if (afterElement === null) {
-				block1.appendChild(newItem);
-			} else {
-				block1.insertBefore(newItem, afterElement);
-			}
+			// Абсолютное позиционирование в месте, где отпустили мышь
+			newItem.style.position = 'absolute';
+			newItem.style.left = `${e.offsetX - 40}px`;
+			newItem.style.top = `${e.offsetY - 20}px`;
+
+			block1.appendChild(newItem);
 
 			// Удаляем оригинал из блока 2 чтобы не дублировалось
 			draggedElement.remove();
@@ -215,12 +234,9 @@ function setupDropZones() {
 		}
 		// Перемещение внутри блока 1
 		else if (draggedElement.parentElement === block1) {
-			const afterElement = getDragAfterElement(block1, e.clientY);
-			if (afterElement == null) {
-				block1.appendChild(draggedElement);
-			} else {
-				block1.insertBefore(draggedElement, afterElement);
-			}
+			// Перемещаем элемент в новую позицию
+			draggedElement.style.left = `${e.offsetX - 40}px`;
+			draggedElement.style.top = `${e.offsetY - 20}px`;
 			draggedElement = null;
 		}
 	});
@@ -259,26 +275,6 @@ function setupDropZones() {
 			renderBlock2();
 		}
 	});
-}
-
-function getDragAfterElement(container, y) {
-	const draggableElements = [
-		...container.querySelectorAll('.item:not(.dragging)'),
-	];
-
-	return draggableElements.reduce(
-		(closest, child) => {
-			const box = child.getBoundingClientRect();
-			const offset = y - box.top - box.height / 2;
-
-			if (offset < 0 && offset > closest.offset) {
-				return { offset: offset, element: child };
-			} else {
-				return closest;
-			}
-		},
-		{ offset: Number.NEGATIVE_INFINITY }
-	).element;
 }
 
 parseBtn.addEventListener('click', parseAndSort);

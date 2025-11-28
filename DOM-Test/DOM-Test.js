@@ -284,7 +284,7 @@ class Quiz {
 			// небольшой stagger, но очень короткий и надежный
 			setTimeout(() => {
 				block.classList.add('slide-down');
-			}, i * 80);
+			}, i * 3000);
 		});
 	}
 

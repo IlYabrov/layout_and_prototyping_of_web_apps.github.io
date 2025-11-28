@@ -1,3 +1,6 @@
+/* ========================================
+   СБРОС И ОБЩИЕ СТИЛИ
+   ======================================== */
 * {
 	margin: 0;
 	padding: 0;
@@ -18,130 +21,9 @@ body {
 	padding: 20px;
 }
 
-/* Блок 3: Информационное поле (красное) */
-.block-3 {
-	border: 3px solid #ff4444;
-	background: #ffe6e6;
-	padding: 15px;
-	margin-bottom: 20px;
-	border-radius: 5px;
-}
-
-.input-section {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 10px;
-}
-
-.input-section input {
-	flex: 1;
-	padding: 10px;
-	border: 2px solid #ff4444;
-	border-radius: 3px;
-	font-size: 14px;
-}
-
-.input-section button {
-	padding: 8px 20px;
-	background: #888;
-	color: white;
-	border: none;
-	border-radius: 3px;
-	cursor: pointer;
-	font-weight: bold;
-}
-
-.input-section button:hover {
-	background: #666;
-}
-
-#block-3-info {
-	min-height: 30px;
-	padding: 10px;
-	background: white;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	font-size: 14px;
-	text-align: center;
-}
-
-.blocks-wrapper {
-	display: grid;
-	grid-template-columns: 250px 1fr;
-	gap: 20px;
-}
-
-.block {
-	border: 3px solid black;
-	border-radius: 5px;
-	padding: 15px;
-}
-
-/* Блок 2: Левое поле (зеленое) */
-.block-2 {
-	background: #d4f4d4;
-	position: relative;
-}
-
-/* Блок 1: Правое поле (синее) */
-.block-1 {
-	background: #e6f3ff;
-	border-color: #4488dd;
-}
-
-.drop-zone {
-	min-height: 250px;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	padding: 10px;
-	background: white;
-	border: 2px dashed #999;
-	border-radius: 3px;
-}
-
-.drop-zone.sorted-items {
-	border-color: #00aa00;
-}
-
-.drop-zone.draggable-items {
-	border-color: #4488dd;
-	flex-wrap: wrap;
-	flex-direction: row;
-	align-content: flex-start;
-}
-
-.item {
-	padding: 8px 14px;
-	background: #00cc00;
-	color: white;
-	border-radius: 20px 0 0 20px;
-	cursor: move;
-	user-select: none;
-	transition: transform 0.2s, opacity 0.2s;
-	font-weight: bold;
-	font-size: 13px;
-	display: inline-block;
-	white-space: nowrap;
-}
-
-.item:hover {
-	transform: scale(1.05);
-	opacity: 0.9;
-}
-
-.item.dragging {
-	opacity: 0.6;
-	transform: scale(0.95);
-}
-
-.block-1 .item {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-
-/* Блок с описанием */
+/* ========================================
+   БЛОК С ОПИСАНИЕМ (ИНСТРУКЦИЯ)
+   ======================================== */
 .block-info {
 	max-width: 1000px;
 	margin: 0 auto 20px;
@@ -199,6 +81,178 @@ body {
 	margin-right: 8px;
 }
 
+/* ========================================
+   БЛОК 3 (КРАСНЫЙ) - ОТОБРАЖЕНИЕ ВЫБРАННЫХ СЛОВ
+   ======================================== */
+.block-3 {
+	border: 3px solid #ff0000;
+	background: #ffe6e6;
+	padding: 15px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+
+#block-3-info {
+	min-height: 30px;
+	padding: 10px;
+	background: white;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 14px;
+	text-align: center;
+}
+
+/* ========================================
+   ПОЛЕ ВВОДА И КНОПКА
+   ======================================== */
+.input-section {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 15px;
+}
+
+.input-section input {
+	flex: 1;
+	padding: 10px;
+	border: 2px solid #121111;
+	border-radius: 3px;
+	font-size: 14px;
+}
+
+.input-section button {
+	padding: 8px 20px;
+	background: #888;
+	color: white;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.input-section button:hover {
+	background: #666;
+}
+
+/* ========================================
+   СЕТКА ДЛЯ БЛОКОВ 2 И 1
+   ======================================== */
+.blocks-wrapper {
+	display: grid;
+	grid-template-columns: 250px 1fr;
+	gap: 20px;
+}
+
+.block {
+	border-radius: 5px;
+	padding: 15px;
+}
+
+/* ========================================
+   БЛОК 2 (ЗЕЛЕНЫЙ) - ОТСОРТИРОВАННЫЕ ЭЛЕМЕНТЫ
+   ======================================== */
+.block-2 {
+	background: #d4f4d4;
+	border: 3px solid #00ff00;
+	position: relative;
+}
+
+.block-2 h3 {
+	color: #00aa00;
+	font-size: 28px;
+	position: absolute;
+	top: 10px;
+	left: 15px;
+}
+
+.block-2 .drop-zone {
+	margin-top: 40px;
+}
+
+/* ========================================
+   БЛОК 1 (СИНИЙ) - РАБОЧАЯ ОБЛАСТЬ
+   ======================================== */
+.block-1 {
+	background: #e6f3ff;
+	border: 3px solid #4488dd;
+}
+
+.block-1 .input-section {
+	background: #ffe6e6;
+	border: 2px solid #080707;
+	padding: 10px;
+	border-radius: 3px;
+}
+
+.block-1 .drop-zone {
+	position: relative;
+}
+
+.block-1 .item {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* ========================================
+   ЗОНЫ ПЕРЕТАСКИВАНИЯ (DROP ZONES)
+   ======================================== */
+.drop-zone {
+	min-height: 250px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 10px;
+	background: white;
+	border: 2px dashed #999;
+	border-radius: 3px;
+}
+
+.drop-zone.sorted-items {
+	border-color: #00aa00;
+}
+
+.drop-zone.draggable-items {
+	border-color: #4488dd;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-content: flex-start;
+}
+
+/* ========================================
+   ЭЛЕМЕНТЫ (СЛОВА/ЧИСЛА)
+   ======================================== */
+.item {
+	padding: 8px 14px;
+	background: #00cc00;
+	color: white;
+	border-radius: 20px 0 0 20px;
+	cursor: move;
+	user-select: none;
+	transition: transform 0.2s, opacity 0.2s;
+	font-weight: bold;
+	font-size: 13px;
+	display: inline-block;
+	white-space: nowrap;
+}
+
+.item:hover {
+	transform: scale(1.05);
+	opacity: 0.9;
+}
+
+.item.dragging {
+	opacity: 0.6;
+	transform: scale(0.95);
+}
+
+.item.random-color {
+	background: #00cc00;
+}
+
+/* ========================================
+   АДАПТИВНОСТЬ (МОБИЛЬНЫЕ УСТРОЙСТВА)
+   ======================================== */
 @media (max-width: 768px) {
 	.blocks-wrapper {
 		grid-template-columns: 1fr;
