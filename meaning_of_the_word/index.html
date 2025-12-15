@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Смысл слова - Игра</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="container start-screen">
+			<div class="logo-container">
+				<h1 class="game-title">Смысл слова</h1>
+				<div class="subtitle">Увлекательная игра на знание русского языка</div>
+			</div>
+
+			<div class="login-form">
+				<h2>Добро пожаловать!</h2>
+				<input
+					type="text"
+					id="playerName"
+					placeholder="Введите ваше имя"
+					maxlength="20"
+					autocomplete="off"
+				/>
+				<button id="startBtn" class="btn btn-primary">Начать игру</button>
+				<button id="ratingBtn" class="btn btn-secondary">
+					Рейтинг игроков
+				</button>
+			</div>
+
+			<div class="game-info">
+				<h3>Правила игры:</h3>
+				<ul>
+					<li>🎯 3 уровня различной сложности</li>
+					<li>⏱️ Ограничение по времени</li>
+					<li>⭐ Набирайте очки за правильные ответы</li>
+					<li>🏆 Попадите в таблицу лидеров!</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Модальное окно для уведомлений -->
+		<div id="notificationModal" class="modal">
+			<div class="modal-content">
+				<h2 id="notificationTitle">Уведомление</h2>
+				<p id="notificationMessage"></p>
+				<button id="notificationOkBtn" class="btn btn-primary">ОК</button>
+			</div>
+		</div>
+
+		<script src="js/data.js"></script>
+		<script src="js/storage.js"></script>
+		<script src="js/main.js"></script>
+	</body>
+</html>

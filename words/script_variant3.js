@@ -182,6 +182,7 @@ function createItemBlock1(word, key, color, index) {
 			block3Info.textContent += ' ';
 		}
 		block3Info.textContent += word;
+		block3Info.style.color = color;
 	});
 
 	return item;
@@ -206,39 +207,39 @@ function setupDropZones() {
 
 		if (!draggedElement) return;
 
-		const word = draggedElement.dataset.word;
-		const key = draggedElement.dataset.key;
-		const index =
-			draggedElement.dataset.index !== undefined
-				? Number(draggedElement.dataset.index)
-				: null;
+		let item;
 
-		// Из блока 2 в блок 1
 		if (draggedElement.parentElement === block2) {
-			const randomColor = getRandomColor();
-			// помечаем в sortedItems как находящийся в block1
-			if (index !== null) sortedItems[index].inBlock1 = true;
+			const index = Number(draggedElement.dataset.index);
+			if (sortedItems[index]) sortedItems[index].inBlock1 = true;
 
-			const newItem = createItemBlock1(word, key, randomColor, index);
-
-			// Абсолютное позиционирование в месте, где отпустили мышь
-			newItem.style.position = 'absolute';
-			newItem.style.left = `${e.offsetX - 40}px`;
-			newItem.style.top = `${e.offsetY - 20}px`;
-
-			block1.appendChild(newItem);
-
-			// Удаляем оригинал из блока 2 чтобы не дублировалось
+			item = createItemBlock1(
+				draggedElement.dataset.word,
+				draggedElement.dataset.key,
+				getRandomColor(),
+				index
+			);
+			block1.appendChild(item);
 			draggedElement.remove();
-			draggedElement = null;
+		} else {
+			item = draggedElement;
 		}
-		// Перемещение внутри блока 1
-		else if (draggedElement.parentElement === block1) {
-			// Перемещаем элемент в новую позицию
-			draggedElement.style.left = `${e.offsetX - 40}px`;
-			draggedElement.style.top = `${e.offsetY - 20}px`;
-			draggedElement = null;
-		}
+
+		const rect = block1.getBoundingClientRect();
+		const width = item.offsetWidth;
+		const height = item.offsetHeight;
+
+		let left = e.clientX - rect.left - width / 2;
+		let top = e.clientY - rect.top - height / 2;
+
+		left = Math.max(0, Math.min(left, block1.clientWidth - width));
+		top = Math.max(0, Math.min(top, block1.clientHeight - height));
+
+		item.style.position = 'absolute';
+		item.style.left = `${left}px`;
+		item.style.top = `${top}px`;
+
+		draggedElement = null;
 	});
 
 	// Блок 2 (зеленый) - возврат элементов на исходное место

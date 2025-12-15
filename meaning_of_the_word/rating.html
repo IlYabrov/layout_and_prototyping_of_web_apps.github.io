@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Рейтинг - Смысл слова</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="container rating-screen">
+			<h1>🏆 Таблица лидеров</h1>
+
+			<div class="rating-filters">
+				<button class="filter-btn active" data-filter="all">
+					Все результаты
+				</button>
+				<button class="filter-btn" data-filter="top10">Топ 10</button>
+			</div>
+
+			<div class="rating-table-container">
+				<table class="rating-table">
+					<thead>
+						<tr>
+							<th>Место</th>
+							<th>Имя игрока</th>
+							<th>Очки</th>
+							<th>Уровень</th>
+							<th>Дата</th>
+						</tr>
+					</thead>
+					<tbody id="ratingTableBody">
+						<!-- Динамически генерируемые строки -->
+					</tbody>
+				</table>
+			</div>
+
+			<div class="rating-actions">
+				<button id="clearRatingBtn" class="btn btn-danger">
+					Очистить рейтинг
+				</button>
+				<button id="backToMenuBtn" class="btn btn-primary">На главную</button>
+			</div>
+		</div>
+
+		<script src="js/storage.js"></script>
+		<script src="js/rating.js"></script>
+	</body>
+</html>
