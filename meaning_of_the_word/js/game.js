@@ -10,15 +10,33 @@ class Game {
 			return;
 		}
 
-		// Последовательность уровней: 1, 2, 3 (каждый уровень один раз)
-		this.levelSequence = [1, 2, 3];
-		this.levelIndex = this.gameState.levelIndex || 0;
-		this.currentLevel = this.levelSequence[this.levelIndex];
+		// Проверяем режим игры: отдельный уровень или последовательное прохождение
+		this.isSingleLevelMode = !!this.gameState.selectedLevel;
+
+		if (this.isSingleLevelMode) {
+			// Режим одного уровня
+			this.currentLevel = this.gameState.selectedLevel;
+			this.levelSequence = [this.currentLevel];
+			this.levelIndex = 0;
+		} else {
+			// Последовательное прохождение уровней: 1, 2, 3
+			this.levelSequence = [1, 2, 3];
+			this.levelIndex = this.gameState.levelIndex || 0;
+			this.currentLevel = this.levelSequence[this.levelIndex];
+		}
 
 		this.currentQuestion = 0;
 		this.score = this.gameState.score || 0;
 		this.timer = null;
-		this.timeLeft = 150; // Общий таймер на всю игру
+
+		// Устанавливаем таймер в зависимости от режима
+		if (this.isSingleLevelMode) {
+			const settings = difficultySettings[this.currentLevel];
+			this.timeLeft = settings.timeLimit;
+		} else {
+			this.timeLeft = 150; // Общий таймер на всю игру
+		}
+
 		this.questionsAnswered = 0;
 		this.timerStarted = false; // Флаг для однократного запуска таймера
 
@@ -35,9 +53,13 @@ class Game {
 	}
 
 	init() {
+		console.log('Game.init() called');
+		console.log('Current level:', this.currentLevel);
+		console.log('isSingleLevelMode:', this.isSingleLevelMode);
 		this.updateUI();
 		this.setupEventListeners();
 		this.loadLevel();
+		console.log('Game.init() completed');
 	}
 
 	setupEventListeners() {
@@ -59,6 +81,9 @@ class Game {
 		document.getElementById('ratingPageBtn').addEventListener('click', () => {
 			window.location.href = 'rating.html';
 		});
+		document.getElementById('levelsPageBtn').addEventListener('click', () => {
+			window.location.href = 'levels.html';
+		});
 
 		// Клавиатурные события
 		document.addEventListener('keydown', e => {
@@ -76,6 +101,7 @@ class Game {
 	}
 
 	loadLevel() {
+		console.log('loadLevel called, currentLevel:', this.currentLevel);
 		this.questionsAnswered = 0;
 		// Запускаем таймер только один раз в начале игры
 		if (!this.timerStarted) {
@@ -83,24 +109,35 @@ class Game {
 			this.timerStarted = true;
 		}
 
-		switch (this.currentLevel) {
-			case 1:
-				this.loadPairsLevel();
-				break;
-			case 2:
-				this.loadPathLevel();
-				break;
-			case 3:
-				this.loadTextLevel();
-				break;
-			default:
-				this.completeGame();
+		try {
+			switch (this.currentLevel) {
+				case 1:
+					this.loadPairsLevel();
+					break;
+				case 2:
+					this.loadPathLevel();
+					break;
+				case 3:
+					this.loadTextLevel();
+					break;
+				default:
+					this.completeGame();
+			}
+		} catch (error) {
+			console.error('Error in loadLevel:', error);
+			alert('Ошибка загрузки уровня: ' + error.message);
 		}
 	}
 
 	startTimer() {
+		console.log('startTimer called, timeLeft:', this.timeLeft);
 		// Таймер уже установлен в конструкторе (150 секунд на всю игру)
-		document.getElementById('timer').textContent = this.timeLeft;
+		const timerEl = document.getElementById('timer');
+		if (!timerEl) {
+			console.error('timer element not found!');
+			return;
+		}
+		timerEl.textContent = this.timeLeft;
 
 		if (this.timer) clearInterval(this.timer);
 
@@ -118,6 +155,7 @@ class Game {
 				this.timeUp();
 			}
 		}, 1000);
+		console.log('Timer started successfully');
 	}
 
 	stopTimer() {
@@ -137,21 +175,39 @@ class Game {
 
 	// ========== УРОВЕНЬ 1: Пары слов ==========
 	loadPairsLevel() {
+		console.log('loadPairsLevel called');
 		const gameArea = document.getElementById('gameArea');
+		if (!gameArea) {
+			console.error('gameArea not found!');
+			return;
+		}
+
 		gameArea.innerHTML =
 			'<h2>Уровень 1: Найдите пары слов</h2><p>Соедините связанные слова методом перетаскивания</p>';
 
-		const settings = difficultySettings[this.currentLevel];
-		document.getElementById('totalQuestions').textContent =
-			settings.questionsPerLevel;
+		const levelSettings = difficultySettings[this.currentLevel];
+		console.log('Settings:', levelSettings);
+
+		const totalQuestionsEl = document.getElementById('totalQuestions');
+		if (totalQuestionsEl) {
+			totalQuestionsEl.textContent = levelSettings.questionsPerLevel;
+		} else {
+			console.error('totalQuestions element not found!');
+		}
 
 		this.generatePairsQuestion();
 	}
 
 	generatePairsQuestion() {
+		console.log('generatePairsQuestion called');
 		const settings = difficultySettings[this.currentLevel];
 		document.getElementById('currentQuestion').textContent =
 			this.questionsAnswered + 1;
+
+		console.log(
+			'wordPairsData:',
+			wordPairsData ? wordPairsData.length : 'undefined'
+		);
 
 		// Выбираем случайный набор данных, исключая уже использованные
 		let availableDataSets = wordPairsData.filter(
@@ -884,7 +940,7 @@ class Game {
 			} else {
 				this.showModal('Результат', message, false);
 			}
-		}, 5000);
+		}, 2500);
 	}
 
 	// ========== Общие методы ==========
@@ -936,6 +992,16 @@ class Game {
 	}
 
 	nextLevel() {
+		// Сохраняем прогресс пройденного уровня
+		if (this.isSingleLevelMode) {
+			Storage.saveLevelProgress(
+				this.gameState.playerName,
+				this.currentLevel,
+				this.score,
+				true
+			);
+		}
+
 		this.levelIndex++;
 
 		if (this.levelIndex >= this.levelSequence.length) {
@@ -956,16 +1022,23 @@ class Game {
 	completeGame() {
 		this.stopTimer();
 
-		// Сохраняем результат
-		Storage.saveRating(
-			this.gameState.playerName,
-			this.score,
-			this.currentLevel - 1
-		);
+		// Сохраняем прогресс уровня
+		if (this.isSingleLevelMode) {
+			Storage.saveLevelProgress(
+				this.gameState.playerName,
+				this.currentLevel,
+				this.score,
+				true
+			);
+		}
+
+		// Сохраняем результат в рейтинг
+		const completedLevels = this.isSingleLevelMode ? 1 : this.currentLevel - 1;
+		Storage.saveRating(this.gameState.playerName, this.score, completedLevels);
 		Storage.clearGameState();
 
 		document.getElementById('finalScore').textContent = this.score;
-		document.getElementById('finalLevel').textContent = this.currentLevel - 1;
+		document.getElementById('finalLevel').textContent = completedLevels;
 		document.getElementById('finalModal').classList.add('show');
 	}
 
@@ -976,15 +1049,30 @@ class Game {
 			() => {
 				this.stopTimer();
 
+				// Сохраняем прогресс
+				if (this.isSingleLevelMode && this.score > 0) {
+					Storage.saveLevelProgress(
+						this.gameState.playerName,
+						this.currentLevel,
+						this.score,
+						false
+					);
+				}
+
 				// Сохраняем результат
 				Storage.saveRating(
 					this.gameState.playerName,
 					this.score,
-					this.currentLevel
+					this.isSingleLevelMode ? 1 : this.currentLevel
 				);
 				Storage.clearGameState();
 
-				window.location.href = 'index.html';
+				// Возвращаемся на соответствующую страницу
+				if (this.isSingleLevelMode) {
+					window.location.href = 'levels.html';
+				} else {
+					window.location.href = 'index.html';
+				}
 			}
 		);
 	}

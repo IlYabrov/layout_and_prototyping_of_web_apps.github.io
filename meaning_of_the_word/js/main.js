@@ -37,6 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	// Обработчик кнопки "Начать игру"
 	startBtn.addEventListener('click', startGame);
 
+	// Обработчик кнопки "Выбрать уровень"
+	document.getElementById('levelSelectBtn').addEventListener('click', () => {
+		const playerName = playerNameInput.value.trim();
+
+		if (playerName.length < 2) {
+			showNotification('Ошибка', 'Пожалуйста, введите имя (минимум 2 символа)');
+			playerNameInput.focus();
+			return;
+		}
+
+		// Сохраняем имя игрока
+		Storage.saveCurrentPlayer(playerName);
+
+		// Переходим на страницу выбора уровней
+		window.location.href = 'levels.html';
+	});
+
 	// Обработчик кнопки "Рейтинг"
 	ratingBtn.addEventListener('click', () => {
 		window.location.href = 'rating.html';
@@ -65,17 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		if (playerName.length < 2) {
 			showNotification('Ошибка', 'Пожалуйста, введите имя (минимум 2 символа)');
 			playerNameInput.focus();
-			return;
-		}
-
-		// Проверяем уникальность имени
-		if (Storage.playerExists(playerName)) {
-			showNotification(
-				'Имя занято',
-				'Игрок с таким именем уже существует. Пожалуйста, выберите другое имя.'
-			);
-			playerNameInput.focus();
-			playerNameInput.select();
 			return;
 		}
 

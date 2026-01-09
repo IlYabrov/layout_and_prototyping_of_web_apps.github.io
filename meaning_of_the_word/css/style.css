@@ -130,30 +130,39 @@ body {
 }
 
 .btn-primary {
-	background: var(--primary-color);
+	background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
 	color: white;
 }
 
 .btn-primary:hover {
-	background: #357abd;
+	background: linear-gradient(135deg, #357abd 0%, #2868a8 100%);
 }
 
 .btn-secondary {
-	background: var(--secondary-color);
+	background: linear-gradient(135deg, #50c878 0%, #3da860 100%);
 	color: white;
 }
 
 .btn-secondary:hover {
-	background: #3da860;
+	background: linear-gradient(135deg, #3da860 0%, #2e8b57 100%);
+}
+
+.btn-level-select {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+}
+
+.btn-level-select:hover {
+	background: linear-gradient(135deg, #5568d3 0%, #63408a 100%);
 }
 
 .btn-danger {
-	background: var(--danger-color);
+	background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
 	color: white;
 }
 
 .btn-danger:hover {
-	background: #c0392b;
+	background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
 }
 
 /* Игровой контейнер */
@@ -175,9 +184,9 @@ body {
 		var(--primary-color),
 		var(--secondary-color)
 	);
-	padding: 20px;
-	border-radius: 15px;
-	margin-bottom: 20px;
+	padding: 12px 16px;
+	border-radius: 12px;
+	margin-bottom: 15px;
 	color: white;
 	display: flex;
 	justify-content: space-between;
@@ -186,13 +195,13 @@ body {
 }
 
 .player-info .player-name {
-	font-size: 1.5em;
+	font-size: 1.2em;
 	font-weight: bold;
 }
 
 .game-stats {
 	display: flex;
-	gap: 20px;
+	gap: 15px;
 	flex-wrap: wrap;
 }
 
@@ -203,12 +212,12 @@ body {
 }
 
 .stat-label {
-	font-size: 0.9em;
+	font-size: 0.8em;
 	opacity: 0.9;
 }
 
 .stat-value {
-	font-size: 1.5em;
+	font-size: 1.3em;
 	font-weight: bold;
 	margin-top: 5px;
 }
@@ -300,22 +309,22 @@ body {
 /* Уровень 2: Кластеризация */
 .cluster-game {
 	background: white;
-	padding: 20px;
-	border-radius: 15px;
+	padding: 10px;
+	border-radius: 12px;
 }
 
 .categories-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	gap: 15px;
-	margin-bottom: 30px;
+	gap: 10px;
+	margin-bottom: 15px;
 }
 
 .category-box {
 	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-	border-radius: 12px;
-	padding: 15px;
-	min-height: 200px;
+	border-radius: 10px;
+	padding: 10px;
+	min-height: 110px;
 	transition: all 0.3s ease;
 	box-shadow: var(--shadow);
 }
@@ -329,50 +338,52 @@ body {
 .category-box h3 {
 	color: white;
 	text-align: center;
-	margin-bottom: 15px;
-	font-size: 1.2em;
+	margin-bottom: 8px;
+	font-size: 1em;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .category-words {
 	background: rgba(255, 255, 255, 0.9);
-	border-radius: 8px;
-	padding: 10px;
-	min-height: 140px;
+	border-radius: 6px;
+	padding: 6px;
+	min-height: 70px;
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	gap: 5px;
 	align-content: flex-start;
 }
 
 .words-container {
 	background: #f8f9fa;
-	border-radius: 12px;
-	padding: 20px;
+	border-radius: 10px;
+	padding: 12px;
 }
 
 .words-container h3 {
 	color: var(--dark-color);
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 	text-align: center;
+	font-size: 1em;
 }
 
 .words-pool {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 10px;
+	gap: 6px;
 	justify-content: center;
-	padding: 10px;
+	padding: 6px;
 }
 
 .word-to-cluster {
 	background: linear-gradient(135deg, #4a90e2, #357abd);
 	color: white;
-	padding: 10px 20px;
-	border-radius: 25px;
+	padding: 6px 14px;
+	border-radius: 18px;
 	cursor: move;
 	transition: all 0.3s ease;
 	font-weight: 500;
+	font-size: 0.9em;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	user-select: none;
 }
@@ -654,6 +665,192 @@ body {
 	}
 }
 
+/* Страница выбора уровней */
+.levels-screen {
+	max-width: 1200px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.btn-back {
+	background: var(--light-color);
+	color: var(--dark-color);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 1em;
+	font-weight: 600;
+	transition: all 0.3s ease;
+	position: absolute;
+	left: 0;
+	z-index: 10;
+}
+
+.btn-back:hover {
+	background: #dfe4e8;
+	transform: translateX(-3px);
+}
+
+.header .game-title {
+	flex: 1;
+	text-align: center;
+	margin: 0;
+	font-size: 1.8em;
+	pointer-events: none;
+}
+
+.player-welcome {
+	text-align: center;
+	font-size: 1em;
+	margin-bottom: 20px;
+	color: var(--dark-color);
+}
+
+.player-welcome strong {
+	color: var(--primary-color);
+}
+
+.levels-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 15px;
+	margin-bottom: 20px;
+}
+
+.level-card {
+	background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	border-radius: 12px;
+	padding: 18px;
+	box-shadow: var(--shadow);
+	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+}
+
+.level-card:hover {
+	transform: translateY(-5px);
+	box-shadow: var(--shadow-lg);
+}
+
+.level-card.locked {
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.level-card.completed {
+	background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+}
+
+.level-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.level-number {
+	width: 40px;
+	height: 40px;
+	background: var(--primary-color);
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.3em;
+	font-weight: bold;
+	box-shadow: var(--shadow);
+}
+
+.level-status {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 5px;
+}
+
+.status-icon {
+	font-size: 1.3em;
+}
+
+.best-score {
+	font-size: 0.85em;
+	color: var(--dark-color);
+	font-weight: 600;
+}
+
+.level-body {
+	flex: 1;
+	margin-bottom: 15px;
+}
+
+.level-title {
+	font-size: 1.3em;
+	color: var(--dark-color);
+	margin-bottom: 8px;
+}
+
+.level-description {
+	color: #555;
+	line-height: 1.5;
+	font-size: 0.95em;
+	margin-bottom: 12px;
+}
+
+.level-info {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-top: 12px;
+}
+
+.info-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: rgba(255, 255, 255, 0.6);
+	padding: 6px 10px;
+	border-radius: 6px;
+}
+
+.info-icon {
+	font-size: 1.1em;
+}
+
+.info-text {
+	color: var(--dark-color);
+	font-weight: 500;
+	font-size: 0.9em;
+}
+
+.level-start-btn {
+	width: 100%;
+	padding: 10px;
+	font-size: 1em;
+}
+
+.level-start-btn:disabled {
+	background: #95a5a6;
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+.level-start-btn:disabled:hover {
+	transform: none;
+	box-shadow: var(--shadow);
+}
+
+.levels-footer {
+	text-align: center;
+	margin-top: 20px;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
 	.container {
@@ -662,6 +859,19 @@ body {
 
 	.game-title {
 		font-size: 2em;
+	}
+
+	.header .game-title {
+		font-size: 1.5em;
+	}
+
+	.btn-back {
+		position: static;
+		margin-bottom: 15px;
+	}
+
+	.header {
+		flex-direction: column;
 	}
 
 	.info-panel {
@@ -675,5 +885,9 @@ body {
 
 	.path-game {
 		height: 400px;
+	}
+
+	.levels-container {
+		grid-template-columns: 1fr;
 	}
 }

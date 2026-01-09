@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Выбор уровня - Смысл слова</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div class="container levels-screen">
+			<div class="header">
+				<button id="backBtn" class="btn-back">← Назад</button>
+				<h1 class="game-title">Выбор уровня</h1>
+			</div>
+
+			<div class="player-welcome">
+				<span>Игрок: <strong id="playerNameDisplay"></strong></span>
+			</div>
+
+			<div class="levels-container">
+				<!-- Уровень 1: Найди пары -->
+				<div class="level-card" data-level="1">
+					<div class="level-header">
+						<span class="level-number">1</span>
+						<div class="level-status">
+							<span class="status-icon" id="status-1">🔒</span>
+							<span class="best-score" id="score-1"></span>
+						</div>
+					</div>
+					<div class="level-body">
+						<h3 class="level-title">Найди пары</h3>
+						<p class="level-description">
+							Соедините связанные слова методом перетаскивания. Найдите все
+							правильные пары!
+						</p>
+						<div class="level-info">
+							<div class="info-item">
+								<span class="info-icon">❓</span>
+								<span class="info-text">3 вопроса</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⏱️</span>
+								<span class="info-text">90 секунд</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⭐</span>
+								<span class="info-text">10 очков за ответ</span>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary level-start-btn" data-level="1">
+						Начать уровень
+					</button>
+				</div>
+
+				<!-- Уровень 2: Распредели слова -->
+				<div class="level-card" data-level="2">
+					<div class="level-header">
+						<span class="level-number">2</span>
+						<div class="level-status">
+							<span class="status-icon" id="status-2">🔒</span>
+							<span class="best-score" id="score-2"></span>
+						</div>
+					</div>
+					<div class="level-body">
+						<h3 class="level-title">Распредели слова</h3>
+						<p class="level-description">
+							Сгруппируйте слова по категориям. Правильно определите, к какой
+							категории относится каждое слово.
+						</p>
+						<div class="level-info">
+							<div class="info-item">
+								<span class="info-icon">❓</span>
+								<span class="info-text">2 вопроса</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⏱️</span>
+								<span class="info-text">150 секунд</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⭐</span>
+								<span class="info-text">15 очков за ответ</span>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary level-start-btn" data-level="2">
+						Начать уровень
+					</button>
+				</div>
+
+				<!-- Уровень 3: Найди лишнее -->
+				<div class="level-card" data-level="3">
+					<div class="level-header">
+						<span class="level-number">3</span>
+						<div class="level-status">
+							<span class="status-icon" id="status-3">🔒</span>
+							<span class="best-score" id="score-3"></span>
+						</div>
+					</div>
+					<div class="level-body">
+						<h3 class="level-title">Найди лишнее</h3>
+						<p class="level-description">
+							Прочитайте текст и найдите в нём слова, которые употреблены
+							неправильно или неуместны.
+						</p>
+						<div class="level-info">
+							<div class="info-item">
+								<span class="info-icon">❓</span>
+								<span class="info-text">2 вопроса</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⏱️</span>
+								<span class="info-text">60 секунд</span>
+							</div>
+							<div class="info-item">
+								<span class="info-icon">⭐</span>
+								<span class="info-text">20 очков за ответ</span>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-primary level-start-btn" data-level="3">
+						Начать уровень
+					</button>
+				</div>
+			</div>
+
+			<div class="levels-footer">
+				<button id="ratingBtn" class="btn btn-secondary">
+					Таблица лидеров
+				</button>
+			</div>
+		</div>
+
+		<!-- Модальное окно для уведомлений -->
+		<div id="notificationModal" class="modal">
+			<div class="modal-content">
+				<h2 id="notificationTitle">Уведомление</h2>
+				<p id="notificationMessage"></p>
+				<button id="notificationOkBtn" class="btn btn-primary">ОК</button>
+			</div>
+		</div>
+
+		<script src="js/data.js"></script>
+		<script src="js/storage.js"></script>
+		<script src="js/levels.js"></script>
+	</body>
+</html>
