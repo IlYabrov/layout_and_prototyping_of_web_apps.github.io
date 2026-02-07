@@ -19,8 +19,8 @@ class Game {
 			this.levelSequence = [this.currentLevel];
 			this.levelIndex = 0;
 		} else {
-			// Последовательное прохождение уровней: 1, 2, 3
-			this.levelSequence = [1, 2, 3];
+			// Последовательное прохождение уровней: 1, 2, 3, 4
+			this.levelSequence = [1, 2, 3, 4];
 			this.levelIndex = this.gameState.levelIndex || 0;
 			this.currentLevel = this.levelSequence[this.levelIndex];
 		}
@@ -34,7 +34,7 @@ class Game {
 			const settings = difficultySettings[this.currentLevel];
 			this.timeLeft = settings.timeLimit;
 		} else {
-			this.timeLeft = 150; // Общий таймер на всю игру
+			this.timeLeft = 230; // Общий таймер на всю игру
 		}
 
 		this.questionsAnswered = 0;
@@ -120,6 +120,9 @@ class Game {
 				case 3:
 					this.loadTextLevel();
 					break;
+				case 4:
+					this.loadFallingLevel();
+					break;
 				default:
 					this.completeGame();
 			}
@@ -183,7 +186,7 @@ class Game {
 		}
 
 		gameArea.innerHTML =
-			'<h2>Уровень 1: Найдите пары слов</h2><p>Соедините связанные слова методом перетаскивания</p>';
+			'<h2>Уровень 1. Найти пары слов</h2><p>Соедините связанные слова, нажимая сначала на слово в левом ряду, а затем на подходящее слово в правом ряду.</p>';
 
 		const levelSettings = difficultySettings[this.currentLevel];
 		console.log('Settings:', levelSettings);
@@ -468,76 +471,116 @@ class Game {
 		let correct = 0;
 		let incorrect = 0;
 
-		// Визуально отмечаем правильные и неправильные пары
-		correctPairs.forEach(pair => {
-			const leftElement = Array.from(
-				document.querySelectorAll('#leftColumn .word-item')
-			).find(el => el.textContent === pair.left);
-			const rightWord = userMatches[pair.left];
+		// Визуально отмечаем правильные и неправильные пары с анимацией
+		correctPairs.forEach((pair, index) => {
+			setTimeout(() => {
+				const leftElement = Array.from(
+					document.querySelectorAll('#leftColumn .word-item')
+				).find(el => el.textContent === pair.left);
+				const rightWord = userMatches[pair.left];
 
+				if (rightWord === pair.right) {
+					// Правильная пара
+					correct++;
+					if (leftElement) {
+						leftElement.classList.add('correct-pair');
+						leftElement.style.background = '';
+						leftElement.classList.add('correct');
+						// Эффект частиц
+						const rect = leftElement.getBoundingClientRect();
+						this.createParticles(
+							rect.left + rect.width / 2,
+							rect.top + rect.height / 2,
+							8
+						);
+					}
+					const rightElement = document.querySelector(
+						`#rightColumn .word-item[data-word="${rightWord}"]`
+					);
+					if (rightElement) {
+						rightElement.classList.add('correct-pair');
+						rightElement.style.background = '';
+						rightElement.classList.add('correct');
+						// Эффект частиц
+						const rect = rightElement.getBoundingClientRect();
+						this.createParticles(
+							rect.left + rect.width / 2,
+							rect.top + rect.height / 2,
+							8
+						);
+					}
+				} else if (rightWord) {
+					// Неправильная пара
+					incorrect++;
+					if (leftElement) {
+						leftElement.style.background = '#e74c3c';
+						leftElement.style.color = 'white';
+						leftElement.classList.add('incorrect-pair');
+						leftElement.classList.add('incorrect');
+					}
+					const rightElement = document.querySelector(
+						`#rightColumn .word-item[data-word="${rightWord}"]`
+					);
+					if (rightElement) {
+						rightElement.style.background = '#e74c3c';
+						rightElement.style.color = 'white';
+						rightElement.classList.add('incorrect-pair');
+						rightElement.classList.add('incorrect');
+					}
+				}
+			}, index * 200); // Задержка для последовательной анимации
+		});
+
+		// Подсчитываем результаты сразу (без анимации)
+		let correctCount = 0;
+		let incorrectCount = 0;
+		correctPairs.forEach(pair => {
+			const rightWord = userMatches[pair.left];
 			if (rightWord === pair.right) {
-				// Правильная пара - оставляем цветной
-				correct++;
-				if (leftElement) {
-					leftElement.classList.add('correct-pair');
-				}
-				const rightElement = document.querySelector(
-					`#rightColumn .word-item[data-word="${rightWord}"]`
-				);
-				if (rightElement) {
-					rightElement.classList.add('correct-pair');
-				}
+				correctCount++;
 			} else if (rightWord) {
-				// Неправильная пара - красим красным
-				incorrect++;
-				if (leftElement) {
-					leftElement.style.background = '#e74c3c';
-					leftElement.style.color = 'white';
-					leftElement.classList.add('incorrect-pair');
-				}
-				const rightElement = document.querySelector(
-					`#rightColumn .word-item[data-word="${rightWord}"]`
-				);
-				if (rightElement) {
-					rightElement.style.background = '#e74c3c';
-					rightElement.style.color = 'white';
-					rightElement.classList.add('incorrect-pair');
-				}
+				incorrectCount++;
 			}
 		});
 
 		const settings = difficultySettings[this.currentLevel];
 		const points =
-			correct * settings.pointsPerCorrect + incorrect * settings.penalty;
+			correctCount * settings.pointsPerCorrect +
+			incorrectCount * settings.penalty;
 		this.score += points;
 
 		this.updateUI();
 
 		const message = `
-            Правильно: ${correct}<br>
-            Неправильно: ${incorrect}<br>
+            Правильно: ${correctCount}<br>
+            Неправильно: ${incorrectCount}<br>
             Получено очков: ${points > 0 ? '+' : ''}${points}
         `;
 
 		this.questionsAnswered++;
 
-		if (this.questionsAnswered >= settings.questionsPerLevel) {
-			this.showModal(
-				'🎉 Уровень завершён!',
-				message + '<br>Переход на следующий уровень',
-				false,
-				true
-			);
-		} else {
-			this.showModal('Результат', message, false);
-		}
+		// Задержка для проигрывания анимации
+		const animationDelay = correctPairs.length * 200 + 500;
+
+		setTimeout(() => {
+			if (this.questionsAnswered >= settings.questionsPerLevel) {
+				this.showModal(
+					'🎉 Уровень завершён!',
+					message + '<br>Переход на следующий уровень',
+					false,
+					true
+				);
+			} else {
+				this.showModal('Результат', message, false);
+			}
+		}, animationDelay);
 	}
 
 	// ========== УРОВЕНЬ 2: Кластеризация слов ==========
 	loadPathLevel() {
 		const gameArea = document.getElementById('gameArea');
 		gameArea.innerHTML =
-			'<h2>Уровень 2: Распределите слова по категориям</h2><p>Перетаскивайте слова в соответствующие секции</p>';
+			'<h2>Уровень 2. Распределить слова по категориям</h2><p>Перетаскивайте слова в соответствующие секции</p>';
 
 		const settings = difficultySettings[this.currentLevel];
 		document.getElementById('totalQuestions').textContent =
@@ -637,6 +680,16 @@ class Game {
 
 					// Сохраняем выбор
 					this.currentLevelData.userClusters[wordText] = categoryName;
+
+					// Добавляем эффекты при размещении
+					categoryBox.classList.add('ripple-effect');
+					categoryBox.classList.add('success-flash');
+					this.createClusterParticles(wordsArea, clone);
+
+					setTimeout(() => {
+						categoryBox.classList.remove('ripple-effect');
+						categoryBox.classList.remove('success-flash');
+					}, 600);
 				}
 			});
 
@@ -701,42 +754,67 @@ class Game {
 		let incorrect = 0;
 		let notPlaced = 0;
 
-		// Подсчитываем результаты и визуально отмечаем
-		Object.keys(correctClusters).forEach(word => {
+		const words = Object.keys(correctClusters);
+
+		// Сначала подсчитываем результаты
+		words.forEach(word => {
 			const correctCategory = correctClusters[word];
 			const userCategory = userClusters[word];
 
 			if (userCategory === correctCategory) {
 				correct++;
-				// Подсвечиваем правильно размещенные слова зеленым
-				const placedWord = document.querySelector(
-					`.category-box[data-category="${userCategory}"] .word-to-cluster.placed[data-word="${word}"]`
-				);
-				if (placedWord) {
-					placedWord.style.background = '#2ecc71';
-					placedWord.style.color = 'white';
-				}
 			} else if (userCategory) {
 				incorrect++;
-				// Подсвечиваем неправильно размещенные слова красным
-				const placedWord = document.querySelector(
-					`.category-box[data-category="${userCategory}"] .word-to-cluster.placed[data-word="${word}"]`
-				);
-				if (placedWord) {
-					placedWord.style.background = '#e74c3c';
-					placedWord.style.color = 'white';
-				}
 			} else {
 				notPlaced++;
-				// Подсвечиваем не размещенные слова оранжевым
-				const unplacedWord = document.querySelector(
-					`.words-pool .word-to-cluster[data-word="${word}"]`
-				);
-				if (unplacedWord) {
-					unplacedWord.style.background = '#f39c12';
-					unplacedWord.style.color = 'white';
-				}
 			}
+		});
+
+		// Затем визуально отмечаем с анимацией
+		words.forEach((word, index) => {
+			const correctCategory = correctClusters[word];
+			const userCategory = userClusters[word];
+
+			setTimeout(() => {
+				if (userCategory === correctCategory) {
+					// Подсвечиваем правильно размещенные слова зеленым
+					const placedWord = document.querySelector(
+						`.category-box[data-category="${userCategory}"] .word-to-cluster.placed[data-word="${word}"]`
+					);
+					if (placedWord) {
+						placedWord.style.background = '#2ecc71';
+						placedWord.style.color = 'white';
+						placedWord.classList.add('correct-answer');
+						// Эффект частиц для правильных ответов
+						const rect = placedWord.getBoundingClientRect();
+						this.createParticles(
+							rect.left + rect.width / 2,
+							rect.top + rect.height / 2,
+							8
+						);
+					}
+				} else if (userCategory) {
+					// Подсвечиваем неправильно размещенные слова красным
+					const placedWord = document.querySelector(
+						`.category-box[data-category="${userCategory}"] .word-to-cluster.placed[data-word="${word}"]`
+					);
+					if (placedWord) {
+						placedWord.style.background = '#e74c3c';
+						placedWord.style.color = 'white';
+						placedWord.classList.add('wrong-answer');
+					}
+				} else {
+					// Подсвечиваем не размещенные слова оранжевым
+					const unplacedWord = document.querySelector(
+						`.words-pool .word-to-cluster[data-word="${word}"]`
+					);
+					if (unplacedWord) {
+						unplacedWord.style.background = '#f39c12';
+						unplacedWord.style.color = 'white';
+						unplacedWord.classList.add('wrong-answer');
+					}
+				}
+			}, index * 150); // Последовательная анимация с задержкой
 		});
 
 		const settings = difficultySettings[this.currentLevel];
@@ -757,6 +835,9 @@ class Game {
 
 		this.questionsAnswered++;
 
+		// Задержка для проигрывания анимации (слова * 150мс + 800мс на эффекты)
+		const animationDelay = words.length * 150 + 800;
+
 		setTimeout(() => {
 			if (this.questionsAnswered >= settings.questionsPerLevel) {
 				this.showModal(
@@ -768,7 +849,7 @@ class Game {
 			} else {
 				this.showModal('Результат', message, false);
 			}
-		}, 2000);
+		}, animationDelay);
 	}
 
 	// ========== УРОВЕНЬ 3: Чужеродные фрагменты ==========
@@ -879,35 +960,54 @@ class Game {
 		let wrongSelected = 0;
 		let notFound = 0;
 
-		// Визуальная обратная связь
+		let animationIndex = 0;
+
+		// Визуальная обратная связь с последовательной анимацией
 		document.querySelectorAll('.text-word').forEach(span => {
 			const word = span.dataset.word;
 			// Убираем знаки препинания для сравнения
 			const cleanWord = word.replace(/[.,!?;:]/g, '');
 
 			if (alienWords.includes(cleanWord) && selectedWords.includes(word)) {
-				// Верно выбранные - зеленый
-				span.classList.add('correct-found');
+				// Верно выбранные - зеленый с эффектом частиц
+				setTimeout(() => {
+					span.classList.remove('selected');
+					span.classList.add('correct-found');
+					// Эффект частиц
+					const rect = span.getBoundingClientRect();
+					this.createParticles(
+						rect.left + rect.width / 2,
+						rect.top + rect.height / 2,
+						10
+					);
+				}, animationIndex * 150);
 				correctFound++;
+				animationIndex++;
 			} else if (
 				alienWords.includes(cleanWord) &&
 				!selectedWords.includes(word)
 			) {
 				// Пропущенные (должны были отметить, но не отметили) - синий
-				span.classList.add('missed-word');
+				setTimeout(() => {
+					span.classList.add('missed-word');
+				}, animationIndex * 150);
 				notFound++;
+				animationIndex++;
 			} else if (
 				!alienWords.includes(cleanWord) &&
 				selectedWords.includes(word)
 			) {
-				// Неверно выбранные - красный (исчезнет через 2 секунды)
-				span.classList.add('wrong-selected');
+				// Неверно выбранные - красный с тряской
 				wrongSelected++;
-				// Убираем красный цвет через 2 секунды
 				setTimeout(() => {
-					span.classList.remove('wrong-selected');
-					span.classList.remove('selected');
-				}, 2000);
+					span.classList.add('wrong-selected');
+					// Убираем красный цвет через 2 секунды
+					setTimeout(() => {
+						span.classList.remove('wrong-selected');
+						span.classList.remove('selected');
+					}, 2000);
+				}, animationIndex * 150);
+				animationIndex++;
 			}
 		});
 
@@ -929,6 +1029,9 @@ class Game {
 
 		this.questionsAnswered++;
 
+		// Задержка с учётом анимации
+		const animationDelay = animationIndex * 150 + 1000;
+
 		setTimeout(() => {
 			if (this.questionsAnswered >= settings.questionsPerLevel) {
 				this.showModal(
@@ -940,7 +1043,819 @@ class Game {
 			} else {
 				this.showModal('Результат', message, false);
 			}
-		}, 2500);
+		}, animationDelay);
+	}
+
+	// ========== УРОВЕНЬ 4: Падающие слова ==========
+	loadFallingLevel() {
+		const gameArea = document.getElementById('gameArea');
+		gameArea.innerHTML =
+			'<h2>Уровень 4: Лови слова!</h2><p>Перетаскивайте падающие слова в нужные категории. ПКМ по лишним словам даёт бонус!</p>';
+
+		const settings = difficultySettings[this.currentLevel];
+		document.getElementById('totalQuestions').textContent =
+			settings.questionsPerLevel;
+
+		this.generateFallingQuestion();
+	}
+
+	generateFallingQuestion() {
+		document.getElementById('currentQuestion').textContent =
+			this.questionsAnswered + 1;
+
+		// Выбираем случайный набор данных
+		if (!this.usedFallingSets) this.usedFallingSets = [];
+		if (this.usedFallingSets.length >= fallingWordsData.length) {
+			this.usedFallingSets = [];
+		}
+
+		let availableSets = fallingWordsData.filter(
+			(_, index) => !this.usedFallingSets.includes(index)
+		);
+		const randomIndex = Math.floor(Math.random() * availableSets.length);
+		const dataIndex = fallingWordsData.indexOf(availableSets[randomIndex]);
+		this.usedFallingSets.push(dataIndex);
+
+		const data = fallingWordsData[dataIndex];
+		const settings = difficultySettings[this.currentLevel];
+
+		// Инициализируем данные уровня
+		this.currentLevelData = {
+			categories: data.categories.map(cat => ({ ...cat, count: 0 })),
+			words: [...data.words].sort(() => Math.random() - 0.5),
+			caught: 0,
+			missed: 0,
+			skipScore: 0,
+			skipHits: 0,
+			maxMissed: settings.maxMissed || 5,
+			targetScore: data.categories.reduce((sum, cat) => sum + cat.target, 0),
+			spawnInterval: settings.spawnInterval || 2500,
+			targetFallSeconds: settings.targetFallSeconds || 10,
+			skipReward: settings.skipReward || 30,
+			wordIndex: 0,
+			spawnTimer: null,
+			currentSpeed: 1.0,
+			isFinished: false,
+		};
+
+		const gameArea = document.getElementById('gameArea');
+
+		// Удаляем предыдущий контейнер, если есть
+		const oldContainer = gameArea.querySelector('.falling-game');
+		if (oldContainer) {
+			oldContainer.remove();
+		}
+
+		// Создаём контейнер игры
+		const fallingContainer = document.createElement('div');
+		fallingContainer.className = 'falling-game';
+
+		// Панель статистики
+		const statsPanel = document.createElement('div');
+		statsPanel.className = 'falling-stats-panel';
+		statsPanel.innerHTML = `
+			<div class="falling-stat">
+				<span class="stat-icon">🎯</span>
+				<span>Поймано: <strong id="falling-caught">0</strong>/${this.currentLevelData.targetScore}</span>
+			</div>
+			<div class="falling-stat">
+				<span class="stat-icon">⚠️</span>
+				<span>Пропущено: <strong id="falling-missed">0</strong>/${this.currentLevelData.maxMissed}</span>
+			</div>
+			<div class="falling-stat">
+				<span class="stat-icon">✨</span>
+				<span>Бонус: <strong id="falling-skip">0</strong></span>
+			</div>
+		`;
+		fallingContainer.appendChild(statsPanel);
+
+		// Область падения слов
+		const stormArea = document.createElement('div');
+		stormArea.className = 'storm-area';
+		stormArea.id = 'storm-area';
+		fallingContainer.appendChild(stormArea);
+
+		// Область категорий
+		const categoriesArea = document.createElement('div');
+		categoriesArea.className = 'falling-categories-area';
+		categoriesArea.id = 'falling-categories-area';
+
+		this.currentLevelData.categories.forEach(cat => {
+			const zone = document.createElement('div');
+			zone.className = 'category-zone';
+			zone.dataset.category = cat.id;
+			zone.innerHTML = `
+				<div class="category-label">${cat.name}</div>
+				<div class="category-counter">
+					<span class="cat-count">${cat.count}</span>/${cat.target}
+				</div>
+			`;
+
+			categoriesArea.appendChild(zone);
+		});
+
+		fallingContainer.appendChild(categoriesArea);
+		gameArea.appendChild(fallingContainer);
+
+		// Запускаем спавн слов
+		this.startFallingSpawn();
+	}
+
+	startFallingSpawn() {
+		const settings = difficultySettings[this.currentLevel];
+		const data = this.currentLevelData;
+
+		const spawnNext = () => {
+			if (data.isFinished) return;
+			if (data.caught >= data.targetScore) return;
+			if (data.wordIndex >= data.words.length) {
+				data.wordIndex = 0;
+				data.words.sort(() => Math.random() - 0.5);
+			}
+
+			this.spawnFallingWord(data.words[data.wordIndex]);
+			data.wordIndex++;
+		};
+
+		spawnNext();
+
+		data.spawnTimer = setInterval(() => {
+			if (data.isFinished) {
+				clearInterval(data.spawnTimer);
+				return;
+			}
+			spawnNext();
+
+			// Увеличиваем скорость после каждых 3 пойманных слов
+			if (data.caught > 0 && data.caught % 3 === 0) {
+				data.currentSpeed = Math.min(2.5, data.currentSpeed + 0.15);
+			}
+		}, data.spawnInterval);
+	}
+
+	spawnFallingWord(wordData) {
+		const area = document.getElementById('storm-area');
+		if (!area) return;
+
+		const el = document.createElement('div');
+		el.className = 'falling-word';
+		el.innerText = wordData.text;
+		el.dataset.word = wordData.text;
+		el.dataset.category = wordData.category;
+		el.style.top = '-40px';
+
+		area.appendChild(el);
+
+		// Случайная позиция по горизонтали
+		const maxLeft = Math.max(0, area.clientWidth - el.offsetWidth);
+		el.style.left = Math.random() * maxLeft + 'px';
+
+		// Перетаскивание через mouse events (надёжнее чем drag API)
+		this.makeFallingWordDraggable(el, wordData, area);
+
+		// ПКМ для "лишних" слов
+		el.addEventListener('contextmenu', e => {
+			e.preventDefault();
+			if (this.canSkipFallingWord(el)) {
+				this.handleSkipFallingWord(el);
+			} else {
+				this.handleInvalidSkip(el);
+			}
+		});
+
+		// Запускаем падение
+		this.startFallingWord(el, area);
+	}
+
+	makeFallingWordDraggable(el, wordData, container) {
+		let isDragging = false;
+		let offsetX = 0;
+		let offsetY = 0;
+
+		const onMouseDown = e => {
+			if (e.button !== 0) return; // Только левая кнопка мыши
+			if (el.classList.contains('caught')) return;
+
+			isDragging = true;
+			this.stopFallingWord(el);
+
+			const rect = el.getBoundingClientRect();
+			offsetX = e.clientX - rect.left;
+			offsetY = e.clientY - rect.top;
+
+			// Перемещаем элемент в body для свободного перетаскивания
+			el._dragContext = {
+				parent: el.parentElement,
+				width: rect.width,
+				wordData: wordData,
+			};
+
+			document.body.appendChild(el);
+			el.style.position = 'fixed';
+			el.style.left = rect.left + 'px';
+			el.style.top = rect.top + 'px';
+			el.style.width = rect.width + 'px';
+			el.style.zIndex = '10000';
+			el.classList.add('dragging');
+		};
+
+		const onMouseMove = e => {
+			if (!isDragging) return;
+			e.preventDefault();
+
+			const newX = e.clientX - offsetX;
+			const newY = e.clientY - offsetY;
+
+			el.style.left =
+				Math.max(0, Math.min(newX, window.innerWidth - el.offsetWidth)) + 'px';
+			el.style.top =
+				Math.max(0, Math.min(newY, window.innerHeight - el.offsetHeight)) +
+				'px';
+
+			// Создаём след за словом (каждый 3-й кадр)
+			if (!this._trailCounter) this._trailCounter = 0;
+			this._trailCounter++;
+			if (this._trailCounter % 3 === 0) {
+				const style = getComputedStyle(el);
+				const bgColor =
+					style.background.match(/rgb[a]?\([^)]+\)/)?.[0] || '#6c5ce7';
+				this.createDragTrail(e.clientX, e.clientY, bgColor);
+			}
+
+			// Подсвечиваем зоны при наведении
+			this.highlightFallingZones(e);
+		};
+
+		const onMouseUp = e => {
+			if (!isDragging) return;
+			isDragging = false;
+			el.classList.remove('dragging');
+			el.style.zIndex = '100';
+
+			// Проверяем, попали ли в зону категории
+			const dropped = this.checkFallingDrop(el, e, wordData.category);
+
+			if (!dropped && el._dragContext) {
+				// Возвращаем в область падения
+				const host = el._dragContext.parent || container;
+				if (host) {
+					const hostRect = host.getBoundingClientRect();
+					const currentLeft = parseFloat(el.style.left) || 0;
+					const currentTop = parseFloat(el.style.top) || 0;
+					const relativeLeft = currentLeft - hostRect.left;
+					const relativeTop = currentTop - hostRect.top;
+
+					host.appendChild(el);
+					el.style.position = 'absolute';
+					el.style.width = '';
+
+					const maxX = Math.max(0, host.clientWidth - el.offsetWidth);
+					el.style.left = Math.max(0, Math.min(relativeLeft, maxX)) + 'px';
+					el.style.top = Math.max(-40, relativeTop) + 'px';
+
+					this.resumeFallingWord(el, container);
+				}
+				delete el._dragContext;
+			} else {
+				delete el._dragContext;
+			}
+		};
+
+		el.addEventListener('mousedown', onMouseDown);
+		document.addEventListener('mousemove', onMouseMove);
+		document.addEventListener('mouseup', onMouseUp);
+	}
+
+	highlightFallingZones(e) {
+		const zones = document.querySelectorAll('.category-zone');
+		zones.forEach(zone => {
+			const rect = zone.getBoundingClientRect();
+			if (
+				e.clientX >= rect.left &&
+				e.clientX <= rect.right &&
+				e.clientY >= rect.top &&
+				e.clientY <= rect.bottom
+			) {
+				zone.classList.add('highlight');
+			} else {
+				zone.classList.remove('highlight');
+			}
+		});
+	}
+
+	checkFallingDrop(el, e, wordCategory) {
+		const zones = document.querySelectorAll('.category-zone');
+		let dropped = false;
+
+		zones.forEach(zone => {
+			const rect = zone.getBoundingClientRect();
+			if (
+				e.clientX >= rect.left &&
+				e.clientX <= rect.right &&
+				e.clientY >= rect.top &&
+				e.clientY <= rect.bottom
+			) {
+				zone.classList.remove('highlight');
+				this.handleFallingDrop(el, zone, wordCategory);
+				dropped = true;
+			}
+		});
+
+		// Убираем подсветку со всех зон
+		zones.forEach(z => z.classList.remove('highlight'));
+
+		return dropped;
+	}
+
+	hasActiveCategory(categoryId) {
+		return this.currentLevelData.categories.some(cat => cat.id === categoryId);
+	}
+
+	canSkipFallingWord(el) {
+		if (!el) return false;
+		const category = el.dataset.category;
+		return !this.hasActiveCategory(category);
+	}
+
+	handleSkipFallingWord(el) {
+		if (!el || el.classList.contains('caught')) return;
+		this.stopFallingWord(el);
+		el.classList.add('caught');
+
+		const data = this.currentLevelData;
+		data.skipHits++;
+		data.skipScore += data.skipReward;
+
+		document.getElementById('falling-skip').innerText = data.skipScore;
+
+		el.style.transition = 'all 0.25s ease-out';
+		el.style.transform = 'scale(1.2)';
+		el.style.opacity = '0';
+		el.style.background = '#a29bfe';
+		setTimeout(() => el.remove(), 250);
+	}
+
+	handleInvalidSkip(el) {
+		if (!el || el.classList.contains('caught')) return;
+		this.stopFallingWord(el);
+		el.classList.add('caught');
+
+		const data = this.currentLevelData;
+		data.missed++;
+		document.getElementById('falling-missed').innerText = data.missed;
+
+		const area = document.getElementById('storm-area');
+		if (area) {
+			area.style.animation = 'shake 0.4s';
+			setTimeout(() => (area.style.animation = ''), 400);
+		}
+
+		el.style.transition = 'all 0.25s ease-out';
+		el.style.transform = 'scale(0.8)';
+		el.style.opacity = '0';
+		el.style.background = '#d63031';
+		setTimeout(() => el.remove(), 250);
+
+		if (data.missed >= data.maxMissed) {
+			setTimeout(() => this.finishFallingLevel(false), 500);
+		}
+	}
+
+	startFallingWord(el, area) {
+		if (!area) return;
+		this.stopFallingWord(el);
+
+		const data = this.currentLevelData;
+		const areaHeight = area.clientHeight;
+		const areaWidth = Math.max(0, area.clientWidth - el.offsetWidth);
+		const clampX = val => Math.max(0, Math.min(val, areaWidth));
+
+		// Скорость падения
+		const effectiveTime = Math.max(
+			3,
+			data.targetFallSeconds / data.currentSpeed
+		);
+		const verticalSpeed = areaHeight / effectiveTime;
+
+		// Тип траектории: straight, sine, diagonal
+		const trajectoryTypes = ['straight', 'sine', 'diagonal'];
+		const type =
+			trajectoryTypes[Math.floor(Math.random() * trajectoryTypes.length)];
+
+		const trajectory = {
+			type,
+			baseX: parseFloat(el.style.left) || 0,
+			currentX: parseFloat(el.style.left) || 0,
+			currentY: parseFloat(el.style.top) || -40,
+			verticalSpeed,
+			areaHeight,
+			elapsed: 0,
+			lastTimestamp: null,
+			phase: Math.random() * Math.PI * 2,
+		};
+
+		if (type === 'sine') {
+			trajectory.amplitude = Math.min(80, areaWidth / 3);
+			trajectory.frequency = 1 + Math.random() * 1.5;
+			const minBase = trajectory.amplitude;
+			const maxBase = Math.max(minBase, areaWidth - trajectory.amplitude);
+			trajectory.baseX = clampX(
+				Math.max(minBase, Math.min(trajectory.currentX, maxBase))
+			);
+		} else if (type === 'diagonal') {
+			trajectory.horizontalSpeed = 50 + Math.random() * 50;
+			trajectory.direction = Math.random() > 0.5 ? 1 : -1;
+		}
+
+		el._trajectory = trajectory;
+
+		const animate = timestamp => {
+			if (
+				el.classList.contains('dragging') ||
+				el.classList.contains('caught')
+			) {
+				this.stopFallingWord(el);
+				return;
+			}
+
+			if (trajectory.lastTimestamp === null) {
+				trajectory.lastTimestamp = timestamp;
+			}
+
+			const delta = (timestamp - trajectory.lastTimestamp) / 1000;
+			trajectory.lastTimestamp = timestamp;
+			trajectory.elapsed += delta;
+			trajectory.currentY += trajectory.verticalSpeed * delta;
+
+			if (trajectory.type === 'sine') {
+				const nextX =
+					trajectory.baseX +
+					Math.sin(
+						trajectory.elapsed * trajectory.frequency + trajectory.phase
+					) *
+						trajectory.amplitude;
+				trajectory.currentX = clampX(nextX);
+			} else if (trajectory.type === 'diagonal') {
+				let nextX =
+					trajectory.currentX +
+					trajectory.horizontalSpeed * delta * trajectory.direction;
+				if (nextX <= 0 || nextX >= areaWidth) {
+					trajectory.direction *= -1;
+					nextX = clampX(nextX);
+				}
+				trajectory.currentX = nextX;
+			} else {
+				trajectory.currentX = clampX(trajectory.baseX);
+			}
+
+			el.style.left = trajectory.currentX + 'px';
+			el.style.top = trajectory.currentY + 'px';
+
+			if (trajectory.currentY > areaHeight) {
+				this.stopFallingWord(el);
+				if (el.parentNode && !el.classList.contains('caught')) {
+					this.wordFallingMissed(el);
+				}
+				return;
+			}
+
+			// Проверка опасной зоны (80% высоты)
+			if (
+				trajectory.currentY > areaHeight * 0.7 &&
+				!el.classList.contains('danger-zone')
+			) {
+				el.classList.add('danger-zone');
+			}
+
+			const frameId = requestAnimationFrame(animate);
+			el.dataset.fallFrame = frameId;
+		};
+
+		const frameId = requestAnimationFrame(animate);
+		el.dataset.fallFrame = frameId;
+	}
+
+	resumeFallingWord(el, area) {
+		if (!area || !el._trajectory) return;
+		const type = el._trajectory.type;
+		this.startFallingWord(el, area);
+	}
+
+	stopFallingWord(el) {
+		if (!el || !el.dataset) return;
+		const frameId = Number(el.dataset.fallFrame);
+		if (frameId) {
+			cancelAnimationFrame(frameId);
+		}
+		delete el.dataset.fallFrame;
+		el.classList.remove('danger-zone');
+	}
+
+	// ========== Эффекты и анимации ==========
+
+	// Создание частиц конфетти
+	createParticles(x, y, count = 15) {
+		const colors = [
+			'#ff6b6b',
+			'#feca57',
+			'#48dbfb',
+			'#ff9ff3',
+			'#54a0ff',
+			'#5f27cd',
+			'#00d2d3',
+			'#26de81',
+		];
+
+		for (let i = 0; i < count; i++) {
+			const particle = document.createElement('div');
+			particle.className = 'particle';
+
+			const color = colors[Math.floor(Math.random() * colors.length)];
+			const size = 5 + Math.random() * 10;
+			const angle = Math.random() * 360 * (Math.PI / 180);
+			const velocity = 50 + Math.random() * 100;
+			const duration = 0.5 + Math.random() * 0.5;
+
+			particle.style.cssText = `
+				left: ${x}px;
+				top: ${y}px;
+				width: ${size}px;
+				height: ${size}px;
+				background: ${color};
+				animation-duration: ${duration}s;
+				--tx: ${Math.cos(angle) * velocity}px;
+				--ty: ${Math.sin(angle) * velocity - 50}px;
+			`;
+
+			// Кастомная анимация для разлёта
+			particle.style.animation = `particleFly ${duration}s ease-out forwards`;
+
+			document.body.appendChild(particle);
+			setTimeout(() => particle.remove(), duration * 1000);
+		}
+	}
+
+	// Создание частиц для уровня 2 (кластеризация)
+	createClusterParticles(container, wordEl) {
+		const rect = wordEl.getBoundingClientRect();
+		const centerX = rect.left + rect.width / 2;
+		const centerY = rect.top + rect.height / 2;
+
+		const colors = [
+			'#ff6b6b',
+			'#feca57',
+			'#48dbfb',
+			'#ff9ff3',
+			'#54a0ff',
+			'#26de81',
+		];
+
+		for (let i = 0; i < 10; i++) {
+			const star = document.createElement('div');
+			star.className = 'cluster-star';
+			const color = colors[Math.floor(Math.random() * colors.length)];
+			const size = 4 + Math.random() * 8;
+			const angle = (Math.PI * 2 * i) / 10;
+			const velocity = 30 + Math.random() * 50;
+
+			star.style.cssText = `
+				position: fixed;
+				left: ${centerX}px;
+				top: ${centerY}px;
+				width: ${size}px;
+				height: ${size}px;
+				background: ${color};
+				border-radius: 50%;
+				pointer-events: none;
+				z-index: 9999;
+				animation: clusterStarFly 0.6s ease-out forwards;
+				--tx: ${Math.cos(angle) * velocity}px;
+				--ty: ${Math.sin(angle) * velocity}px;
+			`;
+
+			document.body.appendChild(star);
+			setTimeout(() => star.remove(), 600);
+		}
+	}
+
+	// Показать комбо-эффект
+	showComboEffect(combo) {
+		const messages = [
+			'',
+			'',
+			'Комбо x2! 🔥',
+			'Комбо x3! 💥',
+			'Комбо x4! ⚡',
+			'СУПЕР! x5! 🌟',
+		];
+		const message = combo >= 5 ? messages[5] : messages[combo];
+
+		if (combo >= 2 && message) {
+			const indicator = document.createElement('div');
+			indicator.className = 'combo-indicator';
+			indicator.innerText = message;
+			document.body.appendChild(indicator);
+			setTimeout(() => indicator.remove(), 800);
+		}
+	}
+
+	// Эффект волны по зоне
+	createRippleEffect(zone) {
+		zone.classList.add('ripple');
+		setTimeout(() => zone.classList.remove('ripple'), 600);
+	}
+
+	// След за словом при перетаскивании
+	createDragTrail(x, y, color) {
+		const trail = document.createElement('div');
+		trail.className = 'drag-trail';
+		trail.style.cssText = `
+			left: ${x}px;
+			top: ${y}px;
+			background: ${color};
+			box-shadow: 0 0 10px ${color};
+		`;
+		document.body.appendChild(trail);
+		setTimeout(() => trail.remove(), 500);
+	}
+
+	handleFallingDrop(el, zone, wordCategory) {
+		const data = this.currentLevelData;
+		const zoneCategory = zone.dataset.category;
+
+		if (wordCategory === zoneCategory) {
+			// Правильно!
+			this.stopFallingWord(el);
+			el.classList.add('caught');
+
+			// Получаем позицию для эффектов
+			const rect = el.getBoundingClientRect();
+			const centerX = rect.left + rect.width / 2;
+			const centerY = rect.top + rect.height / 2;
+
+			// Создаём эффект частиц
+			this.createParticles(centerX, centerY, 12);
+
+			// Эффект волны по зоне
+			this.createRippleEffect(zone);
+
+			// Комбо система
+			data.combo = (data.combo || 0) + 1;
+			this.showComboEffect(data.combo);
+
+			el.style.transition = 'all 0.3s ease-out';
+			el.style.transform = 'scale(1.5)';
+			el.style.opacity = '0';
+			setTimeout(() => el.remove(), 300);
+
+			zone.classList.add('correct');
+			setTimeout(() => zone.classList.remove('correct'), 500);
+
+			const cat = data.categories.find(c => c.id === zoneCategory);
+			if (cat) {
+				cat.count++;
+				const counter = zone.querySelector('.cat-count');
+				if (counter) counter.innerText = cat.count;
+			}
+
+			data.caught++;
+			document.getElementById('falling-caught').innerText = data.caught;
+
+			if (data.caught >= data.targetScore) {
+				setTimeout(() => this.finishFallingLevel(true), 500);
+			}
+		} else {
+			// Неправильно!
+			zone.classList.add('wrong');
+			setTimeout(() => zone.classList.remove('wrong'), 500);
+
+			// Сбрасываем комбо при ошибке
+			data.combo = 0;
+
+			// Штраф за неправильное размещение
+			const settings = difficultySettings[this.currentLevel];
+			data.wrongPlacements = (data.wrongPlacements || 0) + 1;
+			data.wrongPenalty = (data.wrongPenalty || 0) + Math.abs(settings.penalty);
+
+			// Обновляем отображение штрафа
+			const skipDisplay = document.getElementById('falling-skip');
+			if (skipDisplay) {
+				const netBonus = data.skipScore - data.wrongPenalty;
+				skipDisplay.innerText = netBonus >= 0 ? netBonus : netBonus;
+				skipDisplay.style.color = netBonus < 0 ? '#d63031' : '';
+			}
+
+			// Возвращаем слово к падению
+			const area = document.getElementById('storm-area');
+			if (area && el.parentNode) {
+				this.resumeFallingWord(el, area);
+			}
+		}
+	}
+
+	wordFallingMissed(el) {
+		const data = this.currentLevelData;
+
+		// Пропускаем только слова активных категорий
+		if (!this.hasActiveCategory(el.dataset.category)) {
+			el.remove();
+			return;
+		}
+
+		data.missed++;
+		document.getElementById('falling-missed').innerText = data.missed;
+
+		const area = document.getElementById('storm-area');
+		if (area) {
+			area.style.animation = 'shake 0.5s';
+			setTimeout(() => (area.style.animation = ''), 500);
+		}
+
+		el.remove();
+
+		if (data.missed >= data.maxMissed) {
+			setTimeout(() => this.finishFallingLevel(false), 600);
+		}
+	}
+
+	finishFallingLevel(success) {
+		const data = this.currentLevelData;
+		if (data.isFinished) return;
+		data.isFinished = true;
+
+		// Останавливаем спавн
+		if (data.spawnTimer) {
+			clearInterval(data.spawnTimer);
+		}
+
+		// Останавливаем все падающие слова
+		const area = document.getElementById('storm-area');
+		if (area) {
+			Array.from(area.querySelectorAll('.falling-word')).forEach(word => {
+				this.stopFallingWord(word);
+				word.remove();
+			});
+		}
+
+		const settings = difficultySettings[this.currentLevel];
+		const basePoints = data.caught * settings.pointsPerCorrect;
+		const skipBonus = data.skipScore;
+		const missedPenalty = data.missed * Math.abs(settings.penalty);
+		const wrongPenalty = data.wrongPenalty || 0;
+		const totalPenalty = missedPenalty + wrongPenalty;
+		const totalPoints = Math.max(0, basePoints + skipBonus - totalPenalty);
+
+		this.score += totalPoints;
+		this.updateUI();
+
+		const message = success
+			? `
+				Отлично!<br>
+				Поймано: ${data.caught}/${data.targetScore}<br>
+				Пропущено: ${data.missed}/${data.maxMissed}<br>
+				Бонус за лишние: +${skipBonus}<br>
+				Штраф за пропуски: -${missedPenalty}<br>
+				Штраф за ошибки: -${wrongPenalty}<br>
+				<strong>Получено очков: +${totalPoints}</strong>
+			`
+			: `
+				Слишком много пропущено!<br>
+				Поймано: ${data.caught}/${data.targetScore}<br>
+				Пропущено: ${data.missed}/${data.maxMissed}<br>
+				Бонус за лишние: +${skipBonus}<br>
+				Штраф за пропуски: -${missedPenalty}<br>
+				Штраф за ошибки: -${wrongPenalty}<br>
+				<strong>Получено очков: +${totalPoints}</strong>
+			`;
+
+		this.questionsAnswered++;
+
+		setTimeout(() => {
+			if (this.questionsAnswered >= settings.questionsPerLevel) {
+				this.showModal(
+					success ? 'Уровень завершён!' : 'Уровень завершён',
+					message,
+					false,
+					true, 
+					
+				);
+			} else {
+				this.showModal(
+					success ? 'Результат' : 'Попробуйте ещё',
+					message,
+					false
+				);
+			}
+		}, 500);
+	}
+
+	checkFallingAnswer() {
+		// Уровень 4 проверяется автоматически в finishFallingLevel
+		// Этот метод для совместимости с кнопкой "Проверить"
+		const data = this.currentLevelData;
+		if (!data.isFinished) {
+			this.finishFallingLevel(data.caught >= data.targetScore);
+		}
 	}
 
 	// ========== Общие методы ==========
@@ -954,6 +1869,9 @@ class Game {
 				break;
 			case 3:
 				this.checkTextAnswer();
+				break;
+			case 4:
+				this.checkFallingAnswer();
 				break;
 		}
 	}
@@ -987,6 +1905,9 @@ class Game {
 				break;
 			case 3:
 				this.loadTextLevel();
+				break;
+			case 4:
+				this.loadFallingLevel();
 				break;
 		}
 	}

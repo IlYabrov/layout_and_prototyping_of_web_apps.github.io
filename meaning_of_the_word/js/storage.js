@@ -124,6 +124,7 @@ const Storage = {
 					1: { completed: false, bestScore: 0, unlocked: true },
 					2: { completed: false, bestScore: 0, unlocked: true },
 					3: { completed: false, bestScore: 0, unlocked: true },
+					4: { completed: false, bestScore: 0, unlocked: true },
 			  };
 	},
 
@@ -141,7 +142,7 @@ const Storage = {
 
 		// Разблокировка следующего уровня (если нужно)
 		const nextLevel = level + 1;
-		if (nextLevel <= 3 && progress[nextLevel]) {
+		if (nextLevel <= 4 && progress[nextLevel]) {
 			progress[nextLevel].unlocked = true;
 		}
 

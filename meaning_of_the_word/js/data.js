@@ -291,8 +291,187 @@ const textGameData = [
 	},
 ];
 
+// Уровень 4: Падающие слова - категоризация (по аналогии с Level2 одногруппника)
+const fallingWordsData = [
+	{
+		categories: [
+			{ id: 'animals', name: 'Животные', target: 4 },
+			{ id: 'food', name: 'Еда', target: 4 },
+			{ id: 'transport', name: 'Транспорт', target: 4 },
+		],
+		words: [
+			{ text: 'КОТ', category: 'animals' },
+			{ text: 'СЛОН', category: 'animals' },
+			{ text: 'ЛЕВ', category: 'animals' },
+			{ text: 'ПИНГВИН', category: 'animals' },
+			{ text: 'ЗЕБРА', category: 'animals' },
+			{ text: 'ПИЦЦА', category: 'food' },
+			{ text: 'ХЛЕБ', category: 'food' },
+			{ text: 'СУП', category: 'food' },
+			{ text: 'СЫР', category: 'food' },
+			{ text: 'САЛАТ', category: 'food' },
+			{ text: 'МАШИНА', category: 'transport' },
+			{ text: 'ПОЕЗД', category: 'transport' },
+			{ text: 'САМОЛЁТ', category: 'transport' },
+			{ text: 'КОРАБЛЬ', category: 'transport' },
+			{ text: 'ВЕЛОСИПЕД', category: 'transport' },
+			// Слова "лишних" категорий (для бонусных очков при правом клике)
+			{ text: 'РЕКА', category: 'nature' },
+			{ text: 'ЛЕС', category: 'nature' },
+			{ text: 'СМАРТФОН', category: 'technology' },
+			{ text: 'РОБОТ', category: 'technology' },
+		],
+	},
+	{
+		categories: [
+			{ id: 'professions', name: 'Профессии', target: 4 },
+			{ id: 'colors', name: 'Цвета', target: 4 },
+			{ id: 'emotions', name: 'Эмоции', target: 4 },
+		],
+		words: [
+			{ text: 'ВРАЧ', category: 'professions' },
+			{ text: 'УЧИТЕЛЬ', category: 'professions' },
+			{ text: 'ПОВАР', category: 'professions' },
+			{ text: 'ПИЛОТ', category: 'professions' },
+			{ text: 'ХУДОЖНИК', category: 'professions' },
+			{ text: 'КРАСНЫЙ', category: 'colors' },
+			{ text: 'СИНИЙ', category: 'colors' },
+			{ text: 'ЗЕЛЁНЫЙ', category: 'colors' },
+			{ text: 'ЖЁЛТЫЙ', category: 'colors' },
+			{ text: 'БЕЛЫЙ', category: 'colors' },
+			{ text: 'РАДОСТЬ', category: 'emotions' },
+			{ text: 'ГРУСТЬ', category: 'emotions' },
+			{ text: 'СТРАХ', category: 'emotions' },
+			{ text: 'ЗЛОСТЬ', category: 'emotions' },
+			{ text: 'УДИВЛЕНИЕ', category: 'emotions' },
+			// Лишние слова
+			{ text: 'ЯБЛОКО', category: 'fruit' },
+			{ text: 'СТОЛ', category: 'furniture' },
+			{ text: 'ДОЖДЬ', category: 'weather' },
+		],
+	},
+	{
+		categories: [
+			{ id: 'sports', name: 'Спорт', target: 4 },
+			{ id: 'music', name: 'Музыка', target: 4 },
+			{ id: 'science', name: 'Наука', target: 4 },
+		],
+		words: [
+			{ text: 'ФУТБОЛ', category: 'sports' },
+			{ text: 'ТЕННИС', category: 'sports' },
+			{ text: 'ХОККЕЙ', category: 'sports' },
+			{ text: 'ПЛАВАНИЕ', category: 'sports' },
+			{ text: 'БОКС', category: 'sports' },
+			{ text: 'ГИТАРА', category: 'music' },
+			{ text: 'СКРИПКА', category: 'music' },
+			{ text: 'БАРАБАН', category: 'music' },
+			{ text: 'ПИАНИНО', category: 'music' },
+			{ text: 'ФЛЕЙТА', category: 'music' },
+			{ text: 'ФИЗИКА', category: 'science' },
+			{ text: 'ХИМИЯ', category: 'science' },
+			{ text: 'БИОЛОГИЯ', category: 'science' },
+			{ text: 'МАТЕМАТИКА', category: 'science' },
+			{ text: 'АСТРОНОМИЯ', category: 'science' },
+			// Лишние слова
+			{ text: 'СОБАКА', category: 'animals' },
+			{ text: 'КНИГА', category: 'objects' },
+			{ text: 'ЧАШКА', category: 'objects' },
+		],
+	},
+	// НОВЫЕ НАБОРЫ
+	{
+		categories: [
+			{ id: 'clothes', name: 'Одежда', target: 4 },
+			{ id: 'furniture', name: 'Мебель', target: 4 },
+			{ id: 'weather', name: 'Погода', target: 4 },
+		],
+		words: [
+			{ text: 'КУРТКА', category: 'clothes' },
+			{ text: 'ПЛАТЬЕ', category: 'clothes' },
+			{ text: 'БРЮКИ', category: 'clothes' },
+			{ text: 'ШАПКА', category: 'clothes' },
+			{ text: 'КРОССОВКИ', category: 'clothes' },
+			{ text: 'ДИВАН', category: 'furniture' },
+			{ text: 'ШКАФ', category: 'furniture' },
+			{ text: 'КРОВАТЬ', category: 'furniture' },
+			{ text: 'СТУЛ', category: 'furniture' },
+			{ text: 'КОМОД', category: 'furniture' },
+			{ text: 'СОЛНЦЕ', category: 'weather' },
+			{ text: 'ВЕТЕР', category: 'weather' },
+			{ text: 'СНЕГ', category: 'weather' },
+			{ text: 'ГРОЗА', category: 'weather' },
+			{ text: 'ТУМАН', category: 'weather' },
+			// Лишние слова
+			{ text: 'КОФЕ', category: 'drinks' },
+			{ text: 'КНИГА', category: 'objects' },
+			{ text: 'МЕДВЕДЬ', category: 'animals' },
+		],
+	},
+	{
+		categories: [
+			{ id: 'fruits', name: 'Фрукты', target: 4 },
+			{ id: 'vegetables', name: 'Овощи', target: 4 },
+			{ id: 'berries', name: 'Ягоды', target: 4 },
+		],
+		words: [
+			{ text: 'ЯБЛОКО', category: 'fruits' },
+			{ text: 'БАНАН', category: 'fruits' },
+			{ text: 'АПЕЛЬСИН', category: 'fruits' },
+			{ text: 'ГРУША', category: 'fruits' },
+			{ text: 'МАНГО', category: 'fruits' },
+			{ text: 'МОРКОВЬ', category: 'vegetables' },
+			{ text: 'ОГУРЕЦ', category: 'vegetables' },
+			{ text: 'ПОМИДОР', category: 'vegetables' },
+			{ text: 'КАПУСТА', category: 'vegetables' },
+			{ text: 'КАРТОФЕЛЬ', category: 'vegetables' },
+			{ text: 'КЛУБНИКА', category: 'berries' },
+			{ text: 'МАЛИНА', category: 'berries' },
+			{ text: 'ЧЕРНИКА', category: 'berries' },
+			{ text: 'ВИШНЯ', category: 'berries' },
+			{ text: 'СМОРОДИНА', category: 'berries' },
+			// Лишние слова
+			{ text: 'ХЛЕБ', category: 'food' },
+			{ text: 'МОЛОКО', category: 'drinks' },
+			{ text: 'КАСТРЮЛЯ', category: 'kitchen' },
+		],
+	},
+	{
+		categories: [
+			{ id: 'buildings', name: 'Здания', target: 4 },
+			{ id: 'nature', name: 'Природа', target: 4 },
+			{ id: 'tools', name: 'Инструменты', target: 4 },
+		],
+		words: [
+			{ text: 'ДОМ', category: 'buildings' },
+			{ text: 'ШКОЛА', category: 'buildings' },
+			{ text: 'БОЛЬНИЦА', category: 'buildings' },
+			{ text: 'МАГАЗИН', category: 'buildings' },
+			{ text: 'ТЕАТР', category: 'buildings' },
+			{ text: 'ГОРА', category: 'nature' },
+			{ text: 'ОЗЕРО', category: 'nature' },
+			{ text: 'ЛЕС', category: 'nature' },
+			{ text: 'РЕКА', category: 'nature' },
+			{ text: 'ПОЛЕ', category: 'nature' },
+			{ text: 'МОЛОТОК', category: 'tools' },
+			{ text: 'ПИЛА', category: 'tools' },
+			{ text: 'ДРЕЛЬ', category: 'tools' },
+			{ text: 'ОТВЁРТКА', category: 'tools' },
+			{ text: 'КЛЮЧ', category: 'tools' },
+			// Лишние слова
+			{ text: 'КОШКА', category: 'animals' },
+			{ text: 'КОМПЬЮТЕР', category: 'technology' },
+			{ text: 'ГИТАРА', category: 'music' },
+		],
+	},
+];
+
 // Названия уровней
-const levelNames = ['Найди пары', 'Распредели слова', 'Найди лишнее'];
+const levelNames = [
+	'Найди пары',
+	'Распредели слова',
+	'Найди лишнее',
+	'Лови слова',
+];
 
 // Настройки сложности для каждого уровня
 const difficultySettings = {
@@ -313,5 +492,15 @@ const difficultySettings = {
 		questionsPerLevel: 2,
 		pointsPerCorrect: 20,
 		penalty: -5,
+	},
+	4: {
+		timeLimit: 90,
+		questionsPerLevel: 1, // 1 раунд с падающими словами
+		pointsPerCorrect: 15,
+		penalty: -5,
+		maxMissed: 5, // Максимум пропущенных слов
+		spawnInterval: 2500, // Интервал появления слов (мс)
+		targetFallSeconds: 10, // Время падения слова (сек)
+		skipReward: 30, // Бонус за "лишние" слова
 	},
 };

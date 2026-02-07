@@ -61,7 +61,7 @@ function updateLevelsDisplay(progress) {
 	const playerName = Storage.getCurrentPlayer();
 
 	// Обновляем каждый уровень
-	[1, 2, 3].forEach(level => {
+	[1, 2, 3, 4].forEach(level => {
 		const card = document.querySelector(`.level-card[data-level="${level}"]`);
 		const statusIcon = document.getElementById(`status-${level}`);
 		const scoreDisplay = document.getElementById(`score-${level}`);
