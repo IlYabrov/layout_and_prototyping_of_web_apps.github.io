@@ -1,0 +1,17 @@
+{
+    "name": "kkkaa/voucher",
+    "autoload": {
+        "psr-4": {
+            "Kkkaa\\Voucher\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "28lin",
+            "email": "kkkaarolin@mail.ru"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^5.5"
+    }
+}
