@@ -280,8 +280,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Строка 3: Итого
         $table->addRow();
-        $table->addCell(9500)->addText("Итого:" . $totalSum, ['bold' => true]);
-        // $table->addCell(3500)->addText($totalSum, ['bold' => true]);
+        $table->addCell(9500)->addText("Итого:");
+        $table->addCell(3500)->addText($totalSum, ['bold' => true]);
 
         $section->addTextBreak(1);
         $section->addText("Всего наименований $totalItemsCount, на сумму " . number_format($totalSum, 2, ',', '') . " руб.");

@@ -1,37 +1,8 @@
 <?php
-session_start();
-
-if (isset($_GET['logout'])) {
-    session_destroy();
-    setcookie('admin_logged_in', '', time() - 3600, '/');
-    header('Location: index.php');
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
-    $login = trim($_POST['login'] ?? '');
-    $password = trim($_POST['password'] ?? '');
-    
-    if ($login === 'admin' && $password === '123') {
-        setcookie('admin_logged_in', 'true', time() + 3600, '/');
-        $_SESSION['admin_logged_in'] = 'true';
-        header('Location: pages/order.php');
-        exit;
-    } else {
-        $error = "Неверный логин или пароль.";
-    }
-}
-
 $isLoggedIn = false;
-//true, если есть валидная сессия,
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === 'true') {
-    $isLoggedIn = true;
-
-} elseif (isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === 'true') { //true, если есть куки
-    $isLoggedIn = true;
-    $_SESSION['admin_logged_in'] = 'true';
-}
+require __DIR__ . '/includes/controllers/home.php';
 ?>
+
 <html>
     <head>
         <title>Работа</title>

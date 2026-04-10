@@ -1,46 +1,18 @@
 ﻿<?php
-session_start();
-
+// Значения по умолчанию для статического анализа IDE; контроллер их перезапишет.
 $isLoggedIn = false;
-if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === 'true') {
-    $isLoggedIn = true;
-} elseif (isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === 'true') {
-    $isLoggedIn = true;
-    $_SESSION['admin_logged_in'] = 'true';
-}
+$name = '';
+$email = '';
+$phone = '';
+$type = 'прокат';
+$salon = false;
+$podogrev = false;
+$luk = false;
 
-if ($isLoggedIn && $_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    $_SESSION['order'] = [
-            'service_type' => $_POST['type'],
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'phone' => $_POST['phone'],
-
-            'options' => array_filter([
-                    isset($_POST['salon']) ? 'кожаный салон' : null,
-                    isset($_POST['podogrev']) ? 'подогрев сидений' : null,
-                    isset($_POST['luk']) ? 'люк' : null
-            ])
-    ];
-
-    header("Location: bill.php");
-    exit;
-}
-
-$name = $_SESSION['order']['name'] ?? "";
-$email = $_SESSION['order']['email'] ?? "";
-$phone = $_SESSION['order']['phone'] ?? "";
-$type = $_SESSION['order']['service_type'] ?? "прокат";
-
-$options = $_SESSION['order']['options'] ?? [];
-
-$salon = in_array('кожаный салон', $options);
-$podogrev = in_array('подогрев сидений', $options);
-$luk = in_array('люк', $options);
+require __DIR__ . '/../includes/controllers/order.php';
 ?>
 
-<html>
+<html lang="ru">
 <head>
     <title>Работа</title>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -178,11 +150,11 @@ $luk = in_array('люк', $options);
                                                         <div style="margin-left:22px; margin-top:13px;">
                                                             <h4>Контактные данные</h4>
 
-                                                            Имя: <input type="text" name="name"
+                                                            Имя: <input type="text" name="name" style="width: 200px;"
                                                                         value="<?php echo $name ?>"><br><br>
-                                                            Телефон: <input type="text" name="phone"
+                                                            Телефон: <input type="text" name="phone" style="width: 200px;"
                                                                             value="<?php echo $phone ?>"><br><br>
-                                                            Почта: <input type="text" name="email"
+                                                            Почта: <input type="text" name="email" style="width: 200px;"
                                                                           value="<?php echo $email ?>"><br><br>
 
                                                         </div>
