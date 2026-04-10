@@ -6,11 +6,11 @@ use DateTime;
 use DateTimeInterface;
 use DateTimeZone;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Throwable;
 
 class Date
@@ -481,14 +481,14 @@ class Date
             return false;
         }
 
-        $dateValueNew = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateValue::fromString($dateValue);
+        $dateValueNew = DateTimeExcel\DateValue::fromString($dateValue);
 
         if (!is_float($dateValueNew)) {
             return false;
         }
 
         if (str_contains($dateValue, ':')) {
-            $timeValue = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\TimeValue::fromString($dateValue);
+            $timeValue = DateTimeExcel\TimeValue::fromString($dateValue);
             if (!is_float($timeValue)) {
                 return false;
             }

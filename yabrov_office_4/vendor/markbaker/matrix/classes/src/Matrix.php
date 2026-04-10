@@ -11,11 +11,8 @@
 namespace Matrix;
 
 use Generator;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\LU;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\QR;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Functions;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operations;
+use Matrix\Decomposition\LU;
+use Matrix\Decomposition\QR;
 
 /**
  * Matrix object.
@@ -24,22 +21,22 @@ use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operations;
  *
  * @property-read int $rows The number of rows in the matrix
  * @property-read int $columns The number of columns in the matrix
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix antidiagonal()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix adjoint()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix cofactors()
+ * @method Matrix antidiagonal()
+ * @method Matrix adjoint()
+ * @method Matrix cofactors()
  * @method float determinant()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix diagonal()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix identity()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix inverse()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix minors()
+ * @method Matrix diagonal()
+ * @method Matrix identity()
+ * @method Matrix inverse()
+ * @method Matrix minors()
  * @method float trace()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix transpose()
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix add(...$matrices)
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix subtract(...$matrices)
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix multiply(...$matrices)
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix divideby(...$matrices)
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix divideinto(...$matrices)
- * @method \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix directsum(...$matrices)
+ * @method Matrix transpose()
+ * @method Matrix add(...$matrices)
+ * @method Matrix subtract(...$matrices)
+ * @method Matrix multiply(...$matrices)
+ * @method Matrix divideby(...$matrices)
+ * @method Matrix divideinto(...$matrices)
+ * @method Matrix directsum(...$matrices)
  */
 class Matrix
 {
@@ -164,7 +161,7 @@ class Matrix
      * @return static
      * @throws Exception
      */
-    public function getRows(int $row, int $rowCount = 1): \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+    public function getRows(int $row, int $rowCount = 1): Matrix
     {
         $row = $this->validateRowInRange($row);
         if ($rowCount === 0) {
@@ -183,10 +180,10 @@ class Matrix
      *
      * @param int $column
      * @param int $columnCount
-     * @return \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+     * @return Matrix
      * @throws Exception
      */
-    public function getColumns(int $column, int $columnCount = 1): \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+    public function getColumns(int $column, int $columnCount = 1): Matrix
     {
         $column = $this->validateColumnInRange($column);
         if ($columnCount < 1) {
@@ -214,7 +211,7 @@ class Matrix
      * @return static
      * @throws Exception
      */
-    public function dropRows(int $row, int $rowCount = 1): \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+    public function dropRows(int $row, int $rowCount = 1): Matrix
     {
         $this->validateRowInRange($row);
         if ($rowCount === 0) {
@@ -240,7 +237,7 @@ class Matrix
      * @return static
      * @throws Exception
      */
-    public function dropColumns(int $column, int $columnCount = 1): \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+    public function dropColumns(int $column, int $columnCount = 1): Matrix
     {
         $this->validateColumnInRange($column);
         if ($columnCount < 1) {
@@ -279,7 +276,7 @@ class Matrix
      * Returns a Generator that will yield each row of the matrix in turn as a vector matrix
      *     or the value of each cell if the matrix is a column vector
      *
-     * @return Generator|\Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix[]|mixed[]
+     * @return Generator|Matrix[]|mixed[]
      */
     public function rows(): Generator
     {
@@ -294,7 +291,7 @@ class Matrix
      * Returns a Generator that will yield each column of the matrix in turn as a vector matrix
      *     or the value of each cell if the matrix is a row vector
      *
-     * @return Generator|\Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix[]|mixed[]
+     * @return Generator|Matrix[]|mixed[]
      */
     public function columns(): Generator
     {
@@ -340,13 +337,13 @@ class Matrix
     /**
      * Solve A*X = B.
      *
-     * @param \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix $B Right hand side
+     * @param Matrix $B Right hand side
      *
-     * @return \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix ... Solution if A is square, least squares solution otherwise
-     *@throws Exception
+     * @throws Exception
      *
+     * @return Matrix ... Solution if A is square, least squares solution otherwise
      */
-    public function solve(\Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix $B): \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix
+    public function solve(Matrix $B): Matrix
     {
         if ($this->columns === $this->rows) {
             return (new LU($this))->solve($B);
@@ -406,7 +403,7 @@ class Matrix
      *
      * @param string $functionName
      * @param mixed[] $arguments
-     * @return \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix|float
+     * @return Matrix|float
      * @throws Exception
      */
     public function __call(string $functionName, $arguments)

@@ -2,8 +2,8 @@
 
 namespace Matrix\Operators;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
+use Matrix\Matrix;
+use Matrix\Exception;
 
 abstract class Operator
 {

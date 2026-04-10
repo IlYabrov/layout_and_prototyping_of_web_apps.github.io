@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace ZipStream\Test\Zip64;
 
 use PHPUnit\Framework\TestCase;
-use php\src\Zip64\ExtendedInformationExtraField;
+use ZipStream\Zip64\ExtendedInformationExtraField;
 
 class ExtendedInformationExtraFieldTest extends TestCase
 {
     public function testSerializesCorrectly(): void
     {
-        $extraField = php\src\Zip64\ExtendedInformationExtraField::generate(
+        $extraField = ExtendedInformationExtraField::generate(
             originalSize: (0x77777777 << 32) + 0x66666666,
             compressedSize: (0x99999999 << 32) + 0x88888888,
             relativeHeaderOffset: (0x22222222 << 32) + 0x11111111,
@@ -31,7 +31,7 @@ class ExtendedInformationExtraFieldTest extends TestCase
 
     public function testSerializesEmptyCorrectly(): void
     {
-        $extraField = php\src\Zip64\ExtendedInformationExtraField::generate();
+        $extraField = ExtendedInformationExtraField::generate();
 
         $this->assertSame(
             bin2hex($extraField),

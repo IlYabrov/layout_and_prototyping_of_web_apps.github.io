@@ -2,11 +2,6 @@
 
 namespace Matrix;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Builder;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Div0Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-
 class Functions
 {
     /**

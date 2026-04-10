@@ -2,9 +2,9 @@
 
 namespace Composer\Pcre\PHPStan;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Regex;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\PcreException;
+use Composer\Pcre\Preg;
+use Composer\Pcre\Regex;
+use Composer\Pcre\PcreException;
 use Nette\Utils\RegexpException;
 use Nette\Utils\Strings;
 use PhpParser\Node;

@@ -2,11 +2,10 @@
 
 namespace Matrix\Operators;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Builder;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
+use Matrix\Matrix;
+use \Matrix\Builder;
+use Matrix\Exception;
 use Throwable;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Operator;
 
 class Multiplication extends Operator
 {

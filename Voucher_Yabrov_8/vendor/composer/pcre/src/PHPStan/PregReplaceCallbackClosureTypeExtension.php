@@ -2,8 +2,8 @@
 
 namespace Composer\Pcre\PHPStan;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Regex;
+use Composer\Pcre\Preg;
+use Composer\Pcre\Regex;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Reflection\MethodReflection;
@@ -17,7 +17,6 @@ use PHPStan\Type\StaticMethodParameterClosureTypeExtension;
 use PHPStan\Type\StringType;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\Type;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\PHPStan\PregMatchFlags;
 
 final class PregReplaceCallbackClosureTypeExtension implements StaticMethodParameterClosureTypeExtension
 {

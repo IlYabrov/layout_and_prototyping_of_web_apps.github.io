@@ -2,12 +2,11 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\ArrayEnabled;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\IntOrFloat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\StatisticalValidations;
+use PhpOffice\PhpSpreadsheet\Shared\IntOrFloat;
 
 class Permutations
 {
@@ -48,12 +47,12 @@ class Permutations
             return ExcelError::NAN();
         }
         /** @var float|int|string */
-        $result1 = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Factorial::fact($numObjs);
+        $result1 = MathTrig\Factorial::fact($numObjs);
         if (is_string($result1)) {
             return $result1;
         }
         /** @var float|int|string */
-        $result2 = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Factorial::fact($numObjs - $numInSet);
+        $result2 = MathTrig\Factorial::fact($numObjs - $numInSet);
         if (is_string($result2)) {
             return $result2;
         }

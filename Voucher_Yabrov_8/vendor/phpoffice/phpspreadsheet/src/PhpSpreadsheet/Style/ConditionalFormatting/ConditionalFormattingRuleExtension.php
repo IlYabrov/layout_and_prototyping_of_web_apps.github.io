@@ -2,10 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\ConditionalDataBarExtension;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\ConditionalFormatValueObject;
 
 class ConditionalFormattingRuleExtension
 {

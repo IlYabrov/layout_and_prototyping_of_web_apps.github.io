@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Document\Properties as DocumentProperties;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Document\Properties as DocumentProperties;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use SimpleXMLElement;
 
 class Properties

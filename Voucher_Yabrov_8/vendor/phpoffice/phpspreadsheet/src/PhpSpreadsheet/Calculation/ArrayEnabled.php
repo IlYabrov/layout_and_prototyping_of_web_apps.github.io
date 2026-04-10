@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\ArrayArgumentHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\ArrayArgumentProcessor;
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\ArrayArgumentHelper;
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\ArrayArgumentProcessor;
 
 trait ArrayEnabled
 {

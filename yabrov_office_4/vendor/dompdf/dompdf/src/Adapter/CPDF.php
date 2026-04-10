@@ -15,7 +15,6 @@ use Dompdf\FontMetrics;
 use Dompdf\Helpers;
 use Dompdf\Image\Cache;
 use FontLib\Exception\FontNotFoundException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Cell\Style;
 
 /**
  * PDF rendering interface

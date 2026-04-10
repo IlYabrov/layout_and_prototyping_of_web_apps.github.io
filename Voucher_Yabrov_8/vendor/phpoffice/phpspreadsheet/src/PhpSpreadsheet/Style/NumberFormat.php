@@ -2,9 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Supervisor;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
 
 class NumberFormat extends Supervisor
 {
@@ -488,7 +486,7 @@ class NumberFormat extends Supervisor
      */
     public static function toFormattedString(mixed $value, string $format, ?array $callBack = null, bool $lessFloatPrecision = false): string
     {
-        return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Formatter::toFormattedString($value, $format, $callBack, $lessFloatPrecision);
+        return NumberFormat\Formatter::toFormattedString($value, $format, $callBack, $lessFloatPrecision);
     }
 
     /** @return mixed[] */

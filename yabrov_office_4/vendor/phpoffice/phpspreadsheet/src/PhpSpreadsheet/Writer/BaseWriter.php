@@ -2,9 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\IWriter;
-
 abstract class BaseWriter implements IWriter
 {
     /**

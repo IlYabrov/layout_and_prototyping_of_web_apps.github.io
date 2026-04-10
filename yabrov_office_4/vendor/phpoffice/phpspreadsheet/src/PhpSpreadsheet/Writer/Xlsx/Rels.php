@@ -2,14 +2,13 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Namespaces;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\BaseDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\MemoryDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception as WriterException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\WriterPart;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Namespaces;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing;
+use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
 
 class Rels extends WriterPart
 {
@@ -194,7 +193,7 @@ class Rels extends WriterPart
      *
      * @return string XML Output
      */
-    public function writeWorksheetRelationships(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet, int $worksheetId = 1, bool $includeCharts = false, int $tableRef = 1, array &$zipContent = []): string
+    public function writeWorksheetRelationships(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet, int $worksheetId = 1, bool $includeCharts = false, int $tableRef = 1, array &$zipContent = []): string
     {
         // Create XML writer
         $objWriter = null;
@@ -328,7 +327,7 @@ class Rels extends WriterPart
         return $objWriter->getData();
     }
 
-    private function writeUnparsedRelationship(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet, XMLWriter $objWriter, string $relationship, string $type): void
+    private function writeUnparsedRelationship(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet, XMLWriter $objWriter, string $relationship, string $type): void
     {
         /** @var mixed[][][][] */
         $unparsedLoadedData = $worksheet->getParentOrThrow()->getUnparsedLoadedData();
@@ -357,7 +356,7 @@ class Rels extends WriterPart
      *
      * @return string XML Output
      */
-    public function writeDrawingRelationships(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet, int &$chartRef, bool $includeCharts = false): string
+    public function writeDrawingRelationships(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet, int &$chartRef, bool $includeCharts = false): string
     {
         // Check if we should use pass-through relationships
         $passThroughRels = $this->getPassThroughDrawingRelationships($worksheet);
@@ -386,7 +385,7 @@ class Rels extends WriterPart
         while ($iterator->valid()) {
             $drawing = $iterator->current();
             if (
-                $drawing instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing
+                $drawing instanceof \PhpOffice\PhpSpreadsheet\Worksheet\Drawing
                 || $drawing instanceof MemoryDrawing
             ) {
                 // Write relationship for image drawing
@@ -429,7 +428,7 @@ class Rels extends WriterPart
      *
      * @return string XML Output
      */
-    public function writeHeaderFooterDrawingRelationships(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
+    public function writeHeaderFooterDrawingRelationships(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
     {
         // Create XML writer
         $objWriter = null;
@@ -462,7 +461,7 @@ class Rels extends WriterPart
         return $objWriter->getData();
     }
 
-    public function writeVMLDrawingRelationships(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
+    public function writeVMLDrawingRelationships(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
     {
         // Create XML writer
         $objWriter = null;
@@ -552,7 +551,7 @@ class Rels extends WriterPart
      * loading will not be included in the relationships. This is a known limitation
      * when combining pass-through with drawing modifications.
      */
-    private function getPassThroughDrawingRelationships(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): ?string
+    private function getPassThroughDrawingRelationships(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): ?string
     {
         /** @var array<string, array<string, mixed>> $sheets */
         $sheets = $worksheet->getParentOrThrow()->getUnparsedLoadedData()['sheets'] ?? [];

@@ -2,9 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\CalculationBase;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-
 class CalculationLocale extends CalculationBase
 {
     public const FORMULA_OPEN_FUNCTION_BRACE = '(';

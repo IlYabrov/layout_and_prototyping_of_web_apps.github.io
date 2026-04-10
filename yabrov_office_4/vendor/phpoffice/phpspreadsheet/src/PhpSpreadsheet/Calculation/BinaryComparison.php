@@ -2,11 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ErrorValue;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class BinaryComparison
 {

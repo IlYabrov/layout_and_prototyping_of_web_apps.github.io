@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\StyleBase;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment as AlignmentStyles;
+use PhpOffice\PhpSpreadsheet\Style\Alignment as AlignmentStyles;
 use SimpleXMLElement;
 
 class Alignment extends StyleBase

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace ZipStream\Test\Zip64;
 
 use PHPUnit\Framework\TestCase;
-use php\src\Zip64\EndOfCentralDirectory;
+use ZipStream\Zip64\EndOfCentralDirectory;
 
 class EndOfCentralDirectoryTest extends TestCase
 {
     public function testSerializesCorrectly(): void
     {
-        $descriptor = php\src\Zip64\EndOfCentralDirectory::generate(
+        $descriptor = EndOfCentralDirectory::generate(
             versionMadeBy: 0x3333,
             versionNeededToExtract: 0x4444,
             numberOfThisDisk: 0x55555555,

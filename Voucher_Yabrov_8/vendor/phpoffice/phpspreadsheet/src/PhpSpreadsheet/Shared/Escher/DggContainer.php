@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Escher;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
 
 class DggContainer
 {
@@ -24,7 +24,7 @@ class DggContainer
     /**
      * BLIP Store Container.
      */
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer $bstoreContainer = null;
+    private ?DggContainer\BstoreContainer $bstoreContainer = null;
 
     /**
      * Array of options for the drawing group.
@@ -91,7 +91,7 @@ class DggContainer
     /**
      * Get BLIP Store Container.
      */
-    public function getBstoreContainer(): ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer
+    public function getBstoreContainer(): ?DggContainer\BstoreContainer
     {
         return $this->bstoreContainer;
     }
@@ -99,7 +99,7 @@ class DggContainer
     /**
      * Get BLIP Store Container.
      */
-    public function getBstoreContainerOrThrow(): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer
+    public function getBstoreContainerOrThrow(): DggContainer\BstoreContainer
     {
         return $this->bstoreContainer ?? throw new SpreadsheetException('bstoreContainer is unexpectedly null');
     }
@@ -107,7 +107,7 @@ class DggContainer
     /**
      * Set BLIP Store Container.
      */
-    public function setBstoreContainer(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer $bstoreContainer): void
+    public function setBstoreContainer(DggContainer\BstoreContainer $bstoreContainer): void
     {
         $this->bstoreContainer = $bstoreContainer;
     }

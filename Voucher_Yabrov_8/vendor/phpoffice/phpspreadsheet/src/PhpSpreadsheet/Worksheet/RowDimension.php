@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Helper\Dimension as CssDimension;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Dimension;
+use PhpOffice\PhpSpreadsheet\Helper\Dimension as CssDimension;
 
 class RowDimension extends Dimension
 {

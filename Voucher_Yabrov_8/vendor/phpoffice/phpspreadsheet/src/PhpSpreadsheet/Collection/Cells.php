@@ -2,12 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Collection;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Settings;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
-use cache\src\CacheInterface;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Settings;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use Psr\SimpleCache\CacheInterface;
 
 class Cells
 {
@@ -323,7 +323,7 @@ class Cells
     {
         $cacheType = Settings::getCache();
 
-        return ($cacheType instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Collection\Memory\SimpleCache1 || $cacheType instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Collection\Memory\SimpleCache3)
+        return ($cacheType instanceof Memory\SimpleCache1 || $cacheType instanceof Memory\SimpleCache3)
             ? random_bytes(7) . ':'
             : uniqid('phpspreadsheet.', true) . '.';
     }

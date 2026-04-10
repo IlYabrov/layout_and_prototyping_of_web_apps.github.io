@@ -2,12 +2,10 @@
 
 namespace Matrix\Operators;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Div0Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Functions;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Multiplication;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Operator;
+use Matrix\Div0Exception;
+use Matrix\Exception;
+use \Matrix\Matrix;
+use \Matrix\Functions;
 
 class Division extends Multiplication
 {

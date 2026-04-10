@@ -2,11 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\ChartColor;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Color;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Theme;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Supervisor;
+use PhpOffice\PhpSpreadsheet\Chart\ChartColor;
+use PhpOffice\PhpSpreadsheet\Theme;
 
 class Font extends Supervisor
 {

@@ -11,8 +11,6 @@
 
 namespace Composer\Pcre;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\PcreException;
-
 class UnexpectedNullMatchException extends PcreException
 {
     public static function fromFunction($function, $pattern)

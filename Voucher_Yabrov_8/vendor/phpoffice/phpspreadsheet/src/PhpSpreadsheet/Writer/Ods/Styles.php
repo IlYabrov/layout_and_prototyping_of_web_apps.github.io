@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Ods;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\WriterPart;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
 
 class Styles extends WriterPart
 {
@@ -62,7 +61,7 @@ class Styles extends WriterPart
             ->getDefaultStyle();
         $objWriter->startElement('style:default-style');
         $objWriter->writeAttribute('style:family', 'table-cell');
-        $writer2 = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Cell\Style($objWriter);
+        $writer2 = new Cell\Style($objWriter);
         $writer2->writeTextProperties($defaultStyle);
         $objWriter->endElement(); // style:default-style
         $objWriter->startElement('style:style');

@@ -6,7 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Voucher_Yabrov_8\\vendor\\composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Dompdf\\Cpdf' => $vendorDir . '/dompdf/dompdf/lib/Cpdf.php',
     'Safe\\DateTime' => $vendorDir . '/thecodingmachine/safe/lib/DateTime.php',
     'Safe\\DateTimeImmutable' => $vendorDir . '/thecodingmachine/safe/lib/DateTimeImmutable.php',

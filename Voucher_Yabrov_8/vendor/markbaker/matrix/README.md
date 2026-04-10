@@ -94,17 +94,15 @@ $grid = [
     [ 4, 15, 14,  1],
 ];
 
-$matrix = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix($grid);
+$matrix = new Matrix\Matrix($grid);
 ```
 The `Builder` class provides helper methods for creating specific matrices, specifically an identity matrix of a specified size; or a matrix of a specified dimensions, with every cell containing a set value.
-
 ```php
-$matrix = \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Builder::createFilledMatrix(1, 5, 3);
+$matrix = Matrix\Builder::createFilledMatrix(1, 5, 3);
 ```
 Will create a matrix of 5 rows and 3 columns, filled with a `1` in every cell; while
-
 ```php
-$matrix = \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Builder::createIdentityMatrix(3);
+$matrix = Matrix\Builder::createIdentityMatrix(3);
 ```
 will create a 3x3 identity matrix.
 
@@ -116,12 +114,12 @@ Matrix objects are immutable: whenever you call a method or pass a grid to a fun
 To perform mathematical operations with Matrices, you can call the appropriate method against a matrix value, passing other values as arguments
 
 ```php
-$matrix1 = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix([
+$matrix1 = new Matrix\Matrix([
     [2, 7, 6],
     [9, 5, 1],
     [4, 3, 8],
 ]);
-$matrix2 = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix([
+$matrix2 = new Matrix\Matrix([
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
@@ -130,20 +128,19 @@ $matrix2 = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix([
 var_dump($matrix1->multiply($matrix2)->toArray());
 ```
 or pass all values to the appropriate static method
-
 ```php
-$matrix1 = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix([
+$matrix1 = new Matrix\Matrix([
     [2, 7, 6],
     [9, 5, 1],
     [4, 3, 8],
 ]);
-$matrix2 = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix([
+$matrix2 = new Matrix\Matrix([
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9],
 ]);
 
-var_dump(\Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operations::multiply($matrix1, $matrix2)->toArray());
+var_dump(Matrix\Operations::multiply($matrix1, $matrix2)->toArray());
 ```
 You can pass in the arguments as Matrix objects, or as arrays.
 
@@ -152,7 +149,6 @@ If you want to perform the same operation against multiple values (e.g. to add t
 ## Using functions
 
 When calling any of the available functions for a matrix value, you can either call the relevant method for the Matrix object
-
 ```php
 $grid = [
     [16,  3,  2, 13],
@@ -161,12 +157,11 @@ $grid = [
     [ 4, 15, 14,  1],
 ];
 
-$matrix = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix($grid);
+$matrix = new Matrix\Matrix($grid);
 
 echo $matrix->trace();
 ```
-or you can call the static method, passing the Matrix object or array as an argument
-
+or you can call the static method, passing the Matrix object or array as an argument 
 ```php
 $grid = [
     [16,  3,  2, 13],
@@ -175,10 +170,9 @@ $grid = [
     [ 4, 15, 14,  1],
 ];
 
-$matrix = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix($grid);
-echo \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Functions::trace($matrix);
+$matrix = new Matrix\Matrix($grid);
+echo Matrix\Functions::trace($matrix);
 ```
-
 ```php
 $grid = [
     [16,  3,  2, 13],
@@ -187,37 +181,35 @@ $grid = [
     [ 4, 15, 14,  1],
 ];
 
-echo \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Functions::trace($grid);
+echo Matrix\Functions::trace($grid);
 ```
 
 ## Decomposition
 
 The library also provides classes for matrix decomposition. You can access these using
-
 ```php
 $grid = [
     [1, 2],
     [3, 4],
 ];
 
-$matrix = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix($grid);
+$matrix = new Matrix\Matrix($grid);
 
-$decomposition = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\QR($matrix);
+$decomposition = new Matrix\Decomposition\QR($matrix);
 $Q = $decomposition->getQ();
 $R = $decomposition->getR();
 ```
 
 or alternatively us the `Decomposition` factory, identifying which form of decomposition you want to use
-
 ```php
 $grid = [
     [1, 2],
     [3, 4],
 ];
 
-$matrix = new \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix($grid);
+$matrix = new Matrix\Matrix($grid);
 
-$decomposition = \Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\Decomposition::decomposition(\Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\Decomposition::QR, $matrix);
+$decomposition = Matrix\Decomposition\Decomposition::decomposition(Matrix\Decomposition\Decomposition::QR, $matrix);
 $Q = $decomposition->getQ();
 $R = $decomposition->getR();
 ```

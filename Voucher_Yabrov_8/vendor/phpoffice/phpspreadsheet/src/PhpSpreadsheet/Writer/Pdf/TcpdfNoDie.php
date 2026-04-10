@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Pdf;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf;
-
 class TcpdfNoDie extends Tcpdf
 {
     /**

@@ -2,35 +2,33 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataValidation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\CellFont;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\FillPattern;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\XlsBase;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\CodePage;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\File;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLERead;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Fill;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Protection;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\PageSetup;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\SheetView;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Reader\Xls\Style\CellFont;
+use PhpOffice\PhpSpreadsheet\Reader\Xls\Style\FillPattern;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\Shared\CodePage;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\Escher;
+use PhpOffice\PhpSpreadsheet\Shared\File;
+use PhpOffice\PhpSpreadsheet\Shared\OLE;
+use PhpOffice\PhpSpreadsheet\Shared\OLERead;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\Protection;
+use PhpOffice\PhpSpreadsheet\Style\Style;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 // Original file header of ParseXL (used as the base for this class):
 // --------------------------------------------------------------------------------
@@ -257,7 +255,7 @@ class Xls extends XlsBase
     /**
      * The current RC4 decryption object.
      */
-    protected ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\RC4 $rc4Key = null;
+    protected ?Xls\RC4 $rc4Key = null;
 
     /**
      * The position in the stream that the RC4 decryption object was left at.
@@ -283,7 +281,7 @@ class Xls extends XlsBase
      */
     public function listWorksheetNames(string $filename): array
     {
-        return (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ListFunctions())->listWorksheetNames2($filename, $this);
+        return (new Xls\ListFunctions())->listWorksheetNames2($filename, $this);
     }
 
     /**
@@ -293,7 +291,7 @@ class Xls extends XlsBase
      */
     public function listWorksheetInfo(string $filename): array
     {
-        return (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ListFunctions())->listWorksheetInfo2($filename, $this);
+        return (new Xls\ListFunctions())->listWorksheetInfo2($filename, $this);
     }
 
     /**
@@ -303,7 +301,7 @@ class Xls extends XlsBase
      */
     public function listWorksheetDimensions(string $filename): array
     {
-        return (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ListFunctions())->listWorksheetDimensions2($filename, $this);
+        return (new Xls\ListFunctions())->listWorksheetDimensions2($filename, $this);
     }
 
     /**
@@ -311,7 +309,7 @@ class Xls extends XlsBase
      */
     protected function loadSpreadsheetFromFile(string $filename): Spreadsheet
     {
-        return (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\LoadSpreadsheet())->loadSpreadsheetFromFile2($filename, $this);
+        return (new Xls\LoadSpreadsheet())->loadSpreadsheetFromFile2($filename, $this);
     }
 
     /**
@@ -699,7 +697,7 @@ class Xls extends XlsBase
             return;
         }
 
-        $cellAddress = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellAddress(substr($recordData, 0, 4));
+        $cellAddress = Xls\Biff8::readBIFF8CellAddress(substr($recordData, 0, 4));
         if ($this->version == self::XLS_BIFF8) {
             $noteObjID = self::getUInt2d($recordData, 6);
             $noteAuthor = self::readUnicodeStringLong(substr($recordData, 8));
@@ -886,7 +884,7 @@ class Xls extends XlsBase
      * @param int $block Block for which to create decrypto
      * @param string $valContext MD5 context state
      */
-    private function makeKey(int $block, string $valContext): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\RC4
+    private function makeKey(int $block, string $valContext): Xls\RC4
     {
         $pwarray = str_repeat("\0", 64);
 
@@ -902,12 +900,12 @@ class Xls extends XlsBase
         $pwarray[9] = "\x80";
         $pwarray[56] = "\x48";
 
-        $md5 = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\MD5();
+        $md5 = new Xls\MD5();
         $md5->add($pwarray);
 
         $s = $md5->getContext();
 
-        return new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\RC4($s);
+        return new Xls\RC4($s);
     }
 
     /**
@@ -934,7 +932,7 @@ class Xls extends XlsBase
         $pwarray[2 * $i] = chr(0x80);
         $pwarray[56] = chr(($i << 4) & 0xFF);
 
-        $md5 = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\MD5();
+        $md5 = new Xls\MD5();
         $md5->add($pwarray);
 
         $mdContext1 = $md5->getContext();
@@ -1226,15 +1224,15 @@ class Xls extends XlsBase
             // offset:  6; size: 1; Alignment and text break
             // bit 2-0, mask 0x07; horizontal alignment
             $horAlign = (0x07 & ord($recordData[6])) >> 0;
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\CellAlignment::horizontal($objStyle->getAlignment(), $horAlign);
+            Xls\Style\CellAlignment::horizontal($objStyle->getAlignment(), $horAlign);
 
             // bit 3, mask 0x08; wrap text
             $wrapText = (0x08 & ord($recordData[6])) >> 3;
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\CellAlignment::wrap($objStyle->getAlignment(), $wrapText);
+            Xls\Style\CellAlignment::wrap($objStyle->getAlignment(), $wrapText);
 
             // bit 6-4, mask 0x70; vertical alignment
             $vertAlign = (0x70 & ord($recordData[6])) >> 4;
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\CellAlignment::vertical($objStyle->getAlignment(), $vertAlign);
+            Xls\Style\CellAlignment::vertical($objStyle->getAlignment(), $vertAlign);
 
             if ($this->version == self::XLS_BIFF8) {
                 // offset:  7; size: 1; XF_ROTATION: Text rotation angle
@@ -1273,19 +1271,19 @@ class Xls extends XlsBase
 
                 // offset: 10; size: 4; Cell border lines and background area
                 // bit: 3-0; mask: 0x0000000F; left style
-                if ($bordersLeftStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x0000000F & self::getInt4d($recordData, 10)) >> 0)) {
+                if ($bordersLeftStyle = Xls\Style\Border::lookup((0x0000000F & self::getInt4d($recordData, 10)) >> 0)) {
                     $objStyle->getBorders()->getLeft()->setBorderStyle($bordersLeftStyle);
                 }
                 // bit: 7-4; mask: 0x000000F0; right style
-                if ($bordersRightStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x000000F0 & self::getInt4d($recordData, 10)) >> 4)) {
+                if ($bordersRightStyle = Xls\Style\Border::lookup((0x000000F0 & self::getInt4d($recordData, 10)) >> 4)) {
                     $objStyle->getBorders()->getRight()->setBorderStyle($bordersRightStyle);
                 }
                 // bit: 11-8; mask: 0x00000F00; top style
-                if ($bordersTopStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x00000F00 & self::getInt4d($recordData, 10)) >> 8)) {
+                if ($bordersTopStyle = Xls\Style\Border::lookup((0x00000F00 & self::getInt4d($recordData, 10)) >> 8)) {
                     $objStyle->getBorders()->getTop()->setBorderStyle($bordersTopStyle);
                 }
                 // bit: 15-12; mask: 0x0000F000; bottom style
-                if ($bordersBottomStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x0000F000 & self::getInt4d($recordData, 10)) >> 12)) {
+                if ($bordersBottomStyle = Xls\Style\Border::lookup((0x0000F000 & self::getInt4d($recordData, 10)) >> 12)) {
                     $objStyle->getBorders()->getBottom()->setBorderStyle($bordersBottomStyle);
                 }
                 // bit: 22-16; mask: 0x007F0000; left color
@@ -1323,7 +1321,7 @@ class Xls extends XlsBase
                 $objStyle->getBorders()->getDiagonal()->colorIndex = (0x001FC000 & self::getInt4d($recordData, 14)) >> 14;
 
                 // bit: 24-21; mask: 0x01E00000; diagonal style
-                if ($bordersDiagonalStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x01E00000 & self::getInt4d($recordData, 14)) >> 21)) {
+                if ($bordersDiagonalStyle = Xls\Style\Border::lookup((0x01E00000 & self::getInt4d($recordData, 14)) >> 21)) {
                     $objStyle->getBorders()->getDiagonal()->setBorderStyle($bordersDiagonalStyle);
                 }
 
@@ -1377,7 +1375,7 @@ class Xls extends XlsBase
                 $objStyle->getFill()->setFillType(FillPattern::lookup((0x003F0000 & $borderAndBackground) >> 16));
 
                 // bit: 24-22; mask: 0x01C00000; bottom line style
-                $objStyle->getBorders()->getBottom()->setBorderStyle(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x01C00000 & $borderAndBackground) >> 22));
+                $objStyle->getBorders()->getBottom()->setBorderStyle(Xls\Style\Border::lookup((0x01C00000 & $borderAndBackground) >> 22));
 
                 // bit: 31-25; mask: 0xFE000000; bottom line color
                 $objStyle->getBorders()->getBottom()->colorIndex = (self::FE000000 & $borderAndBackground) >> 25;
@@ -1386,13 +1384,13 @@ class Xls extends XlsBase
                 $borderLines = self::getInt4d($recordData, 12);
 
                 // bit: 2-0; mask: 0x00000007; top line style
-                $objStyle->getBorders()->getTop()->setBorderStyle(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x00000007 & $borderLines) >> 0));
+                $objStyle->getBorders()->getTop()->setBorderStyle(Xls\Style\Border::lookup((0x00000007 & $borderLines) >> 0));
 
                 // bit: 5-3; mask: 0x00000038; left line style
-                $objStyle->getBorders()->getLeft()->setBorderStyle(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x00000038 & $borderLines) >> 3));
+                $objStyle->getBorders()->getLeft()->setBorderStyle(Xls\Style\Border::lookup((0x00000038 & $borderLines) >> 3));
 
                 // bit: 8-6; mask: 0x000001C0; right line style
-                $objStyle->getBorders()->getRight()->setBorderStyle(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Style\Border::lookup((0x000001C0 & $borderLines) >> 6));
+                $objStyle->getBorders()->getRight()->setBorderStyle(Xls\Style\Border::lookup((0x000001C0 & $borderLines) >> 6));
 
                 // bit: 15-9; mask: 0x0000FE00; top line color index
                 $objStyle->getBorders()->getTop()->colorIndex = (0x0000FE00 & $borderLines) >> 9;
@@ -3023,7 +3021,7 @@ class Xls extends XlsBase
             ) {
                 // Error formula. Error code is in +2
                 $dataType = DataType::TYPE_ERROR;
-                $value = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ErrorCode::lookup(ord($recordData[8]));
+                $value = Xls\ErrorCode::lookup(ord($recordData[8]));
             } elseif (
                 (ord($recordData[6]) == 3)
                 && (ord($recordData[12]) == 255)
@@ -3170,7 +3168,7 @@ class Xls extends XlsBase
 
                     break;
                 case 1: // error type
-                    $value = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ErrorCode::lookup($boolErr);
+                    $value = Xls\ErrorCode::lookup($boolErr);
 
                     // add cell value
                     $cell->setValueExplicit($value, DataType::TYPE_ERROR);
@@ -3567,7 +3565,7 @@ class Xls extends XlsBase
 
             // offset: 7; size: var; cell range address list containing all selected cell ranges
             $data = substr($recordData, 7);
-            $cellRangeAddressList = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff5::readBIFF5CellRangeAddressList($data); // note: also BIFF8 uses BIFF5 syntax
+            $cellRangeAddressList = Xls\Biff5::readBIFF5CellRangeAddressList($data); // note: also BIFF8 uses BIFF5 syntax
 
             $selectedCells = $cellRangeAddressList['cellRangeAddresses'][0];
 
@@ -3628,7 +3626,7 @@ class Xls extends XlsBase
         $this->pos += 4 + $length;
 
         if ($this->version == self::XLS_BIFF8 && !$this->readDataOnly) {
-            $cellRangeAddressList = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddressList($recordData);
+            $cellRangeAddressList = Xls\Biff8::readBIFF8CellRangeAddressList($recordData);
             foreach ($cellRangeAddressList['cellRangeAddresses'] as $cellRangeAddress) {
                 /** @var string $cellRangeAddress */
                 if (
@@ -3655,7 +3653,7 @@ class Xls extends XlsBase
         if (!$this->readDataOnly) {
             // offset: 0; size: 8; cell range address of all cells containing this hyperlink
             try {
-                $cellRange = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddressFixed($recordData);
+                $cellRange = Xls\Biff8::readBIFF8CellRangeAddressFixed($recordData);
             } catch (PhpSpreadsheetException) {
                 return;
             }
@@ -3832,7 +3830,7 @@ class Xls extends XlsBase
      */
     protected function readDataValidation(): void
     {
-        (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\DataValidationHelper())->readDataValidation2($this);
+        (new Xls\DataValidationHelper())->readDataValidation2($this);
     }
 
     /**
@@ -3860,7 +3858,7 @@ class Xls extends XlsBase
                     // offset: 16; size: 2; color index for sheet tab
                     $colorIndex = self::getUInt2d($recordData, 16);
                     /** @var string[] */
-                    $color = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Color::map($colorIndex, $this->palette, $this->version);
+                    $color = Xls\Color::map($colorIndex, $this->palette, $this->version);
                     $this->phpSheet->getTabColor()->setRGB($color['rgb']);
 
                     break;
@@ -4012,7 +4010,7 @@ class Xls extends XlsBase
             $cellRanges = [];
             for ($i = 0; $i < $cref; ++$i) {
                 try {
-                    $cellRange = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddressFixed(substr($recordData, 27 + 8 * $i, 8));
+                    $cellRange = Xls\Biff8::readBIFF8CellRangeAddressFixed(substr($recordData, 27 + 8 * $i, 8));
                 } catch (PhpSpreadsheetException) {
                     return;
                 }
@@ -4313,7 +4311,7 @@ class Xls extends XlsBase
 
                     break;
                 case 'tArray': // array constant
-                    $constantArray = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8ConstantArray($additionalData);
+                    $constantArray = Xls\Biff8::readBIFF8ConstantArray($additionalData);
                     $formulaStrings[] = $space1 . $space0 . $constantArray['value'];
                     $additionalData = substr($additionalData, $constantArray['size']); // bite of chunk of additional data
                     unset($space0, $space1);
@@ -4321,7 +4319,7 @@ class Xls extends XlsBase
                     break;
                 case 'tMemArea':
                     // bite off chunk of additional data
-                    $cellRangeAddressList = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddressList($additionalData);
+                    $cellRangeAddressList = Xls\Biff8::readBIFF8CellRangeAddressList($additionalData);
                     $additionalData = substr($additionalData, $cellRangeAddressList['size']);
                     $formulaStrings[] = "$space1$space0{$tokenData}";
                     unset($space0, $space1);
@@ -4563,7 +4561,7 @@ class Xls extends XlsBase
                 // offset: 1; size: 1; error code
                 $name = 'tErr';
                 $size = 2;
-                $data = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ErrorCode::lookup(ord($formulaData[1]));
+                $data = Xls\ErrorCode::lookup(ord($formulaData[1]));
 
                 break;
             case 0x1D:    //    boolean
@@ -4603,7 +4601,7 @@ class Xls extends XlsBase
                 $name = 'tFunc';
                 $size = 3;
                 // offset: 1; size: 2; index to built-in sheet function
-                $mapping = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Mappings::TFUNC_MAPPINGS[self::getUInt2d($formulaData, 1)] ?? null;
+                $mapping = Xls\Mappings::TFUNC_MAPPINGS[self::getUInt2d($formulaData, 1)] ?? null;
                 if ($mapping === null) {
                     throw new Exception('Unrecognized function in formula');
                 }
@@ -4619,7 +4617,7 @@ class Xls extends XlsBase
                 $args = ord($formulaData[1]);
                 // offset: 2: size: 2; index to built-in sheet function
                 $index = self::getUInt2d($formulaData, 2);
-                $function = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Mappings::TFUNCV_MAPPINGS[$index] ?? null;
+                $function = Xls\Mappings::TFUNCV_MAPPINGS[$index] ?? null;
                 if ($function === null) {
                     throw new Exception('Unrecognized function in formula');
                 }
@@ -4643,7 +4641,7 @@ class Xls extends XlsBase
             case 0x64:
                 $name = 'tRef';
                 $size = 5;
-                $data = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellAddress(substr($formulaData, 1, 4));
+                $data = Xls\Biff8::readBIFF8CellAddress(substr($formulaData, 1, 4));
 
                 break;
             case 0x25:    //    cell range reference to cells in the same sheet (2d)
@@ -4651,7 +4649,7 @@ class Xls extends XlsBase
             case 0x65:
                 $name = 'tArea';
                 $size = 9;
-                $data = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddress(substr($formulaData, 1, 8));
+                $data = Xls\Biff8::readBIFF8CellRangeAddress(substr($formulaData, 1, 8));
 
                 break;
             case 0x26:    //    Constant reference sub-expression
@@ -4691,7 +4689,7 @@ class Xls extends XlsBase
             case 0x6C:
                 $name = 'tRefN';
                 $size = 5;
-                $data = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellAddressB(substr($formulaData, 1, 4), $baseCell);
+                $data = Xls\Biff8::readBIFF8CellAddressB(substr($formulaData, 1, 4), $baseCell);
 
                 break;
             case 0x2D:    //    Relative 2d range reference
@@ -4699,7 +4697,7 @@ class Xls extends XlsBase
             case 0x6D:
                 $name = 'tAreaN';
                 $size = 9;
-                $data = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddressB(substr($formulaData, 1, 8), $baseCell);
+                $data = Xls\Biff8::readBIFF8CellRangeAddressB(substr($formulaData, 1, 8), $baseCell);
 
                 break;
             case 0x39:    //    External name
@@ -4725,7 +4723,7 @@ class Xls extends XlsBase
                     // offset: 1; size: 2; index to REF entry
                     $sheetRange = $this->readSheetRangeByRefIndex(self::getUInt2d($formulaData, 1));
                     // offset: 3; size: 4; cell address
-                    $cellAddress = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellAddress(substr($formulaData, 3, 4));
+                    $cellAddress = Xls\Biff8::readBIFF8CellAddress(substr($formulaData, 3, 4));
 
                     $data = "$sheetRange!$cellAddress";
                 } catch (PhpSpreadsheetException) {
@@ -4744,7 +4742,7 @@ class Xls extends XlsBase
                     // offset: 1; size: 2; index to REF entry
                     $sheetRange = $this->readSheetRangeByRefIndex(self::getUInt2d($formulaData, 1));
                     // offset: 3; size: 8; cell address
-                    $cellRangeAddress = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\Biff8::readBIFF8CellRangeAddress(substr($formulaData, 3, 8));
+                    $cellRangeAddress = Xls\Biff8::readBIFF8CellRangeAddress(substr($formulaData, 3, 8));
 
                     $data = "$sheetRange!$cellRangeAddress";
                 } catch (PhpSpreadsheetException) {
@@ -4889,13 +4887,13 @@ class Xls extends XlsBase
      */
     protected function readCFHeader(): array
     {
-        return (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ConditionalFormatting())->readCFHeader2($this);
+        return (new Xls\ConditionalFormatting())->readCFHeader2($this);
     }
 
     /** @param string[] $cellRangeAddresses */
     protected function readCFRule(array $cellRangeAddresses): void
     {
-        (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls\ConditionalFormatting())->readCFRule2($cellRangeAddresses, $this);
+        (new Xls\ConditionalFormatting())->readCFRule2($cellRangeAddresses, $this);
     }
 
     public function getVersion(): int

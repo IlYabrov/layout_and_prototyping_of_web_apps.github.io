@@ -2,9 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font as FontUnderline;
+use PhpOffice\PhpSpreadsheet\Style\Font as FontUnderline;
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\StyleBase;
 
 class Font extends StyleBase
 {

@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use php\src\ZipStream;
+use ZipStream\ZipStream;
 
 class ZipStream3
 {

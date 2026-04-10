@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Database;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DatabaseAbstract;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 
 class DProduct extends DatabaseAbstract
@@ -38,7 +37,7 @@ class DProduct extends DatabaseAbstract
             return ExcelError::VALUE();
         }
 
-        return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Operations::product(
+        return MathTrig\Operations::product(
             self::getFilteredColumn($database, $field, $criteria)
         );
     }

@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing;
-
 class HeaderFooterDrawing extends Drawing
 {
     /**

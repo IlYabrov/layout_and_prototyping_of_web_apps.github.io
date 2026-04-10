@@ -2,13 +2,11 @@
 
 namespace Matrix;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Addition;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\DirectSum;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Division;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Multiplication;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operators\Subtraction;
+use Matrix\Operators\Addition;
+use Matrix\Operators\DirectSum;
+use Matrix\Operators\Division;
+use Matrix\Operators\Multiplication;
+use Matrix\Operators\Subtraction;
 
 class Operations
 {

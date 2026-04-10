@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Variances;
-
 class StandardDeviations
 {
     /**

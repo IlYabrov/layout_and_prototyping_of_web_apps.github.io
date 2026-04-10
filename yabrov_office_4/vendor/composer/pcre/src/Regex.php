@@ -11,16 +11,6 @@
 
 namespace Composer\Pcre;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchAllResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchAllStrictGroupsResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchAllWithOffsetsResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchStrictGroupsResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\MatchWithOffsetsResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\ReplaceResult;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\UnexpectedNullMatchException;
-
 class Regex
 {
     /**

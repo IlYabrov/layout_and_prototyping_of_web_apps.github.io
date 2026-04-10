@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\BaseFormatter;
 
 class FractionFormatter extends BaseFormatter
 {
@@ -32,7 +31,7 @@ class FractionFormatter extends BaseFormatter
             $fractionDivisor = 100 / (int) $matches[2];
         } else {
             /** @var float $fractionDivisor */
-            $fractionDivisor = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Gcd::evaluate((int) $decimalPart, $decimalDivisor);
+            $fractionDivisor = MathTrig\Gcd::evaluate((int) $decimalPart, $decimalDivisor);
         }
 
         $adjustedDecimalPart = (int) round((int) $decimalPart / $fractionDivisor, 0);

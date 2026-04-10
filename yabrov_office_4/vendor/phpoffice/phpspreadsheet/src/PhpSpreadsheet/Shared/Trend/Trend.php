@@ -2,9 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Trend;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Trend\BestFit;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Trend\PolynomialBestFit;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
 
 class Trend
 {

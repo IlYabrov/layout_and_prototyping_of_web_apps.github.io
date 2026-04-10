@@ -20,8 +20,8 @@ namespace PhpOffice\PhpSpreadsheet\Shared\OLE\PPS;
 // | Based on OLE::Storage_Lite by Kawai, Takanori                        |
 // +----------------------------------------------------------------------+
 //
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS;
+use PhpOffice\PhpSpreadsheet\Shared\OLE;
+use PhpOffice\PhpSpreadsheet\Shared\OLE\PPS;
 
 /**
  * Class for creating File PPS's for OLE containers.

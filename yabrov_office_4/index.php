@@ -4,8 +4,9 @@ require_once 'vendor/autoload.php';
 
 use PhpOffice\PhpWord\IOFactory as WordIOFactory;
 use PhpOffice\PhpWord\PhpWord;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\IOFactory as ExcelIOFactory;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\IOFactory as ExcelIOFactory;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 
 $materialsDir = 'assets/materials';
 $templatesDir = 'storage/templates';
@@ -357,7 +358,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $headerStyle = [
                 'font' => ['bold' => true],
                 'alignment' => [
-                    'horizontal' => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'horizontal' => Alignment::HORIZONTAL_CENTER,
                 ],
             ];
             $sheet->getStyle('A1:E1')->applyFromArray($headerStyle);

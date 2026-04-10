@@ -6,8 +6,8 @@ namespace ZipStream\Test;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use php\src\CompressionMethod;
-use php\src\LocalFileHeader;
+use ZipStream\CompressionMethod;
+use ZipStream\LocalFileHeader;
 
 class LocalFileHeaderTest extends TestCase
 {

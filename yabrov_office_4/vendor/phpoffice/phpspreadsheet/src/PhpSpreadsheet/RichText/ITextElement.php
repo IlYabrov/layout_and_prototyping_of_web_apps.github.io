@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\RichText;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Style\Font;
 
 interface ITextElement
 {

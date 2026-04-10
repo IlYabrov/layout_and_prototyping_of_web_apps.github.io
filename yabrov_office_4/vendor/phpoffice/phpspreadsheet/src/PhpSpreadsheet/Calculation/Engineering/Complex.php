@@ -2,12 +2,11 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Engineering;
 
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex as ComplexObject;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Exception as ComplexException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\ArrayEnabled;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engineering\EngineeringValidations;
+use Complex\Complex as ComplexObject;
+use Complex\Exception as ComplexException;
+use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class Complex
 {

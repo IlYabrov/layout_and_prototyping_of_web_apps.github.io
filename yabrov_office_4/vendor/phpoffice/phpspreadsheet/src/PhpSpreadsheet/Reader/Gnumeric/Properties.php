@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Gnumeric;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Gnumeric;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Gnumeric;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use SimpleXMLElement;
 
 class Properties

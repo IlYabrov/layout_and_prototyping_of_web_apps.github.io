@@ -2,41 +2,39 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception as CalculationException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Chart;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Comment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Document\Properties;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\Run;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Settings;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Drawing as SharedDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\File;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Font as SharedFont;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\MergedCellStyle;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Fill;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\BaseDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\MemoryDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\PageSetup;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\BaseWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalculationException;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Chart\Chart;
+use PhpOffice\PhpSpreadsheet\Comment;
+use PhpOffice\PhpSpreadsheet\Document\Properties;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\RichText\Run;
+use PhpOffice\PhpSpreadsheet\Settings;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\Drawing as SharedDrawing;
+use PhpOffice\PhpSpreadsheet\Shared\File;
+use PhpOffice\PhpSpreadsheet\Shared\Font as SharedFont;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting\MergedCellStyle;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\Style;
+use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Worksheet\Table;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class Html extends BaseWriter
 {
@@ -283,7 +281,7 @@ class Html extends BaseWriter
 
         // Write footer
         $html .= $this->generateHTMLFooter();
-        if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf) {
+        if ($this instanceof Pdf\Mpdf) {
             $html = str_replace(self::BRX, '<br />', $html);
         } else {
             $html = str_replace(self::BRX, '<br />' . $this->lineEnding, $html);
@@ -635,7 +633,7 @@ class Html extends BaseWriter
             // Write table footer
             $html .= $this->generateTableFooter();
             // Writing PDF?
-            if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf && $this->useInlineCss) {
+            if ($this instanceof Pdf\Tcpdf && $this->useInlineCss) {
                 if ($this->sheetIndex === null && $sheetId + 1 < $this->spreadsheet->getSheetCount()) {
                     $html .= '<div style="page-break-before:always" ></div>';
                 }
@@ -769,7 +767,7 @@ class Html extends BaseWriter
                 $filename = htmlspecialchars($filename, Settings::htmlEntityFlags());
 
                 $html .= $this->lineEnding;
-                $imageData = self::winFileToUrl($filename, $this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf);
+                $imageData = self::winFileToUrl($filename, $this instanceof Pdf\Mpdf);
 
                 if ($this->embedImages || str_starts_with($imageData, 'zip://')) {
                     $imageData = 'data:,';
@@ -1179,7 +1177,7 @@ class Html extends BaseWriter
         }
         $rotation = $alignment->getTextRotation();
         if ($rotation !== 0 && $rotation !== Alignment::TEXTROTATION_STACK_PHPSPREADSHEET) {
-            if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf) {
+            if ($this instanceof Pdf\Mpdf) {
                 $css['text-rotate'] = "$rotation";
             } else {
                 $css['transform'] = "rotate({$rotation}deg)";
@@ -1242,7 +1240,7 @@ class Html extends BaseWriter
     {
         $borderStyle = $border->getBorderStyle();
         // Mpdf doesn't process !important, so omit unimportant border none
-        if ($borderStyle === Border::BORDER_NONE && $this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf) {
+        if ($borderStyle === Border::BORDER_NONE && $this instanceof Pdf\Mpdf) {
             return;
         }
         if ($borderStyle !== Border::BORDER_OMIT) {
@@ -1389,7 +1387,7 @@ class Html extends BaseWriter
             $printArea = $worksheet->getPageSetup()->getPrintArea();
             $dataPrint = ($printArea === '') ? '' : (" data-printarea='" . htmlspecialchars($printArea) . "'");
             $float = $this->getFloat($worksheet);
-            if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Dompdf) {
+            if ($this instanceof Pdf\Dompdf) {
                 $gridlines = $worksheet->getPrintGridlines() ? ' gridlines' : '';
                 $gridlinesp = $worksheet->getPrintGridlines() ? ' gridlinesp' : '';
             } else {
@@ -1789,7 +1787,7 @@ class Html extends BaseWriter
                     }
                 }
                 $foundBorder = false;
-                if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf && $worksheet->getPrintGridLines()) {
+                if ($this instanceof Pdf\Tcpdf && $worksheet->getPrintGridLines()) {
                     foreach (['border-top', 'border-bottom', 'border-right', 'border-left'] as $borderType) {
                         if (isset($xcssClass[$borderType])) {
                             $foundBorder = true;
@@ -1876,9 +1874,9 @@ class Html extends BaseWriter
         $colNum = 0;
         $tcpdfInited = false;
         foreach ($values as $key => $cellAddress) {
-            if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf) {
+            if ($this instanceof Pdf\Mpdf) {
                 $colNum = $key - 1;
-            } elseif ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf) {
+            } elseif ($this instanceof Pdf\Tcpdf) {
                 // It appears that Tcpdf requires first cell in tr.
                 $colNum = $key - 1;
                 if (!$tcpdfInited && $key !== 1) {
@@ -1951,7 +1949,7 @@ class Html extends BaseWriter
             // Next column
             ++$colNum;
         }
-        if ($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf) {
+        if ($this instanceof Pdf\Tcpdf) {
             if (str_ends_with($html, '<tr>' . $this->lineEnding)) {
                 $html .= '<td>&nbsp;</td>' . $this->lineEnding;
             }
@@ -2311,7 +2309,7 @@ class Html extends BaseWriter
                 }
             }
         }
-        if (!($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf || $this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf)) {
+        if (!($this instanceof Pdf\Mpdf || $this instanceof Pdf\Tcpdf)) {
             return true;
         }
 
@@ -2328,7 +2326,7 @@ class Html extends BaseWriter
                 }
             }
         }
-        if (!($this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Mpdf || $this instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Tcpdf)) {
+        if (!($this instanceof Pdf\Mpdf || $this instanceof Pdf\Tcpdf)) {
             return true;
         }
         if (!$sheet->columnDimensionExists($colStr)) {

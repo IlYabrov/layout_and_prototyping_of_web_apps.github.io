@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xls;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class Font
 {
@@ -14,12 +14,12 @@ class Font
     /**
      * Font.
      */
-    private \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $font;
+    private \PhpOffice\PhpSpreadsheet\Style\Font $font;
 
     /**
      * Constructor.
      */
-    public function __construct(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $font)
+    public function __construct(\PhpOffice\PhpSpreadsheet\Style\Font $font)
     {
         $this->colorIndex = 0x7FFF;
         $this->font = $font;
@@ -52,7 +52,7 @@ class Font
             $sss = 0;
         }
         $bFamily = 0; // Font family
-        $bCharSet = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Font::getCharsetFromFontName((string) $this->font->getName()); // Character set
+        $bCharSet = \PhpOffice\PhpSpreadsheet\Shared\Font::getCharsetFromFontName((string) $this->font->getName()); // Character set
 
         $record = 0x31; // Record identifier
         $reserved = 0x00; // Reserved
@@ -112,11 +112,11 @@ class Font
      * @var int[]
      */
     private static array $mapUnderline = [
-        \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_NONE => 0x00,
-        \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLE => 0x01,
-        \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLE => 0x02,
-        \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLEACCOUNTING => 0x21,
-        \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLEACCOUNTING => 0x22,
+        \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_NONE => 0x00,
+        \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLE => 0x01,
+        \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLE => 0x02,
+        \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLEACCOUNTING => 0x21,
+        \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLEACCOUNTING => 0x22,
     ];
 
     /**

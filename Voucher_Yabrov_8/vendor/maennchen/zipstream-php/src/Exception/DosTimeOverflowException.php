@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ZipStream\Exception;
 
 use DateTimeInterface;
-use php\src\Exception;
+use ZipStream\Exception;
 
 /**
  * This Exception gets invoked if a file wasn't found

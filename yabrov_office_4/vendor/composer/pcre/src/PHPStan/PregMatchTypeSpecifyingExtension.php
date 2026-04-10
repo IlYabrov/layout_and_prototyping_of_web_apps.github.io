@@ -2,7 +2,7 @@
 
 namespace Composer\Pcre\PHPStan;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 use PhpParser\Node\Expr\StaticCall;
 use PHPStan\Analyser\Scope;
 use PHPStan\Analyser\SpecifiedTypes;
@@ -16,7 +16,6 @@ use PHPStan\Type\Php\RegexArrayShapeMatcher;
 use PHPStan\Type\StaticMethodTypeSpecifyingExtension;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\Type;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\PHPStan\PregMatchFlags;
 
 final class PregMatchTypeSpecifyingExtension implements StaticMethodTypeSpecifyingExtension, TypeSpecifierAwareExtension
 {

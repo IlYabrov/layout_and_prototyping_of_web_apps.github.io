@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet\AutoFilter\Column;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Worksheet\AutoFilter\Column;
 
 class Rule
 {

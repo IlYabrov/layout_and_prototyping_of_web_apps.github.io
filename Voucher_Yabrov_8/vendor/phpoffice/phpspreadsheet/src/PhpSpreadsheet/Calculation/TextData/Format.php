@@ -2,21 +2,20 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\TextData;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 use DateTimeInterface;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\ArrayEnabled;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception as CalcExp;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalcExp;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ErrorValue;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\TextData\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class Format
 {
@@ -60,7 +59,7 @@ class Format
                 $round = 0 - $round;
             }
             /** @var float|int|string */
-            $value = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Round::multiple($value, $round);
+            $value = MathTrig\Round::multiple($value, $round);
         }
         $mask = "{$mask};-{$mask}";
 
@@ -136,8 +135,8 @@ class Format
         $format = (string) NumberFormat::convertSystemFormats($format);
 
         if (!is_numeric($value) && Date::isDateTimeFormatCode($format) && !Preg::isMatch('/^\s*\d+(\s+\d+)+\s*$/', $value)) {
-            $value1 = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateValue::fromString($value);
-            $value2 = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\TimeValue::fromString($value);
+            $value1 = DateTimeExcel\DateValue::fromString($value);
+            $value2 = DateTimeExcel\TimeValue::fromString($value);
             /** @var float|int|string */
             $value = (is_numeric($value1) && is_numeric($value2)) ? ($value1 + $value2) : (is_numeric($value1) ? $value1 : (is_numeric($value2) ? $value2 : $value));
         }
@@ -210,14 +209,14 @@ class Format
             Functions::setReturnDateType(Functions::RETURNDATE_EXCEL);
 
             if (str_contains($value, ':')) {
-                $timeValue = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\TimeValue::fromString($value));
+                $timeValue = Functions::scalar(DateTimeExcel\TimeValue::fromString($value));
                 if ($timeValue !== ExcelError::VALUE()) {
                     Functions::setReturnDateType($dateSetting);
 
                     return $timeValue; //* @phpstan-ignore-line
                 }
             }
-            $dateValue = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateValue::fromString($value));
+            $dateValue = Functions::scalar(DateTimeExcel\DateValue::fromString($value));
             if ($dateValue !== ExcelError::VALUE()) {
                 Functions::setReturnDateType($dateSetting);
 

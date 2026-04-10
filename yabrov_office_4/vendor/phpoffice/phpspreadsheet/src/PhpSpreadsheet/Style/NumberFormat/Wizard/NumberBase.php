@@ -3,10 +3,9 @@
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard;
 
 use NumberFormatter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Stringable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\Locale;
 
 abstract class NumberBase implements Stringable
 {

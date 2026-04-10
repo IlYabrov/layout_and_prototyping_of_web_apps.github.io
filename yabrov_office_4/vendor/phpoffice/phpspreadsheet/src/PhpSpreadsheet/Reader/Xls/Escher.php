@@ -2,18 +2,18 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xls;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE\Blip;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Reader\Xls;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE\Blip;
 
 /**
- * @template T of BSE|BstoreContainer|DgContainer|DggContainer|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer
+ * @template T of BSE|BstoreContainer|DgContainer|DggContainer|\PhpOffice\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer
  */
 class Escher
 {
@@ -56,14 +56,14 @@ class Escher
      *
      * @var T
      */
-    private BSE|BstoreContainer|DgContainer|DggContainer|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer $object;
+    private BSE|BstoreContainer|DgContainer|DggContainer|\PhpOffice\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer $object;
 
     /**
      * Create a new Escher instance.
      *
      * @param T $object
      */
-    public function __construct(BSE|BstoreContainer|DgContainer|DggContainer|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer $object)
+    public function __construct(BSE|BstoreContainer|DgContainer|DggContainer|\PhpOffice\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer $object)
     {
         $this->object = $object;
     }
@@ -94,7 +94,7 @@ class Escher
      *
      * @return T
      */
-    public function load(string $data): BSE|BstoreContainer|DgContainer|DggContainer|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer
+    public function load(string $data): BSE|BstoreContainer|DgContainer|DggContainer|\PhpOffice\PhpSpreadsheet\Shared\Escher|SpContainer|SpgrContainer
     {
         $this->data = $data;
 

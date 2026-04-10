@@ -2,27 +2,23 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg; // many pregs in this program use u modifier, which has side-effects which make it unsuitable for this
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\BinaryComparison;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\BranchPruner;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\CyclicReferenceStack;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Logger;
+use Composer\Pcre\Preg; // many pregs in this program use u modifier, which has side-effects which make it unsuitable for this
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\BranchPruner;
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\CyclicReferenceStack;
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\Logger;
 use PhpOffice\PhpSpreadsheet\Calculation\Engine\Operands;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\CalculationLocale;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Token\Stack;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\AddressRange;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\DefinedName;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\NamedRange;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\ReferenceHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Token\Stack;
+use PhpOffice\PhpSpreadsheet\Cell\AddressRange;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\DefinedName;
+use PhpOffice\PhpSpreadsheet\NamedRange;
+use PhpOffice\PhpSpreadsheet\ReferenceHelper;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use ReflectionClassConstant;
 use ReflectionMethod;
 use ReflectionParameter;
@@ -183,7 +179,7 @@ class Calculation extends CalculationLocale
     private static array $controlFunctions = [
         'MKMATRIX' => [
             'argumentCount' => '*',
-            'functionCall' => [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Internal\MakeMatrix::class, 'make'],
+            'functionCall' => [Internal\MakeMatrix::class, 'make'],
         ],
         'NAME.ERROR' => [
             'argumentCount' => '*',
@@ -191,7 +187,7 @@ class Calculation extends CalculationLocale
         ],
         'WILDCARDMATCH' => [
             'argumentCount' => '2',
-            'functionCall' => [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Internal\WildcardMatch::class, 'compare'],
+            'functionCall' => [Internal\WildcardMatch::class, 'compare'],
         ],
     ];
 
@@ -1373,14 +1369,14 @@ class Calculation extends CalculationLocale
                     $output[] = $outputItem;
                 } elseif (preg_match('/^' . self::CALCULATION_REGEXP_STRUCTURED_REFERENCE . '$/miu', $val, $matches)) {
                     try {
-                        $structuredReference = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Operands\StructuredReference::fromParser($formula, $index, $matches);
+                        $structuredReference = Operands\StructuredReference::fromParser($formula, $index, $matches);
                     } catch (Exception $e) {
                         return $this->raiseFormulaError($e->getMessage(), $e->getCode(), $e);
                     }
 
                     $val = $structuredReference->value();
                     $length = strlen($val);
-                    $outputItem = $stack->getStackItem(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Operands\StructuredReference::NAME, $structuredReference, null);
+                    $outputItem = $stack->getStackItem(Operands\StructuredReference::NAME, $structuredReference, null);
 
                     $output[] = $outputItem;
                     $expectingOperator = true;
@@ -1564,7 +1560,7 @@ class Calculation extends CalculationLocale
                         || (preg_match('/^' . self::CALCULATION_REGEXP_DEFINEDNAME . '.*/miu', substr($formula, $index), $match))
                             && ($output[$countOutputMinus1]['type'] === 'Defined Name' || $output[$countOutputMinus1]['type'] === 'Value')
                         || (preg_match('/^' . self::CALCULATION_REGEXP_STRUCTURED_REFERENCE . '.*/miu', substr($formula, $index), $match))
-                            && ($output[$countOutputMinus1]['type'] === \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Operands\StructuredReference::NAME || $output[$countOutputMinus1]['type'] === 'Value')
+                            && ($output[$countOutputMinus1]['type'] === Operands\StructuredReference::NAME || $output[$countOutputMinus1]['type'] === 'Value')
                     )
                 ) {
                     while (self::swapOperands($stack, $opCharacter)) {
@@ -1663,7 +1659,7 @@ class Calculation extends CalculationLocale
 
                 if (
                     (isset($storeValue) || $tokenData['reference'] === 'NULL')
-                    && (!$storeValueAsBool || \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($storeValue) || ($storeValue === 'Pruned branch'))
+                    && (!$storeValueAsBool || Information\ErrorValue::isError($storeValue) || ($storeValue === 'Pruned branch'))
                 ) {
                     // If branching value is not true, we don't need to compute
                     /** @var string $onlyIfStoreKey */
@@ -1698,7 +1694,7 @@ class Calculation extends CalculationLocale
 
                 if (
                     (isset($storeValue) || $tokenData['reference'] === 'NULL')
-                    && ($storeValueAsBool || \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($storeValue) || ($storeValue === 'Pruned branch'))
+                    && ($storeValueAsBool || Information\ErrorValue::isError($storeValue) || ($storeValue === 'Pruned branch'))
                 ) {
                     // If branching value is true, we don't need to compute
                     if (!isset($fakedForBranchPruning['onlyIfNot-' . $onlyIfNotStoreKey])) {
@@ -1719,7 +1715,7 @@ class Calculation extends CalculationLocale
                 }
             }
 
-            if ($token instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Operands\StructuredReference) {
+            if ($token instanceof Operands\StructuredReference) {
                 if ($cell === null) {
                     return $this->raiseFormulaError('Structured References must exist in a Cell context');
                 }
@@ -1911,9 +1907,9 @@ class Calculation extends CalculationLocale
                                     $op1x = self::boolToString($operand1[$row][$column]);
                                     /** @var mixed[][] $operand2 */
                                     $op2x = self::boolToString($operand2[$row][$column]);
-                                    if (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($op1x)) {
+                                    if (Information\ErrorValue::isError($op1x)) {
                                         // no need to do anything
-                                    } elseif (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($op2x)) {
+                                    } elseif (Information\ErrorValue::isError($op2x)) {
                                         $operand1[$row][$column] = $op2x;
                                     } else {
                                         /** @var string $op1x */
@@ -1929,9 +1925,9 @@ class Calculation extends CalculationLocale
                             }
                             $result = $operand1;
                         } else {
-                            if (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($operand1)) {
+                            if (Information\ErrorValue::isError($operand1)) {
                                 $result = $operand1;
-                            } elseif (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($operand2)) {
+                            } elseif (Information\ErrorValue::isError($operand2)) {
                                 $result = $operand2;
                             } else {
                                 $result = str_replace('""', self::FORMULA_STRING_QUOTE, self::unwrapResult($operand1) . self::unwrapResult($operand2)); //* @phpstan-ignore-line
@@ -2361,7 +2357,7 @@ class Calculation extends CalculationLocale
                     $this->debugLog->writeDebugLog('Evaluation Result is %s', $this->showTypeDetails($operand));
 
                     return false;
-                } elseif (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\FormattedNumber::convertToNumberIfFormatted($operand) === false) {
+                } elseif (Engine\FormattedNumber::convertToNumberIfFormatted($operand) === false) {
                     //    If not a numeric, a fraction or a percentage, then it's a text string, and so can't be used in mathematical binary operations
                     $stack->push('Error', '#VALUE!');
                     $this->debugLog->writeDebugLog('Evaluation Result is a %s', $this->showTypeDetails('#VALUE!'));
@@ -2948,7 +2944,7 @@ class Calculation extends CalculationLocale
 
     private static function makeError(mixed $operand = ''): string
     {
-        return (is_string($operand) && \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ErrorValue::isError($operand)) ? $operand : ExcelError::VALUE();
+        return (is_string($operand) && Information\ErrorValue::isError($operand)) ? $operand : ExcelError::VALUE();
     }
 
     private static function swapOperands(Stack $stack, string $opCharacter): bool

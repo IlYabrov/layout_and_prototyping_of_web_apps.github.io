@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xls\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 class FillPattern
 {

@@ -1,7 +1,7 @@
 <?php
 
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex as Complex;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Operations;
+use Complex\Complex as Complex;
+use Complex\Operations;
 
 include(__DIR__ . '/../vendor/autoload.php');
 

@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Properties;
-
 class TrendLine extends Properties
 {
     const TRENDLINE_EXPONENTIAL = 'exp';

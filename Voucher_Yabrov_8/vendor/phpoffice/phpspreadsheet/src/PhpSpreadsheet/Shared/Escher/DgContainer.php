@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Escher;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
 
 class DgContainer
 {

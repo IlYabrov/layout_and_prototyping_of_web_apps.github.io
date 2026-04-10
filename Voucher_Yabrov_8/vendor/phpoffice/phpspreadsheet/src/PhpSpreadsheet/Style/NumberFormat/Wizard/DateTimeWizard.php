@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard;
 
 use Stringable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\Wizard;
 
 abstract class DateTimeWizard implements Stringable, Wizard
 {

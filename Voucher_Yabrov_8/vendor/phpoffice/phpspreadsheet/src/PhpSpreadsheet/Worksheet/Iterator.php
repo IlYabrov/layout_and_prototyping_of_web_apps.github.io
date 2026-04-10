@@ -1,9 +1,8 @@
 <?php
 
-namespace Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet;
+namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 /**
  * @implements \Iterator<int, Worksheet>

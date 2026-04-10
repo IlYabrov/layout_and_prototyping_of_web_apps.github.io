@@ -3,10 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard;
 
 use NumberFormatter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\CurrencyNegative;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\Locale;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\Number;
+use PhpOffice\PhpSpreadsheet\Exception;
 
 class CurrencyBase extends Number
 {

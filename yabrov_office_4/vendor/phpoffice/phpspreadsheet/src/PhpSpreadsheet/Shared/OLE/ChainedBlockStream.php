@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\OLE;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Shared\OLE;
 
 class ChainedBlockStream
 {

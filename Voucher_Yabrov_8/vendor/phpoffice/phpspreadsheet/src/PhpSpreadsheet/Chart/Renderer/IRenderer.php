@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart\Renderer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Chart;
+use PhpOffice\PhpSpreadsheet\Chart\Chart;
 
 interface IRenderer
 {

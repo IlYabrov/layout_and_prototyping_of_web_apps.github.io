@@ -2,9 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Helper;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Drawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Shared\Drawing;
+use PhpOffice\PhpSpreadsheet\Style\Font;
 
 class Dimension
 {

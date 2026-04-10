@@ -3,9 +3,11 @@ session_start();
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\IOFactory;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
 
 $isLoggedIn = false;
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === 'true') {
@@ -98,13 +100,13 @@ if (!function_exists('buildSpreadsheet')) {
         $sheet->setCellValue('F31', '');
         $sheet->setCellValue('G31', '');
         $sheet->getStyle('F31:G31')->getBorders()->getBottom()->setBorderStyle(
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border::BORDER_THIN
+            Border::BORDER_THIN
         );
         $sheet->mergeCells('F32:G32');
         $sheet->setCellValue('F32', '(подпись менеджера)');
         $sheet->getStyle('F32:G32')->getFont()->setSize(8);
         $sheet->getStyle('F32:G32')->getAlignment()->setHorizontal(
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
+            Alignment::HORIZONTAL_CENTER
         );
 
         $sheet->setCellValue('H8', $services[$service_type]);

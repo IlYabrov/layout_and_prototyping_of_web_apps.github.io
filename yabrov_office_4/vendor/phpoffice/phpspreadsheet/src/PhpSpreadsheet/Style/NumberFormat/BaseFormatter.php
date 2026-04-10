@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 abstract class BaseFormatter
 {

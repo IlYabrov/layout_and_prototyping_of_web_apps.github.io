@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Cell;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-
 interface IValueBinder
 {
     /**

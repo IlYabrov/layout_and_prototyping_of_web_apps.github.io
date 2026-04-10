@@ -2,10 +2,10 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Gnumeric;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Gnumeric;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\PageMargins;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\PageSetup as WorksheetPageSetup;
+use PhpOffice\PhpSpreadsheet\Reader\Gnumeric;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageMargins;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup as WorksheetPageSetup;
 use SimpleXMLElement;
 
 class PageSetup

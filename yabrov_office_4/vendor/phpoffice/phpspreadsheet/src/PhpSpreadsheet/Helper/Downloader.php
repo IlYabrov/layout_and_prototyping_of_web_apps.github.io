@@ -4,7 +4,7 @@ namespace PhpOffice\PhpSpreadsheet\Helper;
 
 use DateTimeImmutable;
 use DateTimeZone;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Exception;
 
 /**
  * Assist downloading files when samples are run in browser.

@@ -2,13 +2,13 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
 class RichDataDrawing
 {
-    /** @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Drawing[] */
+    /** @var Drawing[] */
     private array $drawings = [];
 
     /**
@@ -25,7 +25,7 @@ class RichDataDrawing
             $worksheet = $spreadsheet->getSheet($i);
             $iterator = $worksheet->getInCellDrawingCollection()->getIterator();
             while ($iterator->valid()) {
-                /** @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Drawing $pDrawing */
+                /** @var Drawing $pDrawing */
                 $pDrawing = $iterator->current();
                 $indexedFilename = $pDrawing->getIndexedFilename();
                 if (!isset($this->drawings[$indexedFilename])) {
@@ -48,7 +48,7 @@ class RichDataDrawing
     }
 
     /**
-     * @return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Drawing[]
+     * @return Drawing[]
      */
     public function getDrawings(): array
     {

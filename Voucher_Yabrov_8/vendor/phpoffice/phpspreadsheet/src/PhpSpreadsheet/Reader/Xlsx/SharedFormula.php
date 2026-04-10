@@ -1,6 +1,6 @@
 <?php
 
-namespace Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx;
+namespace PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 class SharedFormula
 {

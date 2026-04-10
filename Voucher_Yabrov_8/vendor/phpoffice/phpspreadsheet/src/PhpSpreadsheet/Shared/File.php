@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception as ReaderException;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 use ZipArchive;
 
 class File

@@ -2,40 +2,38 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\HashTable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Fill;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\BaseDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing as WorksheetDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\MemoryDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception as WriterException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\BaseWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Chart;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Comments;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\ContentTypes;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\DocProps;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Drawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Rels;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\RelsRibbon;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\RelsVBA;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\RichDataDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\StringTable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Table;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Theme;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Workbook;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Worksheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\ZipStream0;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\HashTable;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
+use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\Drawing as WorksheetDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\MemoryDrawing;
+use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Chart;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Comments;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\ContentTypes;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\DocProps;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Drawing;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\RelsRibbon;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\RelsVBA;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\RichDataDrawing;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\StringTable;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Style;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Table;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Theme;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Workbook;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Worksheet;
 use ZipArchive;
-use php\src\Exception\OverflowException;
-use php\src\ZipStream;
+use ZipStream\Exception\OverflowException;
+use ZipStream\ZipStream;
 
 class Xlsx extends BaseWriter
 {
@@ -66,7 +64,7 @@ class Xlsx extends BaseWriter
     /**
      * Private unique Style HashTable.
      *
-     * @var HashTable<\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style>
+     * @var HashTable<\PhpOffice\PhpSpreadsheet\Style\Style>
      */
     private HashTable $styleHashTable;
 
@@ -348,11 +346,11 @@ class Xlsx extends BaseWriter
 
         // Add [Content_Types].xml to ZIP file
         $zipContent['[Content_Types].xml'] = $this->getWriterPartContentTypes()->writeContentTypes($this->spreadSheet, $this->includeCharts);
-        $metadataData = (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Metadata($this))->writeMetadata($richDataCount);
+        $metadataData = (new Xlsx\Metadata($this))->writeMetadata($richDataCount);
         if ($metadataData !== '') {
             $zipContent['xl/metadata.xml'] = $metadataData;
         }
-        $propertyBagData = (new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\FeaturePropertyBag($this))->writeFeaturePropertyBag($this->spreadSheet);
+        $propertyBagData = (new Xlsx\FeaturePropertyBag($this))->writeFeaturePropertyBag($this->spreadSheet);
         if ($propertyBagData !== '') {
             $zipContent['xl/featurePropertyBag/featurePropertyBag.xml'] = $propertyBagData;
         }
@@ -639,7 +637,7 @@ class Xlsx extends BaseWriter
     /**
      * Get Style HashTable.
      *
-     * @return HashTable<\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style>
+     * @return HashTable<\PhpOffice\PhpSpreadsheet\Style\Style>
      */
     public function getStyleHashTable(): HashTable
     {

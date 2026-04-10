@@ -2,9 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial\Securities;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class SecurityValidations extends FinancialValidations
 {

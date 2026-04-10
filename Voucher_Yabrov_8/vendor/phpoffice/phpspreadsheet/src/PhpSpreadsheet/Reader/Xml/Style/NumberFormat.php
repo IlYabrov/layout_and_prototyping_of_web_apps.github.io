@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\StyleBase;
 
 class NumberFormat extends StyleBase
 {

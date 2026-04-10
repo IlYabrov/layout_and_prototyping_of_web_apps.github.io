@@ -1,7 +1,7 @@
 <?php
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\QR;
+use Matrix\Matrix;
+use Matrix\Decomposition\QR;
 
 include __DIR__ . '/../vendor/autoload.php';
 

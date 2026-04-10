@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\DateTimeWizard;
-
 class Date extends DateTimeWizard
 {
     /**

@@ -2,21 +2,16 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xls;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\DefinedName;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\BIFFwriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Escher;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Font;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Parser;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Xf;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\DefinedName;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\Style;
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Workbook (used as the base for this class):
 // -----------------------------------------------------------------------------------------
@@ -164,7 +159,7 @@ class Workbook extends BIFFwriter
     /**
      * Escher object corresponding to MSODRAWINGGROUP.
      */
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher $escher = null;
+    private ?\PhpOffice\PhpSpreadsheet\Shared\Escher $escher = null;
 
     /**
      * Class constructor.
@@ -281,7 +276,7 @@ class Workbook extends BIFFwriter
      *
      * @return int Index to FONT record
      */
-    public function addFont(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $font): int
+    public function addFont(\PhpOffice\PhpSpreadsheet\Style\Font $font): int
     {
         $fontHashCode = $font->getHashCode();
         if (isset($this->addedFonts[$fontHashCode])) {
@@ -845,14 +840,14 @@ class Workbook extends BIFFwriter
      *
      * @param int $offset Location of worksheet BOF
      */
-    private function writeBoundSheet(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $sheet, int $offset): void
+    private function writeBoundSheet(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $sheet, int $offset): void
     {
         $sheetname = $sheet->getTitle();
         $record = 0x0085; // Record identifier
         $ss = match ($sheet->getSheetState()) {
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_VISIBLE => 0x00,
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_HIDDEN => 0x01,
-            \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_VERYHIDDEN => 0x02,
+            \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_VISIBLE => 0x00,
+            \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_HIDDEN => 0x01,
+            \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet::SHEETSTATE_VERYHIDDEN => 0x02,
             default => 0x00,
         };
 
@@ -1156,7 +1151,7 @@ class Workbook extends BIFFwriter
     /**
      * Get Escher object.
      */
-    public function getEscher(): ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher
+    public function getEscher(): ?\PhpOffice\PhpSpreadsheet\Shared\Escher
     {
         return $this->escher;
     }
@@ -1164,7 +1159,7 @@ class Workbook extends BIFFwriter
     /**
      * Set Escher object.
      */
-    public function setEscher(?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher $escher): void
+    public function setEscher(?\PhpOffice\PhpSpreadsheet\Shared\Escher $escher): void
     {
         $this->escher = $escher;
     }

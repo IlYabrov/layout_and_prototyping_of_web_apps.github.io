@@ -3,7 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Reader\Ods;
 
 use DOMElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 abstract class BaseLoader
 {

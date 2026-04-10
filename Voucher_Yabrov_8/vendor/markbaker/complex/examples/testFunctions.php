@@ -2,8 +2,6 @@
 
 namespace Complex;
 
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex;
-
 include(__DIR__ . '/../vendor/autoload.php');
 
 echo 'Function Examples', PHP_EOL;

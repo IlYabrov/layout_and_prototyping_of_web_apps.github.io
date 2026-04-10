@@ -2,11 +2,11 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 use IntlCalendar;
 use NumberFormatter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
 use Stringable;
 
 class StringHelper

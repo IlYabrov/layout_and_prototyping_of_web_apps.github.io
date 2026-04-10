@@ -4,8 +4,6 @@ namespace PhpOffice\PhpSpreadsheet\Reader\Ods;
 
 use DOMElement;
 use DOMNode;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Ods\BaseLoader;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Ods\FormulaTranslator;
 
 class AutoFilter extends BaseLoader
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xls;
+namespace PhpOffice\PhpSpreadsheet\Reader\Xls;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception as ReaderException;
+use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
 
 class MD5
 {

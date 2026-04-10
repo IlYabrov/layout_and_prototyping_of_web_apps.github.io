@@ -35,7 +35,7 @@ class SpgrContainer
     /**
      * Add a child. This will be either spgrContainer or spContainer.
      *
-     * @param \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer $child child to be added
+     * @param SpgrContainer|SpgrContainer\SpContainer $child child to be added
      */
     public function addChild(mixed $child): void
     {
@@ -56,7 +56,7 @@ class SpgrContainer
     /**
      * Recursively get all spContainers within this spgrContainer.
      *
-     * @return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer[]
+     * @return SpgrContainer\SpContainer[]
      */
     public function getAllSpContainers(): array
     {
@@ -69,7 +69,7 @@ class SpgrContainer
                 $allSpContainers[] = $child;
             }
         }
-        /** @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer\SpContainer[] $allSpContainers */
+        /** @var SpgrContainer\SpContainer[] $allSpContainers */
 
         return $allSpContainers;
     }

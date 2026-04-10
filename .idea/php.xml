@@ -12,26 +12,26 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/composer" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/math" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/maennchen/zipstream-php" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/sabberworm/php-css-parser" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/psr/simple-cache" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/php-svg-lib" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/markbaker/complex" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/markbaker/matrix" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/masterminds/html5" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/phpspreadsheet" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/php-font-lib" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/thecodingmachine/safe" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/dompdf" />
-      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/phpword" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/markbaker/matrix" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/composer" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/markbaker/complex" />
       <path value="$PROJECT_DIR$/Voucher_Yabrov_8/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/composer" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/markbaker/matrix" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/thecodingmachine/safe" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/markbaker/complex" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/php-font-lib" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/php-svg-lib" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/math" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/phpword" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/phpoffice/phpspreadsheet" />
+      <path value="$PROJECT_DIR$/yabrov_office_4/vendor/maennchen/zipstream-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.0">
@@ -39,6 +39,11 @@
   </component>
   <component name="PhpStanOptionsConfiguration">
     <option name="transferred" value="true" />
+  </component>
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings custom_loader_path="$PROJECT_DIR$/yabrov_office_4/vendor/autoload.php" />
+    </phpunit_settings>
   </component>
   <component name="PsalmOptionsConfiguration">
     <option name="transferred" value="true" />

@@ -3,7 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Document;
 
 use DateTime;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\IntOrFloat;
+use PhpOffice\PhpSpreadsheet\Shared\IntOrFloat;
 
 class Properties
 {

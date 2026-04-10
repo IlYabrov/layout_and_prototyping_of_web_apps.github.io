@@ -2,46 +2,45 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Hyperlink;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Comment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\DefinedName;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\BaseReader;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Security\XmlScanner;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\AutoFilter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Chart;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\ColumnAndRowAttributes;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\ConditionalStyles;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\DataValidations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Hyperlinks;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Namespaces;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\PageSetup;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Properties as PropertyReader;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\SharedFormula;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\SheetViewOptions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\SheetViews;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Styles;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\TableReader;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Theme;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\WorkbookView;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\ReferenceHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Drawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\File;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Font;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Color;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font as StyleFont;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\HeaderFooterDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\TableDxfsStyle;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Cell\Hyperlink;
+use PhpOffice\PhpSpreadsheet\Comment;
+use PhpOffice\PhpSpreadsheet\DefinedName;
+use PhpOffice\PhpSpreadsheet\Reader\Security\XmlScanner;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\AutoFilter;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Chart;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\ColumnAndRowAttributes;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\ConditionalStyles;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\DataValidations;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Hyperlinks;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Namespaces;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\PageSetup;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Properties as PropertyReader;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\SharedFormula;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\SheetViewOptions;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\SheetViews;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Styles;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\TableReader;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Theme;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\WorkbookView;
+use PhpOffice\PhpSpreadsheet\ReferenceHelper;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Shared\Drawing;
+use PhpOffice\PhpSpreadsheet\Shared\File;
+use PhpOffice\PhpSpreadsheet\Shared\Font;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\Style\Font as StyleFont;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use PhpOffice\PhpSpreadsheet\Style\Style;
+use PhpOffice\PhpSpreadsheet\Worksheet\HeaderFooterDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\Table\TableDxfsStyle;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use SimpleXMLElement;
 use Throwable;
 use XMLReader;
@@ -978,7 +977,7 @@ class Xlsx extends BaseReader
                                             case DataType::TYPE_ERROR:
                                                 if (isset($cAttr->vm, $richData['image']['rId' . $cAttr->vm]) && !$useFormula) {
                                                     $imagePath = $dir . '/' . str_replace('../', '', $richData['image']['rId' . $cAttr->vm]);
-                                                    $objDrawing = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing();
+                                                    $objDrawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
                                                     $objDrawing->setPath(
                                                         'zip://' . File::realpath($filename) . '#' . $imagePath,
                                                         false,
@@ -1340,7 +1339,7 @@ class Xlsx extends BaseReader
                                                 $comment = $docSheet->getComment([(int) $column + 1, (int) $row + 1]);
                                                 $comment->getFillColor()->setRGB($fillColor);
                                                 if (isset($fillImageRelId, $drowingImages[$fillImageRelId])) {
-                                                    $objDrawing = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing();
+                                                    $objDrawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
                                                     $objDrawing->setName($fillImageTitle);
                                                     $imagePath = str_replace(['../', '/xl/'], 'xl/', $drowingImages[$fillImageRelId]);
                                                     $objDrawing->setPath(
@@ -1570,7 +1569,7 @@ class Xlsx extends BaseReader
                                             foreach ($xmlDrawingChildren->oneCellAnchor as $oneCellAnchor) {
                                                 $oneCellAnchor = self::testSimpleXml($oneCellAnchor);
                                                 if ($oneCellAnchor->pic->blipFill) {
-                                                    $objDrawing = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing();
+                                                    $objDrawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
                                                     $blip = $oneCellAnchor->pic->blipFill->children(Namespaces::DRAWINGML)->blip;
                                                     if (isset($blip, $blip->alphaModFix)) {
                                                         $temp = (string) $blip->alphaModFix->attributes()->amt;
@@ -1668,7 +1667,7 @@ class Xlsx extends BaseReader
                                             foreach ($xmlDrawingChildren->twoCellAnchor as $twoCellAnchor) {
                                                 $twoCellAnchor = self::testSimpleXml($twoCellAnchor);
                                                 if ($twoCellAnchor->pic->blipFill) {
-                                                    $objDrawing = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing();
+                                                    $objDrawing = new \PhpOffice\PhpSpreadsheet\Worksheet\Drawing();
                                                     $blip = $twoCellAnchor->pic->blipFill->children(Namespaces::DRAWINGML)->blip;
                                                     if (isset($blip, $blip->alphaModFix)) {
                                                         $temp = (string) $blip->alphaModFix->attributes()->amt;
@@ -2261,7 +2260,7 @@ class Xlsx extends BaseReader
     }
 
     /** @param string[] $hyperlinks */
-    private function readHyperLinkDrawing(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Drawing $objDrawing, SimpleXMLElement $cellAnchor, array $hyperlinks): void
+    private function readHyperLinkDrawing(\PhpOffice\PhpSpreadsheet\Worksheet\Drawing $objDrawing, SimpleXMLElement $cellAnchor, array $hyperlinks): void
     {
         $hlinkClick = $cellAnchor->pic->nvPicPr->cNvPr->children(Namespaces::DRAWINGML)->hlinkClick;
 

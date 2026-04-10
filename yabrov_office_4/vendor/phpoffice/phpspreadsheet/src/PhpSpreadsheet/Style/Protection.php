@@ -2,9 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Supervisor;
-
 class Protection extends Supervisor
 {
     /** Protection styles */

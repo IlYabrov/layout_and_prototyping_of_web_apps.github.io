@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Chart\Renderer;
 
 use mitoteam\jpgraph\MtJpGraph;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Renderer\JpGraphRendererBase;
 
 /**
  * Jpgraph is not officially maintained by Composer at packagist.org.

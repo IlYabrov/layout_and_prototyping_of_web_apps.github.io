@@ -2,10 +2,8 @@
 
 namespace Matrix\Decomposition;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\QR;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\LU;
+use Matrix\Exception;
+use Matrix\Matrix;
 
 class Decomposition
 {

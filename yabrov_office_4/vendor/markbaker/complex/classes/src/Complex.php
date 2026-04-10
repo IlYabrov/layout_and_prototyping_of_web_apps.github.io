@@ -9,57 +9,53 @@
  */
 namespace Complex;
 
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Functions;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Operations;
-
 /**
  * Complex Number object.
  *
  * @package Complex
  *
  * @method float abs()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acos()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acosh()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acot()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acoth()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acsc()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex acsch()
+ * @method Complex acos()
+ * @method Complex acosh()
+ * @method Complex acot()
+ * @method Complex acoth()
+ * @method Complex acsc()
+ * @method Complex acsch()
  * @method float argument()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex asec()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex asech()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex asin()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex asinh()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex atan()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex atanh()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex conjugate()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex cos()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex cosh()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex cot()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex coth()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex csc()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex csch()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex exp()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex inverse()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex ln()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex log2()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex log10()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex negative()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex pow(int|float $power)
+ * @method Complex asec()
+ * @method Complex asech()
+ * @method Complex asin()
+ * @method Complex asinh()
+ * @method Complex atan()
+ * @method Complex atanh()
+ * @method Complex conjugate()
+ * @method Complex cos()
+ * @method Complex cosh()
+ * @method Complex cot()
+ * @method Complex coth()
+ * @method Complex csc()
+ * @method Complex csch()
+ * @method Complex exp()
+ * @method Complex inverse()
+ * @method Complex ln()
+ * @method Complex log2()
+ * @method Complex log10()
+ * @method Complex negative()
+ * @method Complex pow(int|float $power)
  * @method float rho()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex sec()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex sech()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex sin()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex sinh()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex sqrt()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex tan()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex tanh()
+ * @method Complex sec()
+ * @method Complex sech()
+ * @method Complex sin()
+ * @method Complex sinh()
+ * @method Complex sqrt()
+ * @method Complex tan()
+ * @method Complex tanh()
  * @method float theta()
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex add(...$complexValues)
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex subtract(...$complexValues)
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex multiply(...$complexValues)
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex divideby(...$complexValues)
- * @method \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex divideinto(...$complexValues)
+ * @method Complex add(...$complexValues)
+ * @method Complex subtract(...$complexValues)
+ * @method Complex multiply(...$complexValues)
+ * @method Complex divideby(...$complexValues)
+ * @method Complex divideinto(...$complexValues)
  */
 class Complex
 {
@@ -275,14 +271,14 @@ class Complex
      * Validates whether the argument is a valid complex number, converting scalar or array values if possible
      *
      * @param     mixed    $complex   The value to validate
-     * @return    \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+     * @return    Complex
      * @throws    Exception    If the argument isn't a Complex number or cannot be converted to one
      */
-    public static function validateComplexArgument($complex): \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+    public static function validateComplexArgument($complex): Complex
     {
         if (is_scalar($complex) || is_array($complex)) {
-            $complex = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complex);
-        } elseif (!is_object($complex) || !($complex instanceof \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex)) {
+            $complex = new Complex($complex);
+        } elseif (!is_object($complex) || !($complex instanceof Complex)) {
             throw new Exception('Value is not a valid complex number');
         }
 
@@ -292,29 +288,29 @@ class Complex
     /**
      * Returns the reverse of this complex number
      *
-     * @return    \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+     * @return    Complex
      */
-    public function reverse(): \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+    public function reverse(): Complex
     {
-        return new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex(
+        return new Complex(
             $this->imaginaryPart,
             $this->realPart,
             ($this->realPart == 0.0) ? null : $this->suffix
         );
     }
 
-    public function invertImaginary(): \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+    public function invertImaginary(): Complex
     {
-        return new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex(
+        return new Complex(
             $this->realPart,
             $this->imaginaryPart * -1,
             ($this->imaginaryPart == 0.0) ? null : $this->suffix
         );
     }
 
-    public function invertReal(): \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex
+    public function invertReal(): Complex
     {
-        return new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex(
+        return new Complex(
             $this->realPart * -1,
             $this->imaginaryPart,
             ($this->imaginaryPart == 0.0) ? null : $this->suffix
@@ -372,7 +368,7 @@ class Complex
     /**
      * Returns the result of the function call or operation
      *
-     * @return    \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex|float
+     * @return    Complex|float
      * @throws    Exception|\InvalidArgumentException
      */
     public function __call($functionName, $arguments)

@@ -6,7 +6,7 @@ namespace ZipStream\Test;
 
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
-use php\src\PackField;
+use ZipStream\PackField;
 
 class PackFieldTest extends TestCase
 {

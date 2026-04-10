@@ -2,16 +2,15 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Namespaces;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Drawing as SharedDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\BaseDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\HeaderFooterDrawing;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception as WriterException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\WriterPart;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx\Namespaces;
+use PhpOffice\PhpSpreadsheet\Shared\Drawing as SharedDrawing;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\BaseDrawing;
+use PhpOffice\PhpSpreadsheet\Worksheet\HeaderFooterDrawing;
+use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
 
 class Drawing extends WriterPart
 {
@@ -22,7 +21,7 @@ class Drawing extends WriterPart
      *
      * @return string XML Output
      */
-    public function writeDrawings(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet, bool $includeCharts = false): string
+    public function writeDrawings(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet, bool $includeCharts = false): string
     {
         // Try to use pass-through drawing XML if available
         if ($passThroughXml = $this->getPassThroughDrawingXml($worksheet)) {
@@ -91,7 +90,7 @@ class Drawing extends WriterPart
     /**
      * Write drawings to XML format.
      */
-    public function writeChart(XMLWriter $objWriter, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Chart $chart, int $relationId = -1): void
+    public function writeChart(XMLWriter $objWriter, \PhpOffice\PhpSpreadsheet\Chart\Chart $chart, int $relationId = -1): void
     {
         $tl = $chart->getTopLeftPosition();
         $tlColRow = Coordinate::indexesFromString($tl['cell']);
@@ -367,7 +366,7 @@ class Drawing extends WriterPart
      *
      * @return string XML Output
      */
-    public function writeVMLHeaderFooterImages(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
+    public function writeVMLHeaderFooterImages(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): string
     {
         // Create XML writer
         $objWriter = null;
@@ -613,7 +612,7 @@ class Drawing extends WriterPart
      *
      * @return ?string The pass-through XML, or null if not available or should not be used
      */
-    private function getPassThroughDrawingXml(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): ?string
+    private function getPassThroughDrawingXml(\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): ?string
     {
         /** @var array<string, array<string, mixed>> $sheets */
         $sheets = $worksheet->getParentOrThrow()->getUnparsedLoadedData()['sheets'] ?? [];

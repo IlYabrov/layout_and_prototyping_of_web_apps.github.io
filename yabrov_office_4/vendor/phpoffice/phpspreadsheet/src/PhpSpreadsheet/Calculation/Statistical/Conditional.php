@@ -2,14 +2,14 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DAverage;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DCount;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DMax;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DMin;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Database\DSum;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception as CalcException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Database\DAverage;
+use PhpOffice\PhpSpreadsheet\Calculation\Database\DCount;
+use PhpOffice\PhpSpreadsheet\Calculation\Database\DMax;
+use PhpOffice\PhpSpreadsheet\Calculation\Database\DMin;
+use PhpOffice\PhpSpreadsheet\Calculation\Database\DSum;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalcException;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class Conditional
 {

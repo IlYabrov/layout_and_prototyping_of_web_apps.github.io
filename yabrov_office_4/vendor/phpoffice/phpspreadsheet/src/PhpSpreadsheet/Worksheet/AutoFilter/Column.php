@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet\AutoFilter;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Worksheet\AutoFilter;
 
 class Column
 {
@@ -69,7 +69,7 @@ class Column
     /**
      * Autofilter Column Rules.
      *
-     * @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule[]
+     * @var Column\Rule[]
      */
     private array $ruleset = [];
 
@@ -269,7 +269,7 @@ class Column
     /**
      * Get all AutoFilter Column Rules.
      *
-     * @return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule[]
+     * @return Column\Rule[]
      */
     public function getRules(): array
     {
@@ -281,10 +281,10 @@ class Column
      *
      * @param int $index Rule index in the ruleset array
      */
-    public function getRule(int $index): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule
+    public function getRule(int $index): Column\Rule
     {
         if (!isset($this->ruleset[$index])) {
-            $this->ruleset[$index] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule($this);
+            $this->ruleset[$index] = new Column\Rule($this);
         }
 
         return $this->ruleset[$index];
@@ -293,13 +293,13 @@ class Column
     /**
      * Create a new AutoFilter Column Rule in the ruleset.
      */
-    public function createRule(): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule
+    public function createRule(): Column\Rule
     {
         $this->setEvaluatedFalse();
         if ($this->filterType === self::AUTOFILTER_FILTERTYPE_CUSTOMFILTER && count($this->ruleset) >= 2) {
             throw new PhpSpreadsheetException('No more than 2 rules are allowed in a Custom Filter');
         }
-        $this->ruleset[] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule($this);
+        $this->ruleset[] = new Column\Rule($this);
 
         return end($this->ruleset);
     }
@@ -309,7 +309,7 @@ class Column
      *
      * @return $this
      */
-    public function addRule(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule $rule): static
+    public function addRule(Column\Rule $rule): static
     {
         $this->setEvaluatedFalse();
         $rule->setParent($this);
@@ -360,7 +360,7 @@ class Column
     public function __clone()
     {
         $vars = get_object_vars($this);
-        /** @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule[] $value */
+        /** @var Column\Rule[] $value */
         foreach ($vars as $key => $value) {
             if ($key === 'parent') {
                 // Detach from autofilter parent

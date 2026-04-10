@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\BaseDrawing;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 use ZipArchive;
 
 class Drawing extends BaseDrawing

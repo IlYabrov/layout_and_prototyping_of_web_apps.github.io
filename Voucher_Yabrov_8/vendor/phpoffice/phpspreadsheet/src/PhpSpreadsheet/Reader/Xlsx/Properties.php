@@ -2,10 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Document\Properties as DocumentProperties;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Security\XmlScanner;
+use PhpOffice\PhpSpreadsheet\Document\Properties as DocumentProperties;
+use PhpOffice\PhpSpreadsheet\Reader\Security\XmlScanner;
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xlsx\Namespaces;
 
 class Properties
 {

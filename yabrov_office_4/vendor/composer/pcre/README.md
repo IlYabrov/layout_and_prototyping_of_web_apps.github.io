@@ -59,7 +59,7 @@ $array = preg_split('{[a-z]+}', $string);
 You can now call these on the `Preg` class:
 
 ```php
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 
 if (Preg::match('{fo+}', $string, $matches)) { ... }
 if (Preg::matchWithOffsets('{fo+}', $string, $matches)) { ... }
@@ -79,7 +79,7 @@ Additionally the `Preg` class provides match methods that return `bool` rather t
 when the number of pattern matches is not useful:
 
 ```php
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 
 if (Preg::isMatch('{fo+}', $string, $matches)) // bool
 if (Preg::isMatchAll('{fo+}', $string, $matches)) // bool
@@ -89,7 +89,7 @@ Finally the `Preg` class provides a few `*StrictGroups` method variants that ens
 are always present and thus non-nullable, making it easier to write type-safe code:
 
 ```php
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 
 // $matches is guaranteed to be an array of strings, if a subpattern does not match and produces a null it will throw
 if (Preg::matchStrictGroups('{fo+}', $string, $matches))
@@ -105,7 +105,7 @@ matches so it is also not a problem to use these with `*StrictGroups` methods.
 If you would prefer a slightly more verbose usage, replacing by-ref arguments by result objects, you can use the `Regex` class:
 
 ```php
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Regex;
+use Composer\Pcre\Regex;
 
 // this is useful when you are just interested in knowing if something matched
 // as it returns a bool instead of int(1/0) for match

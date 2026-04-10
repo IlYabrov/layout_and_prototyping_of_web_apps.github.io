@@ -2,13 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Builder;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Div0Exception as MatrixDiv0Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception as MatrixException;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Helpers;
+use Matrix\Builder;
+use Matrix\Div0Exception as MatrixDiv0Exception;
+use Matrix\Exception as MatrixException;
+use Matrix\Matrix;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class MatrixFunctions
 {

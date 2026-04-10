@@ -3,9 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
 use Iterator as NativeIterator;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Row;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 
 /**
  * @implements NativeIterator<int, Row>

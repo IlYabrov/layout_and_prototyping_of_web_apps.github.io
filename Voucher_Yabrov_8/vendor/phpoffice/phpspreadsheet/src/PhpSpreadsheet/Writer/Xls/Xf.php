@@ -2,13 +2,13 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xls;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Alignment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Protection;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellAlignment;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellBorder;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellFill;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Protection;
+use PhpOffice\PhpSpreadsheet\Style\Style;
+use PhpOffice\PhpSpreadsheet\Writer\Xls\Style\CellAlignment;
+use PhpOffice\PhpSpreadsheet\Writer\Xls\Style\CellBorder;
+use PhpOffice\PhpSpreadsheet\Writer\Xls\Style\CellFill;
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Format (used as the base for this class):
 // -----------------------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DgContainer\SpgrContainer;
 
 class SpContainer
 {

@@ -2,10 +2,10 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class CashFlowValidations extends FinancialValidations
 {

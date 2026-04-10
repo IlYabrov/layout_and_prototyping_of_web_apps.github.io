@@ -3,14 +3,13 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial\Securities;
 
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Coupons;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Securities\SecurityValidations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Coupons;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Helpers;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class Price
 {
@@ -132,7 +131,7 @@ class Price
             return $e->getMessage();
         }
 
-        $daysBetweenSettlementAndMaturity = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis));
+        $daysBetweenSettlementAndMaturity = Functions::scalar(DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis));
         if (!is_numeric($daysBetweenSettlementAndMaturity)) {
             //    return date error
             return StringHelper::convertToString($daysBetweenSettlementAndMaturity);
@@ -190,23 +189,23 @@ class Price
             return $e->getMessage();
         }
 
-        $daysPerYear = Helpers::daysPerYear(Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($settlement)), $basis);
+        $daysPerYear = Helpers::daysPerYear(Functions::scalar(DateTimeExcel\DateParts::year($settlement)), $basis);
         if (!is_numeric($daysPerYear)) {
             return $daysPerYear;
         }
-        $daysBetweenIssueAndSettlement = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($issue, $settlement, $basis));
+        $daysBetweenIssueAndSettlement = Functions::scalar(DateTimeExcel\YearFrac::fraction($issue, $settlement, $basis));
         if (!is_numeric($daysBetweenIssueAndSettlement)) {
             //    return date error
             return StringHelper::convertToString($daysBetweenIssueAndSettlement);
         }
         $daysBetweenIssueAndSettlement *= $daysPerYear;
-        $daysBetweenIssueAndMaturity = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($issue, $maturity, $basis));
+        $daysBetweenIssueAndMaturity = Functions::scalar(DateTimeExcel\YearFrac::fraction($issue, $maturity, $basis));
         if (!is_numeric($daysBetweenIssueAndMaturity)) {
             //    return date error
             return StringHelper::convertToString($daysBetweenIssueAndMaturity);
         }
         $daysBetweenIssueAndMaturity *= $daysPerYear;
-        $daysBetweenSettlementAndMaturity = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis));
+        $daysBetweenSettlementAndMaturity = Functions::scalar(DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis));
         if (!is_numeric($daysBetweenSettlementAndMaturity)) {
             //    return date error
             return StringHelper::convertToString($daysBetweenSettlementAndMaturity);
@@ -266,7 +265,7 @@ class Price
         if ($investment <= 0) {
             return ExcelError::NAN();
         }
-        $daysBetweenSettlementAndMaturity = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis);
+        $daysBetweenSettlementAndMaturity = DateTimeExcel\YearFrac::fraction($settlement, $maturity, $basis);
         if (!is_numeric($daysBetweenSettlementAndMaturity)) {
             //    return date error
             return StringHelper::convertToString(Functions::scalar($daysBetweenSettlementAndMaturity));

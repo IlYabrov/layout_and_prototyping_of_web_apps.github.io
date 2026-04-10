@@ -12,19 +12,19 @@ use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
-use Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse ZipArchive;
-use php\src\CompressionMethod;
-use php\src\Exception\FileNotFoundException;
-use php\src\Exception\FileNotReadableException;
-use php\src\Exception\FileSizeIncorrectException;
-use php\src\Exception\OverflowException;
-use php\src\Exception\ResourceActionException;
-use php\src\Exception\SimulationFileUnknownException;
-use php\src\Exception\StreamNotReadableException;
-use php\src\Exception\StreamNotSeekableException;
-use php\src\OperationMode;
-use php\src\PackField;
-use php\src\ZipStream;
+use ZipArchive;
+use ZipStream\CompressionMethod;
+use ZipStream\Exception\FileNotFoundException;
+use ZipStream\Exception\FileNotReadableException;
+use ZipStream\Exception\FileSizeIncorrectException;
+use ZipStream\Exception\OverflowException;
+use ZipStream\Exception\ResourceActionException;
+use ZipStream\Exception\SimulationFileUnknownException;
+use ZipStream\Exception\StreamNotReadableException;
+use ZipStream\Exception\StreamNotSeekableException;
+use ZipStream\OperationMode;
+use ZipStream\PackField;
+use ZipStream\ZipStream;
 
 class ZipStreamTest extends TestCase
 {

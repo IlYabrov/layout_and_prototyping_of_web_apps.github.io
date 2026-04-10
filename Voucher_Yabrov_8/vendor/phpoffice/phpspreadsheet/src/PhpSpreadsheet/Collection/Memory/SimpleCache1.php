@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Collection\Memory;
 
-use cache\src\CacheInterface;
+use Psr\SimpleCache\CacheInterface;
 
 /**
  * This is the default implementation for in-memory cell collection.

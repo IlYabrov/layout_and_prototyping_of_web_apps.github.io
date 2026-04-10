@@ -2,30 +2,23 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Xls;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
+use Composer\Pcre\Preg;
 use GdImage;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\RichText;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\RichText\Run;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Xls;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Protection;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\PageSetup;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\SheetView;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception as WriterException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\BIFFwriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\CellDataValidation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\ConditionalHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\ErrorCode;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Escher;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Parser;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xlsx\Workbook;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\RichText\RichText;
+use PhpOffice\PhpSpreadsheet\RichText\Run;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Shared\Xls;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\Protection;
+use PhpOffice\PhpSpreadsheet\Worksheet\PageSetup;
+use PhpOffice\PhpSpreadsheet\Worksheet\SheetView;
+use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
 
 // Original file header of PEAR::Spreadsheet_Excel_Writer_Worksheet (used as the base for this class):
 // -----------------------------------------------------------------------------------------
@@ -153,12 +146,12 @@ class Worksheet extends BIFFwriter
     /**
      * Sheet object.
      */
-    public \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $phpSheet;
+    public \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $phpSheet;
 
     /**
      * Escher object corresponding to MSODRAWING.
      */
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher $escher = null;
+    private ?\PhpOffice\PhpSpreadsheet\Shared\Escher $escher = null;
 
     /**
      * Array of font hashes associated to FONT records index.
@@ -171,7 +164,7 @@ class Worksheet extends BIFFwriter
 
     private int $printHeaders;
 
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Workbook $writerWorkbook;
+    private ?Workbook $writerWorkbook;
 
     /**
      * Constructor.
@@ -182,9 +175,9 @@ class Worksheet extends BIFFwriter
      * @param mixed[] $colors Colour Table
      * @param Parser $parser The formula parser created for the Workbook
      * @param bool $preCalculateFormulas Flag indicating whether formulas should be calculated or just written
-     * @param \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $phpSheet The worksheet to write
+     * @param \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $phpSheet The worksheet to write
      */
-    public function __construct(int &$str_total, int &$str_unique, array &$str_table, array &$colors, Parser $parser, bool $preCalculateFormulas, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $phpSheet, ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Workbook $writerWorkbook = null)
+    public function __construct(int &$str_total, int &$str_unique, array &$str_table, array &$colors, Parser $parser, bool $preCalculateFormulas, \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $phpSheet, ?Workbook $writerWorkbook = null)
     {
         // It needs to call its parent's constructor explicitly
         parent::__construct();
@@ -260,7 +253,7 @@ class Worksheet extends BIFFwriter
 
         // Column dimensions
         if (($defaultWidth = $phpSheet->getDefaultColumnDimension()->getWidth()) < 0) {
-            $defaultWidth = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Font::getDefaultColumnWidthByFont($phpSheet->getParentOrThrow()->getDefaultStyle()->getFont());
+            $defaultWidth = \PhpOffice\PhpSpreadsheet\Shared\Font::getDefaultColumnWidthByFont($phpSheet->getParentOrThrow()->getDefaultStyle()->getFont());
         }
 
         $columnDimensions = $phpSheet->getColumnDimensions();
@@ -2563,7 +2556,7 @@ class Worksheet extends BIFFwriter
     /**
      * Get Escher object.
      */
-    public function getEscher(): ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher
+    public function getEscher(): ?\PhpOffice\PhpSpreadsheet\Shared\Escher
     {
         return $this->escher;
     }
@@ -2571,7 +2564,7 @@ class Worksheet extends BIFFwriter
     /**
      * Set Escher object.
      */
-    public function setEscher(?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher $escher): void
+    public function setEscher(?\PhpOffice\PhpSpreadsheet\Shared\Escher $escher): void
     {
         $this->escher = $escher;
     }
@@ -3058,27 +3051,27 @@ class Worksheet extends BIFFwriter
             }
             // Underline type
             switch ($conditional->getStyle()->getFont()->getUnderline()) {
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_NONE:
+                case \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_NONE:
                     $dataBlockFont .= pack('C', 0x00);
                     $fontUnderline = 0;
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLE:
+                case \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLE:
                     $dataBlockFont .= pack('C', 0x02);
                     $fontUnderline = 0;
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLEACCOUNTING:
+                case \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_DOUBLEACCOUNTING:
                     $dataBlockFont .= pack('C', 0x22);
                     $fontUnderline = 0;
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLE:
+                case \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLE:
                     $dataBlockFont .= pack('C', 0x01);
                     $fontUnderline = 0;
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLEACCOUNTING:
+                case \PhpOffice\PhpSpreadsheet\Style\Font::UNDERLINE_SINGLEACCOUNTING:
                     $dataBlockFont .= pack('C', 0x21);
                     $fontUnderline = 0;
 
@@ -3142,10 +3135,10 @@ class Worksheet extends BIFFwriter
             $dataBlockAlign = pack('CCvvv', $blockAlign, $blockRotation, $blockIndent, $blockIndentRelative, 0x0000);
         }*/
         if ($bFormatBorder === 1) {
-            $blockLineStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellBorder::style($conditional->getStyle()->getBorders()->getLeft());
-            $blockLineStyle |= \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellBorder::style($conditional->getStyle()->getBorders()->getRight()) << 4;
-            $blockLineStyle |= \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellBorder::style($conditional->getStyle()->getBorders()->getTop()) << 8;
-            $blockLineStyle |= \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellBorder::style($conditional->getStyle()->getBorders()->getBottom()) << 12;
+            $blockLineStyle = Style\CellBorder::style($conditional->getStyle()->getBorders()->getLeft());
+            $blockLineStyle |= Style\CellBorder::style($conditional->getStyle()->getBorders()->getRight()) << 4;
+            $blockLineStyle |= Style\CellBorder::style($conditional->getStyle()->getBorders()->getTop()) << 8;
+            $blockLineStyle |= Style\CellBorder::style($conditional->getStyle()->getBorders()->getBottom()) << 12;
 
             if ($bBorderLeft !== 0) {
                 $colorIdx = $this->workbookColorIndex($conditional->getStyle()->getBorders()->getLeft()->getColor()->getRgb(), 0);
@@ -3181,7 +3174,7 @@ class Worksheet extends BIFFwriter
         }
         if ($bFormatFill === 1) {
             // Fill Pattern Style
-            $blockFillPatternStyle = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Xls\Style\CellFill::style($conditional->getStyle()->getFill());
+            $blockFillPatternStyle = Style\CellFill::style($conditional->getStyle()->getFill());
             // Background Color
             $colorIdxBg = $this->workbookColorIndex($conditional->getStyle()->getFill()->getStartColor()->getRgb(), 0x41);
             // Foreground Color

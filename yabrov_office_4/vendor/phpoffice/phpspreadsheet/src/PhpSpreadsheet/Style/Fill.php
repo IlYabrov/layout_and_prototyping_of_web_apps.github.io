@@ -2,10 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Color;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Style;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Supervisor;
-
 class Fill extends Supervisor
 {
     // Fill types

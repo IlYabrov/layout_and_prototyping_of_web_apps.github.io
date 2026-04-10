@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace ZipStream\Test\Zip64;
 
 use PHPUnit\Framework\TestCase;
-use php\src\Zip64\DataDescriptor;
+use ZipStream\Zip64\DataDescriptor;
 
 class DataDescriptorTest extends TestCase
 {
     public function testSerializesCorrectly(): void
     {
-        $descriptor = php\src\Zip64\DataDescriptor::generate(
+        $descriptor = DataDescriptor::generate(
             crc32UncompressedData: 0x11111111,
             compressedSize: (0x77777777 << 32) +  0x66666666,
             uncompressedSize: (0x99999999 << 32) + 0x88888888,

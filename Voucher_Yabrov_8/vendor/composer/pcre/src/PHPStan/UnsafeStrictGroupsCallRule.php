@@ -2,8 +2,8 @@
 
 namespace Composer\Pcre\PHPStan;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Regex;
+use Composer\Pcre\Preg;
+use Composer\Pcre\Regex;
 use PhpParser\Node;
 use PhpParser\Node\Expr\StaticCall;
 use PhpParser\Node\Name\FullyQualified;
@@ -16,7 +16,6 @@ use PHPStan\Type\ObjectType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
 use PHPStan\Type\Php\RegexArrayShapeMatcher;
-use Voucher_Yabrov_8\vendor\composer\pcre\src\PHPStan\PregMatchFlags;
 use function sprintf;
 
 /**

@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\ConditionalFormatValueObject;
-
 class ConditionalDataBarExtension
 {
     /** <dataBar> attributes */

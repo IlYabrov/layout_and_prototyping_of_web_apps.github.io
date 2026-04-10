@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Ods\Cell;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
 
 /**
  * @author     Alexander Pervakov <frost-nzcr4@jagmort.com>

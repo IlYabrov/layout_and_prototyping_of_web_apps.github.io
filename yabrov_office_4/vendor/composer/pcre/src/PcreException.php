@@ -26,7 +26,7 @@ class PcreException extends \RuntimeException
             $pattern = implode(', ', $pattern);
         }
 
-        return new \Voucher_Yabrov_8\vendor\composer\pcre\src\PcreException($function.'(): failed executing "'.$pattern.'": '.self::pcreLastErrorMessage($code), $code);
+        return new PcreException($function.'(): failed executing "'.$pattern.'": '.self::pcreLastErrorMessage($code), $code);
     }
 
     /**

@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace ZipStream\Test\Zip64;
 
 use PHPUnit\Framework\TestCase;
-use php\src\Zip64\EndOfCentralDirectoryLocator;
+use ZipStream\Zip64\EndOfCentralDirectoryLocator;
 
 class EndOfCentralDirectoryLocatorTest extends TestCase
 {
     public function testSerializesCorrectly(): void
     {
-        $descriptor = php\src\Zip64\EndOfCentralDirectoryLocator::generate(
+        $descriptor = EndOfCentralDirectoryLocator::generate(
             numberOfTheDiskWithZip64CentralDirectoryStart: 0x11111111,
             zip64centralDirectoryStartOffsetOnDisk: (0x22222222 << 32) + 0x33333333,
             totalNumberOfDisks: 0x44444444,

@@ -4,21 +4,18 @@ namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
 use DateTime;
 use DateTimeZone;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Internal\WildcardMatch;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\AddressRange;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\CellAddress;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Internal\WildcardMatch;
+use PhpOffice\PhpSpreadsheet\Cell\AddressRange;
+use PhpOffice\PhpSpreadsheet\Cell\CellAddress;
 use PhpOffice\PhpSpreadsheet\Cell\CellRange;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Worksheet\AutoFilter\Column\Rule;
 use Stringable;
 use Throwable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\CellIterator;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
 
 class AutoFilter implements Stringable
 {
@@ -35,7 +32,7 @@ class AutoFilter implements Stringable
     /**
      * Autofilter Column Ruleset.
      *
-     * @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column[]
+     * @var AutoFilter\Column[]
      */
     private array $columns = [];
 
@@ -161,7 +158,7 @@ class AutoFilter implements Stringable
     /**
      * Get all AutoFilter Columns.
      *
-     * @return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column[]
+     * @return AutoFilter\Column[]
      */
     public function getColumns(): array
     {
@@ -207,12 +204,12 @@ class AutoFilter implements Stringable
      *
      * @param string $column Column name (e.g. A)
      */
-    public function getColumn(string $column): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column
+    public function getColumn(string $column): AutoFilter\Column
     {
         $this->testColumnInRange($column);
 
         if (!isset($this->columns[$column])) {
-            $this->columns[$column] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column($column, $this);
+            $this->columns[$column] = new AutoFilter\Column($column, $this);
         }
 
         return $this->columns[$column];
@@ -223,7 +220,7 @@ class AutoFilter implements Stringable
      *
      * @param int $columnOffset Column offset within range (starting from 0)
      */
-    public function getColumnByOffset(int $columnOffset): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column
+    public function getColumnByOffset(int $columnOffset): AutoFilter\Column
     {
         [$rangeStart, $rangeEnd] = Coordinate::rangeBoundaries($this->range);
         $pColumn = Coordinate::stringFromColumnIndex($rangeStart[0] + $columnOffset);
@@ -234,17 +231,17 @@ class AutoFilter implements Stringable
     /**
      * Set AutoFilter.
      *
-     * @param \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column|string $columnObjectOrString
+     * @param AutoFilter\Column|string $columnObjectOrString
      *            A simple string containing a Column ID like 'A' is permitted
      *
      * @return $this
      */
-    public function setColumn(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column|string $columnObjectOrString): static
+    public function setColumn(AutoFilter\Column|string $columnObjectOrString): static
     {
         $this->evaluated = false;
         if ((is_string($columnObjectOrString)) && (!empty($columnObjectOrString))) {
             $column = $columnObjectOrString;
-        } elseif ($columnObjectOrString instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column) {
+        } elseif ($columnObjectOrString instanceof AutoFilter\Column) {
             $column = $columnObjectOrString->getColumnIndex();
         } else {
             throw new Exception('Column is not within the autofilter range.');
@@ -252,7 +249,7 @@ class AutoFilter implements Stringable
         $this->testColumnInRange($column);
 
         if (is_string($columnObjectOrString)) {
-            $this->columns[$columnObjectOrString] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column($columnObjectOrString, $this);
+            $this->columns[$columnObjectOrString] = new AutoFilter\Column($columnObjectOrString, $this);
         } else {
             $columnObjectOrString->setParent($this);
             $this->columns[$column] = $columnObjectOrString;
@@ -391,7 +388,7 @@ class AutoFilter implements Stringable
                 return false;
             }
         }
-        $returnVal = ($join == \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND);
+        $returnVal = ($join == AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND);
         foreach ($dataSet as $rule) {
             /** @var string[] $rule */
             $ruleValue = $rule['value'];
@@ -466,7 +463,7 @@ class AutoFilter implements Stringable
             }
             //    If there are multiple conditions, then we need to test both using the appropriate join operator
             switch ($join) {
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR:
+                case AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR:
                     $returnVal = $returnVal || $retVal;
                     //    Break as soon as we have a TRUE match for OR joins,
                     //        to avoid unnecessary additional code execution
@@ -475,7 +472,7 @@ class AutoFilter implements Stringable
                     }
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND:
+                case AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND:
                     $returnVal = $returnVal && $retVal;
 
                     break;
@@ -752,7 +749,7 @@ class AutoFilter implements Stringable
      *
      * @return mixed[]
      */
-    private function dynamicFilterDateRange(string $dynamicRuleType, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column &$filterColumn): array
+    private function dynamicFilterDateRange(string $dynamicRuleType, AutoFilter\Column &$filterColumn): array
     {
         $ruleValues = [];
         $callBack = [__CLASS__, self::DATE_FUNCTIONS[$dynamicRuleType]]; // What if not found?
@@ -773,7 +770,7 @@ class AutoFilter implements Stringable
         $ruleValues[] = ['operator' => Rule::AUTOFILTER_COLUMN_RULE_GREATERTHANOREQUAL, 'value' => $val];
         $ruleValues[] = ['operator' => Rule::AUTOFILTER_COLUMN_RULE_LESSTHAN, 'value' => $maxval];
 
-        return ['method' => 'filterTestInCustomDataSet', 'arguments' => ['filterRules' => $ruleValues, 'join' => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND]];
+        return ['method' => 'filterTestInCustomDataSet', 'arguments' => ['filterRules' => $ruleValues, 'join' => AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_AND]];
     }
 
     /**
@@ -824,7 +821,7 @@ class AutoFilter implements Stringable
         foreach ($this->columns as $columnID => $filterColumn) {
             $rules = $filterColumn->getRules();
             switch ($filterColumn->getFilterType()) {
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_FILTERTYPE_FILTER:
+                case AutoFilter\Column::AUTOFILTER_FILTERTYPE_FILTER:
                     $ruleType = null;
                     $ruleValues = [];
                     //    Build a list of the filter value selections
@@ -908,7 +905,7 @@ class AutoFilter implements Stringable
                     }
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_FILTERTYPE_CUSTOMFILTER:
+                case AutoFilter\Column::AUTOFILTER_FILTERTYPE_CUSTOMFILTER:
                     $customRuleForBlanks = true;
                     $ruleValues = [];
                     //    Build a list of the filter value selections
@@ -931,7 +928,7 @@ class AutoFilter implements Stringable
                     ];
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_FILTERTYPE_DYNAMICFILTER:
+                case AutoFilter\Column::AUTOFILTER_FILTERTYPE_DYNAMICFILTER:
                     $ruleValues = [];
                     foreach ($rules as $rule) {
                         //    We should only ever have one Dynamic Filter Rule anyway
@@ -957,7 +954,7 @@ class AutoFilter implements Stringable
                             ];
                             $columnFilterTests[$columnID] = [
                                 'method' => 'filterTestInCustomDataSet',
-                                'arguments' => ['filterRules' => $ruleValues, 'join' => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR],
+                                'arguments' => ['filterRules' => $ruleValues, 'join' => AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR],
                             ];
                         } else {
                             //    Date based
@@ -990,7 +987,7 @@ class AutoFilter implements Stringable
                     }
 
                     break;
-                case \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_FILTERTYPE_TOPTENFILTER:
+                case AutoFilter\Column::AUTOFILTER_FILTERTYPE_TOPTENFILTER:
                     $ruleValues = [];
                     $dataRowCount = $rangeEnd[1] - $rangeStart[1];
                     $toptenRuleType = null;
@@ -1021,7 +1018,7 @@ class AutoFilter implements Stringable
                     $ruleValues[] = ['operator' => $operator, 'value' => $maxVal];
                     $columnFilterTests[$columnID] = [
                         'method' => 'filterTestInCustomDataSet',
-                        'arguments' => ['filterRules' => $ruleValues, 'join' => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR],
+                        'arguments' => ['filterRules' => $ruleValues, 'join' => AutoFilter\Column::AUTOFILTER_COLUMN_JOIN_OR],
                     ];
                     $filterColumn->setAttributes(['maxVal' => $maxVal]);
 

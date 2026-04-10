@@ -2,9 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\ChartColor;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Exception;
-
 /**
  * Created by PhpStorm.
  * User: nhw2h8s

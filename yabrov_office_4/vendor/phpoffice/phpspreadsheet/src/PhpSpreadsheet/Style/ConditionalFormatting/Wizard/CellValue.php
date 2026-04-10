@@ -2,24 +2,22 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting\Wizard;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\CellMatcher;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\WizardAbstract;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\WizardInterface;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting\CellMatcher;
+use PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting\Wizard;
 
 /**
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue equals($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue notEquals($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue greaterThan($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue greaterThanOrEqual($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue lessThan($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue lessThanOrEqual($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue between($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue notBetween($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
- * @method \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue and($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue equals($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue notEquals($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue greaterThan($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue greaterThanOrEqual($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue lessThan($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue lessThanOrEqual($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue between($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue notBetween($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
+ * @method CellValue and($value, string $operandValueType = Wizard::VALUE_TYPE_LITERAL)
  */
 class CellValue extends WizardAbstract implements WizardInterface
 {

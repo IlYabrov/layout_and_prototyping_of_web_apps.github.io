@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
 
 interface IWriter
 {

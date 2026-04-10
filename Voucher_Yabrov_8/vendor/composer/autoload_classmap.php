@@ -6,5 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Voucher_Yabrov_8\\vendor\\composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

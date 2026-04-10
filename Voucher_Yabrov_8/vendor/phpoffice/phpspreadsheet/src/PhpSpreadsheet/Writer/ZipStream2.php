@@ -3,7 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
 use ZipStream\Option\Archive;
-use php\src\ZipStream;
+use ZipStream\ZipStream;
 
 /**
  * Either ZipStream2 or ZipStream3, but not both, may be used.

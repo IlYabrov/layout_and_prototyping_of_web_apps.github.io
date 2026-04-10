@@ -2,9 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Fill as FillStyles;
+use PhpOffice\PhpSpreadsheet\Style\Fill as FillStyles;
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\StyleBase;
 
 class Fill extends StyleBase
 {

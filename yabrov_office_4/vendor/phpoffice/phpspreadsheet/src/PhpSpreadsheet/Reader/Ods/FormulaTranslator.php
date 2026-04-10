@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Ods;
 
-use Voucher_Yabrov_8\vendor\composer\pcre\src\Preg;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
+use Composer\Pcre\Preg;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
 
 class FormulaTranslator
 {

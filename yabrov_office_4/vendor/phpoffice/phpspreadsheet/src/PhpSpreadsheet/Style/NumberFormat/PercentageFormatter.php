@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\BaseFormatter;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class PercentageFormatter extends BaseFormatter
 {

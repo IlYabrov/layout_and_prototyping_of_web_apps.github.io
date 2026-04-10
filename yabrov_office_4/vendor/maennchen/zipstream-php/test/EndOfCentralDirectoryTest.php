@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ZipStream\Test;
 
 use PHPUnit\Framework\TestCase;
-use php\src\EndOfCentralDirectory;
+use ZipStream\EndOfCentralDirectory;
 
 class EndOfCentralDirectoryTest extends TestCase
 {

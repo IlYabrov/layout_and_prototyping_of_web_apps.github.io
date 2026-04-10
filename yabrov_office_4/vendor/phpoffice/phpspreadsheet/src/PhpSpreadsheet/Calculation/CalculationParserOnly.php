@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-
 /**
  * A dedicated Calculation singleton for formula parsing only.
  *
@@ -18,7 +16,7 @@ final class CalculationParserOnly extends Calculation
     /**
      * Instance of this class.
      */
-    private static ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\CalculationParserOnly $parserInstance = null;
+    private static ?CalculationParserOnly $parserInstance = null;
 
     /**
      * Branch pruning is disabled by default for parsing-only operations.

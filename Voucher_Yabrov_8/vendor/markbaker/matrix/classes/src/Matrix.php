@@ -11,11 +11,8 @@
 namespace Matrix;
 
 use Generator;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\LU;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Decomposition\QR;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Functions;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Operations;
+use Matrix\Decomposition\LU;
+use Matrix\Decomposition\QR;
 
 /**
  * Matrix object.

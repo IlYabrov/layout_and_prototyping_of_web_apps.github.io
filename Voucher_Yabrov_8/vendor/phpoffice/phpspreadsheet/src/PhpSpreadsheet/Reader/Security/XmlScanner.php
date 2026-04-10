@@ -19,9 +19,9 @@ class XmlScanner
         $this->pattern = $pattern;
     }
 
-    public static function getInstance(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\IReader $reader): self
+    public static function getInstance(Reader\IReader $reader): self
     {
-        $pattern = ($reader instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Html) ? '<!ENTITY' : '<!DOCTYPE';
+        $pattern = ($reader instanceof Reader\Html) ? '<!ENTITY' : '<!DOCTYPE';
 
         return new self($pattern);
     }
@@ -45,7 +45,7 @@ class XmlScanner
             $startWithXml1 = preg_match($testStart, $xml);
             $xml = self::forceString(mb_convert_encoding($xml, 'UTF-8', $charset));
             if ($startWithXml1 === 1 && preg_match($testStart, $xml) !== 1) {
-                throw new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception('Double encoding not permitted');
+                throw new Reader\Exception('Double encoding not permitted');
             }
             $foundUtf7 = $foundUtf7 || (preg_match(self::ENCODING_UTF7, $xml) === 1);
             $xml = preg_replace(self::ENCODING_PATTERN, '', $xml) ?? $xml;
@@ -53,10 +53,10 @@ class XmlScanner
             $foundUtf7 = $foundUtf7 || (preg_match(self::ENCODING_UTF7, $xml) === 1);
         }
         if ($foundUtf7) {
-            throw new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception('UTF-7 encoding not permitted');
+            throw new Reader\Exception('UTF-7 encoding not permitted');
         }
-        if (substr($xml, 0, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Csv::UTF8_BOM_LEN) === \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Csv::UTF8_BOM) {
-            $xml = substr($xml, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Csv::UTF8_BOM_LEN);
+        if (substr($xml, 0, Reader\Csv::UTF8_BOM_LEN) === Reader\Csv::UTF8_BOM) {
+            $xml = substr($xml, Reader\Csv::UTF8_BOM_LEN);
         }
 
         return $xml;
@@ -65,9 +65,9 @@ class XmlScanner
     private function findCharSet(string $xml): string
     {
         if (str_starts_with($xml, "\x4c\x6f\xa7\x94")) {
-            throw new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception('EBCDIC encoding not permitted');
+            throw new Reader\Exception('EBCDIC encoding not permitted');
         }
-        $encoding = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Csv::guessEncodingBom('', $xml);
+        $encoding = Reader\Csv::guessEncodingBom('', $xml);
         if ($encoding !== '') {
             return $encoding;
         }
@@ -91,12 +91,12 @@ class XmlScanner
 
         $xml = "$xml";
         if (preg_match($pattern, $xml)) {
-            throw new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
+            throw new Reader\Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
         }
 
         $xml = $this->toUtf8($xml);
         if (preg_match($pattern, $xml)) {
-            throw new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
+            throw new Reader\Exception('Detected use of ENTITY in XML, spreadsheet file load() aborted to prevent XXE/XEE attacks');
         }
 
         if ($this->callback !== null) {

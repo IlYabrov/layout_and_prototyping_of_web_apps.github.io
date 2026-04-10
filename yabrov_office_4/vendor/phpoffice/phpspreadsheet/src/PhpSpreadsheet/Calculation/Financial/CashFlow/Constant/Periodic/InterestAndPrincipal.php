@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\CashFlow\Constant\Periodic\Payments;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
 
 class InterestAndPrincipal
 {

@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Chart\Renderer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Chart\Renderer\JpGraphRendererBase;
-
 /**
  * Jpgraph is not officially maintained in Composer, so the version there
  * could be out of date. For that reason, all unit test requiring Jpgraph

@@ -21,12 +21,10 @@ namespace PhpOffice\PhpSpreadsheet\Shared;
 // +----------------------------------------------------------------------+
 //
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Exception as ReaderException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\ChainedBlockStream;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS\Root;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\IntOrFloat;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Reader\Exception as ReaderException;
+use PhpOffice\PhpSpreadsheet\Shared\OLE\ChainedBlockStream;
+use PhpOffice\PhpSpreadsheet\Shared\OLE\PPS\Root;
 
 /*
  * Array for storing OLE instances that are accessed from
@@ -61,7 +59,7 @@ class OLE
     /**
      * Array of PPS's found on the OLE container.
      *
-     * @var array<\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS\File|Root>
+     * @var array<OLE\PPS|OLE\PPS\File|Root>
      */
     public array $_list = [];
 
@@ -208,7 +206,7 @@ class OLE
      * Returns a stream for use with fread() etc. External callers should
      * use \PhpOffice\PhpSpreadsheet\Shared\OLE\PPS\File::getStream().
      *
-     * @param int|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS $blockIdOrPps block id or PPS
+     * @param int|OLE\PPS $blockIdOrPps block id or PPS
      *
      * @return resource read-only stream
      */
@@ -228,7 +226,7 @@ class OLE
         $instanceId = end($keys);
 
         $path = 'ole-chainedblockstream://oleInstanceId=' . $instanceId;
-        if ($blockIdOrPps instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS) {
+        if ($blockIdOrPps instanceof OLE\PPS) {
             $path .= '&blockId=' . $blockIdOrPps->startBlock;
             $path .= '&size=' . $blockIdOrPps->Size;
         } else {
@@ -312,11 +310,11 @@ class OLE
 
                     break;
                 case self::OLE_PPS_TYPE_DIR:
-                    $pps = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS(null, null, null, null, null, null, null, null, null, []);
+                    $pps = new OLE\PPS(null, null, null, null, null, null, null, null, null, []);
 
                     break;
                 case self::OLE_PPS_TYPE_FILE:
-                    $pps = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\OLE\PPS\File($name);
+                    $pps = new OLE\PPS\File($name);
 
                     break;
                 default:

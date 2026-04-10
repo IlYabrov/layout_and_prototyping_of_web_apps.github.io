@@ -2,11 +2,10 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical\Distributions;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\ArrayEnabled;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\ArrayEnabled;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Distributions\DistributionValidations;
 
 class Poisson
 {
@@ -53,14 +52,14 @@ class Poisson
             $floor = floor($value);
             for ($i = 0; $i <= $floor; ++$i) {
                 /** @var float $fact */
-                $fact = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Factorial::fact($i);
+                $fact = MathTrig\Factorial::fact($i);
                 $summer += $mean ** $i / $fact;
             }
 
             return exp(0 - $mean) * $summer;
         }
         /** @var float $fact */
-        $fact = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Factorial::fact($value);
+        $fact = MathTrig\Factorial::fact($value);
 
         return (exp(0 - $mean) * $mean ** $value) / $fact;
     }

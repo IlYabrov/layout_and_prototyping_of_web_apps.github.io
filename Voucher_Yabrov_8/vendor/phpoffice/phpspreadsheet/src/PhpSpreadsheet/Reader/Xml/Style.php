@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Protection;
+use PhpOffice\PhpSpreadsheet\Style\Protection;
 use SimpleXMLElement;
 
 class Style
@@ -27,11 +27,11 @@ class Style
             return [];
         }
 
-        $alignmentStyleParser = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\Alignment();
-        $borderStyleParser = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\Border();
-        $fontStyleParser = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\Font();
-        $fillStyleParser = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\Fill();
-        $numberFormatStyleParser = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\NumberFormat();
+        $alignmentStyleParser = new Style\Alignment();
+        $borderStyleParser = new Style\Border();
+        $fontStyleParser = new Style\Font();
+        $fillStyleParser = new Style\Fill();
+        $numberFormatStyleParser = new Style\NumberFormat();
 
         foreach ($stylesXml as $style) {
             /** @var SimpleXMLElement $style */

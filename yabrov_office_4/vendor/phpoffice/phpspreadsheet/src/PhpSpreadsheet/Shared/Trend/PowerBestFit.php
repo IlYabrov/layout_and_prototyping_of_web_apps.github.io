@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Trend;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Trend\BestFit;
-
 class PowerBestFit extends BestFit
 {
     /**

@@ -3,10 +3,10 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial\CashFlow\Variable;
 
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class NonPeriodic
 {
@@ -149,7 +149,7 @@ class NonPeriodic
         $datesCount = count($dates);
         for ($i = 0; $i < $datesCount; ++$i) {
             try {
-                $dates[$i] = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Helpers::getDateValue($dates[$i]);
+                $dates[$i] = DateTimeExcel\Helpers::getDateValue($dates[$i]);
             } catch (Exception $e) {
                 return $e->getMessage();
             }
@@ -270,7 +270,7 @@ class NonPeriodic
             if ($capAtNegative1 && $rate <= -1) {
                 $rate = -1.0 + 1.0E-10;
             }
-            $date0 = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Helpers::getDateValue($dates[0]);
+            $date0 = DateTimeExcel\Helpers::getDateValue($dates[0]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -282,14 +282,14 @@ class NonPeriodic
             }
 
             try {
-                $datei = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Helpers::getDateValue($dates[$i]);
+                $datei = DateTimeExcel\Helpers::getDateValue($dates[$i]);
             } catch (Exception $e) {
                 return $e->getMessage();
             }
             if ($date0 > $datei) {
-                $dif = $ordered ? ExcelError::NAN() : -((int) \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Difference::interval($datei, $date0, 'd'));
+                $dif = $ordered ? ExcelError::NAN() : -((int) DateTimeExcel\Difference::interval($datei, $date0, 'd'));
             } else {
-                $dif = Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Difference::interval($date0, $datei, 'd'));
+                $dif = Functions::scalar(DateTimeExcel\Difference::interval($date0, $datei, 'd'));
             }
             if (!is_numeric($dif)) {
                 return StringHelper::convertToString($dif);

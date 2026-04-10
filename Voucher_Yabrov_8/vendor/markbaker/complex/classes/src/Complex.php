@@ -9,10 +9,6 @@
  */
 namespace Complex;
 
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Functions;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Operations;
-
 /**
  * Complex Number object.
  *

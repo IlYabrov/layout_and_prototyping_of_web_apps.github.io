@@ -3,9 +3,6 @@
 namespace Complex;
 
 use InvalidArgumentException;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Operations;
 
 class Functions
 {

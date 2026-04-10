@@ -2,19 +2,17 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Exception as WriterException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\BaseWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Content;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Meta;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\MetaInf;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Mimetype;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Settings;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Styles;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Thumbnails;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\ZipStream0;
-use php\src\Exception\OverflowException;
-use php\src\ZipStream;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Exception as WriterException;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Content;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Meta;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\MetaInf;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Mimetype;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Settings;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Styles;
+use PhpOffice\PhpSpreadsheet\Writer\Ods\Thumbnails;
+use ZipStream\Exception\OverflowException;
+use ZipStream\ZipStream;
 
 class Ods extends BaseWriter
 {

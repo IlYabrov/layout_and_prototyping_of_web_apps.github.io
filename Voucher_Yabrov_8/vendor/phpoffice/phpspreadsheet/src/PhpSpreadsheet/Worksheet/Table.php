@@ -2,18 +2,15 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\AddressRange;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\CellAddress;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\DataType;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Spreadsheet;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\TableStyle;
+use PhpOffice\PhpSpreadsheet\Cell\AddressRange;
+use PhpOffice\PhpSpreadsheet\Cell\CellAddress;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Cell\DataType;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Table\TableStyle;
 use Stringable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\AutoFilter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Validations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet;
 
 class Table implements Stringable
 {
@@ -50,7 +47,7 @@ class Table implements Stringable
     /**
      * Table Column.
      *
-     * @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column[]
+     * @var Table\Column[]
      */
     private array $columns = [];
 
@@ -365,7 +362,7 @@ class Table implements Stringable
     /**
      * Get all Table Columns.
      *
-     * @return \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column[]
+     * @return Table\Column[]
      */
     public function getColumns(): array
     {
@@ -411,12 +408,12 @@ class Table implements Stringable
      *
      * @param string $column Column name (e.g. A)
      */
-    public function getColumn(string $column): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column
+    public function getColumn(string $column): Table\Column
     {
         $this->isColumnInRange($column);
 
         if (!isset($this->columns[$column])) {
-            $this->columns[$column] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column($column, $this);
+            $this->columns[$column] = new Table\Column($column, $this);
         }
 
         return $this->columns[$column];
@@ -427,7 +424,7 @@ class Table implements Stringable
      *
      * @param int $columnOffset Column offset within range (starting from 0)
      */
-    public function getColumnByOffset(int $columnOffset): \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column
+    public function getColumnByOffset(int $columnOffset): Table\Column
     {
         [$rangeStart, $rangeEnd] = Coordinate::rangeBoundaries($this->range);
         $pColumn = Coordinate::stringFromColumnIndex($rangeStart[0] + $columnOffset);
@@ -438,14 +435,14 @@ class Table implements Stringable
     /**
      * Set Table.
      *
-     * @param string|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column $columnObjectOrString
+     * @param string|Table\Column $columnObjectOrString
      *            A simple string containing a Column ID like 'A' is permitted
      */
-    public function setColumn(string|\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column $columnObjectOrString): self
+    public function setColumn(string|Table\Column $columnObjectOrString): self
     {
         if ((is_string($columnObjectOrString)) && (!empty($columnObjectOrString))) {
             $column = $columnObjectOrString;
-        } elseif ($columnObjectOrString instanceof \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column) {
+        } elseif ($columnObjectOrString instanceof Table\Column) {
             $column = $columnObjectOrString->getColumnIndex();
         } else {
             throw new PhpSpreadsheetException('Column is not within the table range.');
@@ -453,7 +450,7 @@ class Table implements Stringable
         $this->isColumnInRange($column);
 
         if (is_string($columnObjectOrString)) {
-            $this->columns[$columnObjectOrString] = new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column($columnObjectOrString, $this);
+            $this->columns[$columnObjectOrString] = new Table\Column($columnObjectOrString, $this);
         } else {
             $columnObjectOrString->setTable($this);
             $this->columns[$column] = $columnObjectOrString;
@@ -574,7 +571,7 @@ class Table implements Stringable
                 //    The columns array of \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet\Table objects
                 $this->{$key} = [];
                 foreach ($value as $k => $v) {
-                    /** @var \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table\Column $v */
+                    /** @var Table\Column $v */
                     $this->{$key}[$k] = clone $v;
                     // attach the new cloned Column to this new cloned Table object
                     $this->{$key}[$k]->setTable($this);

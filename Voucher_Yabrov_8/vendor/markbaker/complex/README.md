@@ -92,10 +92,9 @@ $real = 1.23;
 $imaginary = -4.56;
 $suffix = 'i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($real, $imaginary, $suffix);
+$complexObject = new Complex\Complex($real, $imaginary, $suffix);
 ```
 or as an array
-
 ```php
 $real = 1.23;
 $imaginary = -4.56;
@@ -103,14 +102,13 @@ $suffix = 'i';
 
 $arguments = [$real, $imaginary, $suffix];
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($arguments);
+$complexObject = new Complex\Complex($arguments);
 ```
 or as a string
-
 ```php
 $complexString = '1.23-4.56i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complexString);
+$complexObject = new Complex\Complex($complexString);
 ```
 
 Complex objects are immutable: whenever you call a method or pass a complex value to a function that returns a complex value, a new Complex object will be returned, and the original will remain unchanged.
@@ -124,17 +122,16 @@ To perform mathematical operations with Complex values, you can call the appropr
 $complexString1 = '1.23-4.56i';
 $complexString2 = '2.34+5.67i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complexString1);
+$complexObject = new Complex\Complex($complexString1);
 echo $complexObject->add($complexString2);
 ```
 
 or use the static Operation methods
-
 ```php
 $complexString1 = '1.23-4.56i';
 $complexString2 = '2.34+5.67i';
 
-echo \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Operations::add($complexString1, $complexString2);
+echo Complex\Operations::add($complexString1, $complexString2);
 ```
 If you want to perform the same operation against multiple values (e.g. to add three or more complex numbers), then you can pass multiple arguments to any of the operations.
 
@@ -143,20 +140,18 @@ You can pass these arguments as Complex objects, or as an array, or string that 
 ## Using functions
 
 When calling any of the available functions for a complex value, you can either call the relevant method for the Complex object
-
 ```php
 $complexString = '1.23-4.56i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complexString);
+$complexObject = new Complex\Complex($complexString);
 echo $complexObject->sinh();
 ```
 
 or use the static Functions methods
-
 ```php
 $complexString = '1.23-4.56i';
 
-echo \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Functions::sinh($complexString);
+echo Complex\Functions::sinh($complexString);
 ```
 As with operations, you can pass these arguments as Complex objects, or as an array or string that will parse to a complex object.
 
@@ -166,14 +161,13 @@ In the case of the `pow()` function (the only implemented function that requires
 ```php
 $complexString = '1.23-4.56i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complexString);
-echo \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Functions::pow($complexObject, 2);
+$complexObject = new Complex\Complex($complexString);
+echo Complex\Functions::pow($complexObject, 2);
 ```
 or pass the additional argument when calling the method
-
 ```php
 $complexString = '1.23-4.56i';
 
-$complexObject = new \Voucher_Yabrov_8\vendor\markbaker\complex\classes\src\Complex($complexString);
+$complexObject = new Complex\Complex($complexString);
 echo $complexObject->pow(2);
 ```

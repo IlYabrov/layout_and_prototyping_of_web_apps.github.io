@@ -8,12 +8,12 @@ use Closure;
 use DateTimeInterface;
 use DeflateContext;
 use RuntimeException;
-use Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse php\src\Exception\FileSizeIncorrectException;
-use php\src\Exception\OverflowException;
-use php\src\Exception\ResourceActionException;
-use php\src\Exception\SimulationFileUnknownException;
-use php\src\Exception\StreamNotReadableException;
-use php\src\Exception\StreamNotSeekableException;
+use ZipStream\Exception\FileSizeIncorrectException;
+use ZipStream\Exception\OverflowException;
+use ZipStream\Exception\ResourceActionException;
+use ZipStream\Exception\SimulationFileUnknownException;
+use ZipStream\Exception\StreamNotReadableException;
+use ZipStream\Exception\StreamNotSeekableException;
 
 /**
  * @internal
@@ -193,7 +193,7 @@ class File
         if ($this->generalPurposeBitFlag & GeneralPurposeBitFlag::EFS) {
             // Put the tricky entry to
             // force Linux unzip to lookup EFS flag.
-            $footer .= php\src\Zs\ExtendedInformationExtraField::generate();
+            $footer .= Zs\ExtendedInformationExtraField::generate();
         }
 
         $data = LocalFileHeader::generate(
@@ -277,7 +277,7 @@ class File
             throw new OverflowException();
         }
 
-        return php\src\Zip64\ExtendedInformationExtraField::generate(
+        return Zip64\ExtendedInformationExtraField::generate(
             originalSize: $originalSize,
             compressedSize: $compressedSize,
             relativeHeaderOffset: $relativeHeaderOffset,
@@ -296,7 +296,7 @@ class File
         }
 
         if ($this->version === Version::ZIP64) {
-            $footer = php\src\Zip64\DataDescriptor::generate(
+            $footer = Zip64\DataDescriptor::generate(
                 crc32UncompressedData: $this->crc,
                 compressedSize: $this->compressedSize,
                 uncompressedSize: $this->uncompressedSize,
@@ -399,7 +399,7 @@ class File
         $footer = $this->buildZip64ExtraBlock();
 
         return CentralDirectoryFileHeader::generate(
-            versionMadeBy: php\src\ZipStream::ZIP_VERSION_MADE_BY,
+            versionMadeBy: ZipStream::ZIP_VERSION_MADE_BY,
             versionNeededToExtract: $this->version->value,
             generalPurposeBitFlag: $this->generalPurposeBitFlag,
             compressionMethod: $this->compressionMethod,

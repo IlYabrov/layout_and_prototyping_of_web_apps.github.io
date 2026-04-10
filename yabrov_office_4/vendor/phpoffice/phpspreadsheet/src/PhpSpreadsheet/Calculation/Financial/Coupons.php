@@ -4,13 +4,11 @@ namespace PhpOffice\PhpSpreadsheet\Calculation\Financial;
 
 use DateTime;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Coupons
 {
@@ -63,17 +61,17 @@ class Coupons
             return $e->getMessage();
         }
 
-        $daysPerYear = Helpers::daysPerYear(Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($settlement)), $basis);
+        $daysPerYear = Helpers::daysPerYear(Functions::scalar(DateTimeExcel\DateParts::year($settlement)), $basis);
         if (is_string($daysPerYear)) {
             return ExcelError::VALUE();
         }
         $prev = self::couponFirstPeriodDate($settlement, $maturity, $frequency, self::PERIOD_DATE_PREVIOUS);
 
         if ($basis === FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL) {
-            return abs((float) \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Days::between($prev, $settlement));
+            return abs((float) DateTimeExcel\Days::between($prev, $settlement));
         }
 
-        return (float) \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($prev, $settlement, $basis) * $daysPerYear;
+        return (float) DateTimeExcel\YearFrac::fraction($prev, $settlement, $basis) * $daysPerYear;
     }
 
     /**
@@ -129,7 +127,7 @@ class Coupons
             case FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL:
                 // Actual/actual
                 if ($frequency == FinancialConstants::FREQUENCY_ANNUAL) {
-                    $daysPerYear = (int) Helpers::daysPerYear(Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($settlement)), $basis);
+                    $daysPerYear = (int) Helpers::daysPerYear(Functions::scalar(DateTimeExcel\DateParts::year($settlement)), $basis);
 
                     return $daysPerYear / $frequency;
                 }
@@ -190,7 +188,7 @@ class Coupons
         }
 
         /** @var int $daysPerYear */
-        $daysPerYear = Helpers::daysPerYear(Functions::Scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($settlement)), $basis);
+        $daysPerYear = Helpers::daysPerYear(Functions::Scalar(DateTimeExcel\DateParts::year($settlement)), $basis);
         $next = self::couponFirstPeriodDate($settlement, $maturity, $frequency, self::PERIOD_DATE_NEXT);
 
         if ($basis === FinancialConstants::BASIS_DAYS_PER_YEAR_NASD) {
@@ -201,7 +199,7 @@ class Coupons
             }
         }
 
-        return (float) \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($settlement, $next, $basis) * $daysPerYear;
+        return (float) DateTimeExcel\YearFrac::fraction($settlement, $next, $basis) * $daysPerYear;
     }
 
     /**
@@ -302,7 +300,7 @@ class Coupons
             return $e->getMessage();
         }
 
-        $yearsBetweenSettlementAndMaturity = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction(
+        $yearsBetweenSettlementAndMaturity = DateTimeExcel\YearFrac::fraction(
             $settlement,
             $maturity,
             FinancialConstants::BASIS_DAYS_PER_YEAR_NASD

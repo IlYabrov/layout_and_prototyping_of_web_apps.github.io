@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xls\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border as StyleBorder;
+use PhpOffice\PhpSpreadsheet\Style\Border as StyleBorder;
 
 class Border
 {

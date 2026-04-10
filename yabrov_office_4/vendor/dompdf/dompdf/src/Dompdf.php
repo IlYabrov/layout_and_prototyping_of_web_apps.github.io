@@ -16,7 +16,6 @@ use Dompdf\Image\Cache;
 use Dompdf\Css\Stylesheet;
 use Dompdf\Helpers;
 use Masterminds\HTML5;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Cell\Style;
 
 /**
  * Dompdf - PHP5 HTML to PDF renderer
@@ -1527,14 +1526,14 @@ class Dompdf
 
     /**
      * PHP5 overloaded getter
-     * Along with {@link \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Pdf\Dompdf::__set()} __get() provides access to all
+     * Along with {@link Dompdf::__set()} __get() provides access to all
      * properties directly.  Typically __get() is not called directly outside
      * of this class.
      *
      * @param string $prop
      *
+     * @throws Exception
      * @return mixed
-     *@throws Exception
      */
     function __get($prop)
     {

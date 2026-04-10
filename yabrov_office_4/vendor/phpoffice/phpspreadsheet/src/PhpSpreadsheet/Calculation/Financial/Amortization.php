@@ -3,10 +3,9 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial;
 
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
 
 class Amortization
 {
@@ -69,7 +68,7 @@ class Amortization
             return $e->getMessage();
         }
 
-        $yearFracx = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($purchased, $firstPeriod, $basis);
+        $yearFracx = DateTimeExcel\YearFrac::fraction($purchased, $firstPeriod, $basis);
         if (is_string($yearFracx)) {
             return $yearFracx;
         }
@@ -157,8 +156,8 @@ class Amortization
         $fOneRate = $cost * $rate;
         $fCostDelta = $cost - $salvage;
         //    Note, quirky variation for leap years on the YEARFRAC for this function
-        $purchasedYear = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($purchased);
-        $yearFracx = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\YearFrac::fraction($purchased, $firstPeriod, $basis);
+        $purchasedYear = DateTimeExcel\DateParts::year($purchased);
+        $yearFracx = DateTimeExcel\YearFrac::fraction($purchased, $firstPeriod, $basis);
         if (is_string($yearFracx)) {
             return $yearFracx;
         }
@@ -171,7 +170,7 @@ class Amortization
         ) {
             $temp = Functions::scalar($purchasedYear);
             if (is_int($temp) || is_string($temp)) {
-                if (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Helpers::isLeapYear($temp)) {
+                if (DateTimeExcel\Helpers::isLeapYear($temp)) {
                     $yearFrac *= 365 / 366;
                 }
             }

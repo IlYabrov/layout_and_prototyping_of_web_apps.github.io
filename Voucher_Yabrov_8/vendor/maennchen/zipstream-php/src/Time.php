@@ -7,7 +7,7 @@ namespace ZipStream;
 use DateInterval;
 use DateTimeImmutable;
 use DateTimeInterface;
-use php\src\Exception\DosTimeOverflowException;
+use ZipStream\Exception\DosTimeOverflowException;
 
 /**
  * @internal

@@ -2,9 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Conditional;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\WizardInterface;
+use PhpOffice\PhpSpreadsheet\Exception;
+use PhpOffice\PhpSpreadsheet\Style\Conditional;
+use PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\WizardInterface;
 
 class Wizard
 {
@@ -34,16 +34,16 @@ class Wizard
     public function newRule(string $ruleType): WizardInterface
     {
         return match ($ruleType) {
-            self::CELL_VALUE => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue($this->cellRange),
-            self::TEXT_VALUE => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\TextValue($this->cellRange),
-            self::BLANKS => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Blanks($this->cellRange, true),
-            self::NOT_BLANKS => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Blanks($this->cellRange, false),
-            self::ERRORS => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Errors($this->cellRange, true),
-            self::NOT_ERRORS => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Errors($this->cellRange, false),
-            self::EXPRESSION, self::FORMULA => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Expression($this->cellRange),
-            self::DATES_OCCURRING => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\DateValue($this->cellRange),
-            self::DUPLICATES => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Duplicates($this->cellRange, false),
-            self::UNIQUE => new \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Duplicates($this->cellRange, true),
+            self::CELL_VALUE => new Wizard\CellValue($this->cellRange),
+            self::TEXT_VALUE => new Wizard\TextValue($this->cellRange),
+            self::BLANKS => new Wizard\Blanks($this->cellRange, true),
+            self::NOT_BLANKS => new Wizard\Blanks($this->cellRange, false),
+            self::ERRORS => new Wizard\Errors($this->cellRange, true),
+            self::NOT_ERRORS => new Wizard\Errors($this->cellRange, false),
+            self::EXPRESSION, self::FORMULA => new Wizard\Expression($this->cellRange),
+            self::DATES_OCCURRING => new Wizard\DateValue($this->cellRange),
+            self::DUPLICATES => new Wizard\Duplicates($this->cellRange, false),
+            self::UNIQUE => new Wizard\Duplicates($this->cellRange, true),
             default => throw new Exception('No wizard exists for this CF rule type'),
         };
     }
@@ -53,13 +53,13 @@ class Wizard
         $conditionalType = $conditional->getConditionType();
 
         return match ($conditionalType) {
-            Conditional::CONDITION_CELLIS => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\CellValue::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_CONTAINSTEXT, Conditional::CONDITION_NOTCONTAINSTEXT, Conditional::CONDITION_BEGINSWITH, Conditional::CONDITION_ENDSWITH => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\TextValue::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_CONTAINSBLANKS, Conditional::CONDITION_NOTCONTAINSBLANKS => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Blanks::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_CONTAINSERRORS, Conditional::CONDITION_NOTCONTAINSERRORS => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Errors::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_TIMEPERIOD => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\DateValue::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_EXPRESSION => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Expression::fromConditional($conditional, $cellRange),
-            Conditional::CONDITION_DUPLICATES, Conditional::CONDITION_UNIQUE => \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\Wizard\Duplicates::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_CELLIS => Wizard\CellValue::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_CONTAINSTEXT, Conditional::CONDITION_NOTCONTAINSTEXT, Conditional::CONDITION_BEGINSWITH, Conditional::CONDITION_ENDSWITH => Wizard\TextValue::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_CONTAINSBLANKS, Conditional::CONDITION_NOTCONTAINSBLANKS => Wizard\Blanks::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_CONTAINSERRORS, Conditional::CONDITION_NOTCONTAINSERRORS => Wizard\Errors::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_TIMEPERIOD => Wizard\DateValue::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_EXPRESSION => Wizard\Expression::fromConditional($conditional, $cellRange),
+            Conditional::CONDITION_DUPLICATES, Conditional::CONDITION_UNIQUE => Wizard\Duplicates::fromConditional($conditional, $cellRange),
             default => throw new Exception('No wizard exists for this CF rule type'),
         };
     }

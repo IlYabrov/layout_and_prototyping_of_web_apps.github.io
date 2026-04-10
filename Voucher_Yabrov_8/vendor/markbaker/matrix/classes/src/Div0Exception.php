@@ -8,8 +8,6 @@
  */
 namespace Matrix;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-
 class Div0Exception extends Exception
 {
 }

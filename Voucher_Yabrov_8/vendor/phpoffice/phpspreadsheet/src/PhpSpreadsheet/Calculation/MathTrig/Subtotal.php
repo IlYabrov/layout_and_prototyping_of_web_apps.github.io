@@ -2,14 +2,11 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\Statistical;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Operations;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Sum;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
 
 class Subtotal
 {
@@ -89,17 +86,17 @@ class Subtotal
      * @var array<int, callable>
      */
     private const CALL_FUNCTIONS = [
-        1 => [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Averages::class, 'average'], // 1 and 101
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Counts::class, 'COUNT'], // 2 and 102
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Counts::class, 'COUNTA'], // 3 and 103
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Maximum::class, 'max'], // 4 and 104
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Minimum::class, 'min'], // 5 and 105
+        1 => [Statistical\Averages::class, 'average'], // 1 and 101
+        [Statistical\Counts::class, 'COUNT'], // 2 and 102
+        [Statistical\Counts::class, 'COUNTA'], // 3 and 103
+        [Statistical\Maximum::class, 'max'], // 4 and 104
+        [Statistical\Minimum::class, 'min'], // 5 and 105
         [Operations::class, 'product'], // 6 and 106
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\StandardDeviations::class, 'STDEV'], // 7 and 107
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\StandardDeviations::class, 'STDEVP'], // 8 and 108
+        [Statistical\StandardDeviations::class, 'STDEV'], // 7 and 107
+        [Statistical\StandardDeviations::class, 'STDEVP'], // 8 and 108
         [Sum::class, 'sumIgnoringStrings'], // 9 and 109
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Variances::class, 'VAR'], // 10 and 110
-        [\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Variances::class, 'VARP'], // 111 and 111
+        [Statistical\Variances::class, 'VAR'], // 10 and 110
+        [Statistical\Variances::class, 'VARP'], // 111 and 111
     ];
 
     /**

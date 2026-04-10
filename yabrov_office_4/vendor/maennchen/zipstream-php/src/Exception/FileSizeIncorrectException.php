@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ZipStream\Exception;
 
-use php\src\Exception;
+use ZipStream\Exception;
 
 /**
  * This Exception gets invoked if a file is not as large as it was specified.

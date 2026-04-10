@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Worksheet\Drawing;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\IComparable;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Color;
+use PhpOffice\PhpSpreadsheet\IComparable;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 
 class Shadow implements IComparable
 {

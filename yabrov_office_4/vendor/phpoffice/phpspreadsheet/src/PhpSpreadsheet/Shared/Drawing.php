@@ -3,7 +3,6 @@
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
 use SimpleXMLElement;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Font;
 
 class Drawing
 {
@@ -45,7 +44,7 @@ class Drawing
      *
      * @return float|int Value in cell dimension
      */
-    public static function pixelsToCellDimension(int $pixelValue, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $defaultFont): int|float
+    public static function pixelsToCellDimension(int $pixelValue, \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont): int|float
     {
         // Font name and size
         $name = $defaultFont->getName();
@@ -68,11 +67,11 @@ class Drawing
      * Convert column width from (intrinsic) Excel units to pixels.
      *
      * @param float $cellWidth Value in cell dimension
-     * @param \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $defaultFont Default font of the workbook
+     * @param \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont Default font of the workbook
      *
      * @return int Value in pixels
      */
-    public static function cellDimensionToPixels(float $cellWidth, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Font $defaultFont): int
+    public static function cellDimensionToPixels(float $cellWidth, \PhpOffice\PhpSpreadsheet\Style\Font $defaultFont): int
     {
         // Font name and size
         $name = $defaultFont->getName();

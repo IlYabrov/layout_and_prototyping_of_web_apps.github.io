@@ -2,9 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\NumberFormat\Wizard;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\NumberBase;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\NumberFormat\Wizard\Wizard;
+use PhpOffice\PhpSpreadsheet\Exception;
 
 class Number extends NumberBase implements Wizard
 {

@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Helper;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Helper\TextGridRightAlign;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class TextGrid
 {

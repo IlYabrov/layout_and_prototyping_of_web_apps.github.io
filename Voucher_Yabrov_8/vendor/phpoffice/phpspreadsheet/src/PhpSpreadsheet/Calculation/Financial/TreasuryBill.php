@@ -3,12 +3,10 @@
 namespace PhpOffice\PhpSpreadsheet\Calculation\Financial;
 
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\FinancialValidations;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class TreasuryBill
 {
@@ -46,7 +44,7 @@ class TreasuryBill
 
         $daysBetweenSettlementAndMaturity = $maturity - $settlement;
         $daysPerYear = Helpers::daysPerYear(
-            Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($maturity)),
+            Functions::scalar(DateTimeExcel\DateParts::year($maturity)),
             FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL
         );
 
@@ -91,7 +89,7 @@ class TreasuryBill
 
         $daysBetweenSettlementAndMaturity = $maturity - $settlement;
         $daysPerYear = Helpers::daysPerYear(
-            Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($maturity)),
+            Functions::scalar(DateTimeExcel\DateParts::year($maturity)),
             FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL
         );
 
@@ -135,7 +133,7 @@ class TreasuryBill
 
         $daysBetweenSettlementAndMaturity = $maturity - $settlement;
         $daysPerYear = Helpers::daysPerYear(
-            Functions::scalar(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\DateParts::year($maturity)),
+            Functions::scalar(DateTimeExcel\DateParts::year($maturity)),
             FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL
         );
 

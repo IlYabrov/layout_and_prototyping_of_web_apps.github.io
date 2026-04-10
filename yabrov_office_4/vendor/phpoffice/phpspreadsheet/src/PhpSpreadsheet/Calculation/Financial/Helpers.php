@@ -4,8 +4,8 @@ namespace PhpOffice\PhpSpreadsheet\Calculation\Financial;
 
 use DateTimeInterface;
 use PhpOffice\PhpSpreadsheet\Calculation\DateTimeExcel;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Financial\Constants as FinancialConstants;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 
 class Helpers
 {
@@ -41,7 +41,7 @@ class Helpers
             case FinancialConstants::BASIS_DAYS_PER_YEAR_365:
                 return 365;
             case FinancialConstants::BASIS_DAYS_PER_YEAR_ACTUAL:
-                return (\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\DateTimeExcel\Helpers::isLeapYear($year)) ? 366 : 365;
+                return (DateTimeExcel\Helpers::isLeapYear($year)) ? 366 : 365;
         }
 
         return ExcelError::NAN();

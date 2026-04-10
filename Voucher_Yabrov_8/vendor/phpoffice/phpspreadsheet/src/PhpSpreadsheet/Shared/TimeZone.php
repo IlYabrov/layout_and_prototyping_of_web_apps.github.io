@@ -3,8 +3,7 @@
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
 use DateTimeZone;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as PhpSpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Date;
+use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 
 class TimeZone
 {

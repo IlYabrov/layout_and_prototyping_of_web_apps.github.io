@@ -2,8 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Protection;
+use PhpOffice\PhpSpreadsheet\Exception as SpException;
+use PhpOffice\PhpSpreadsheet\Worksheet\Protection;
 
 class PasswordHasher
 {

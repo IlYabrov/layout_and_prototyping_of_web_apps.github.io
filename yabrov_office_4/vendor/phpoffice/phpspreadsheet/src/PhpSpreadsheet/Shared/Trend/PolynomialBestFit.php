@@ -2,9 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Trend;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Trend\BestFit;
+use Matrix\Matrix;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
 
 // Phpstan and Scrutinizer seem to have legitimate complaints.
 // $this->slope is specified where an array is expected in several places.

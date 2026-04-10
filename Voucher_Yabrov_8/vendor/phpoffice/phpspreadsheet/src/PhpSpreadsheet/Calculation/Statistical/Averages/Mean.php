@@ -2,12 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Statistical\Averages;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Functions;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Information\ExcelError;
+use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Calculation\MathTrig;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Averages;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Counts;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Minimum;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Averages;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Counts;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Minimum;
 
 class Mean
 {
@@ -27,7 +27,7 @@ class Mean
     {
         $aArgs = Functions::flattenArray($args);
 
-        $aMean = \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\MathTrig\Operations::product($aArgs);
+        $aMean = MathTrig\Operations::product($aArgs);
         if (is_numeric($aMean) && ($aMean > 0)) {
             $aCount = Counts::COUNT($aArgs);
             if (Minimum::min($aArgs) > 0) {

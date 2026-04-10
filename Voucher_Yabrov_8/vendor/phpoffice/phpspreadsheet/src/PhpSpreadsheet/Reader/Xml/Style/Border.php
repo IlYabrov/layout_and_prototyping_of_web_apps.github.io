@@ -2,9 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xml\Style;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Reader\Xml\Style\StyleBase;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Border as BorderStyle;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Borders;
+use PhpOffice\PhpSpreadsheet\Style\Border as BorderStyle;
+use PhpOffice\PhpSpreadsheet\Style\Borders;
 use SimpleXMLElement;
 
 class Border extends StyleBase

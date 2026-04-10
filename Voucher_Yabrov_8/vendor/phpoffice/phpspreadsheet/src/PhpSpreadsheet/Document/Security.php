@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Document;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\PasswordHasher;
+use PhpOffice\PhpSpreadsheet\Shared\PasswordHasher;
 
 class Security
 {

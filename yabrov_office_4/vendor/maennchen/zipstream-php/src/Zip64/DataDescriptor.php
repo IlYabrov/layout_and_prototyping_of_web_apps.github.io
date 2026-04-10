@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ZipStream\Zip64;
 
-use php\src\PackField;
+use ZipStream\PackField;
 
 /**
  * @internal

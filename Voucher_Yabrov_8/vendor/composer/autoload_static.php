@@ -4,9 +4,7 @@
 
 namespace Composer\Autoload;
 
-use Voucher_Yabrov_8\vendor\composer\ClassLoader;
-
-class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
+class ComposerStaticInitb72f5782703cf740e15f43e84f91419b
 {
     public static $prefixLengthsPsr4 = array (
         'Z' =>
@@ -65,15 +63,15 @@ class ComposerStaticInit62e10e6c8df9afc192311b196c75bb33
     );
 
     public static $classMap = array (
-        'Voucher_Yabrov_8\\vendor\\composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit62e10e6c8df9afc192311b196c75bb33::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit62e10e6c8df9afc192311b196c75bb33::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit62e10e6c8df9afc192311b196c75bb33::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb72f5782703cf740e15f43e84f91419b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb72f5782703cf740e15f43e84f91419b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitb72f5782703cf740e15f43e84f91419b::$classMap;
 
         }, null, ClassLoader::class);
     }

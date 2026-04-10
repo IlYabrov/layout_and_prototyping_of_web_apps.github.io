@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception as SpreadsheetException;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\File;
+use PhpOffice\PhpSpreadsheet\Exception as SpreadsheetException;
 
 class XMLWriter extends \XMLWriter
 {

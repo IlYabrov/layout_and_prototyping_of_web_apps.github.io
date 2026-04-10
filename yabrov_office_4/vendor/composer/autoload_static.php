@@ -4,9 +4,7 @@
 
 namespace Composer\Autoload;
 
-use Voucher_Yabrov_8\vendor\composer\ClassLoader;
-
-class ComposerStaticInit6481336c0990a39046ff03f76362816e
+class ComposerStaticInit14e45a8e7d99d2e16f3c45ff26b04b19
 {
     public static $files = array (
         '72243e5536b63e298acb6476f01f1aff' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/special_cases.php',
@@ -94,36 +92,36 @@ class ComposerStaticInit6481336c0990a39046ff03f76362816e
     );
 
     public static $prefixLengthsPsr4 = array (
-        'Z' => 
+        'Z' =>
         array (
             'ZipStream\\' => 10,
         ),
-        'S' => 
+        'S' =>
         array (
             'Svg\\' => 4,
             'Sabberworm\\CSS\\' => 15,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\SimpleCache\\' => 16,
             'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
             'PhpOffice\\Math\\' => 15,
         ),
-        'M' => 
+        'M' =>
         array (
             'Matrix\\' => 7,
             'Masterminds\\' => 12,
         ),
-        'F' => 
+        'F' =>
         array (
             'FontLib\\' => 8,
         ),
-        'D' => 
+        'D' =>
         array (
             'Dompdf\\' => 7,
         ),
-        'C' => 
+        'C' =>
         array (
             'Composer\\Pcre\\' => 14,
             'Complex\\' => 8,
@@ -131,62 +129,62 @@ class ComposerStaticInit6481336c0990a39046ff03f76362816e
     );
 
     public static $prefixDirsPsr4 = array (
-        'ZipStream\\' => 
+        'ZipStream\\' =>
         array (
             0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
         ),
-        'Svg\\' => 
+        'Svg\\' =>
         array (
             0 => __DIR__ . '/..' . '/dompdf/php-svg-lib/src/Svg',
         ),
-        'Sabberworm\\CSS\\' => 
+        'Sabberworm\\CSS\\' =>
         array (
             0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
         ),
-        'Psr\\SimpleCache\\' => 
+        'Psr\\SimpleCache\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
-        'PhpOffice\\PhpWord\\' => 
+        'PhpOffice\\PhpWord\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpword/src/PhpWord',
         ),
-        'PhpOffice\\PhpSpreadsheet\\' => 
+        'PhpOffice\\PhpSpreadsheet\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
-        'PhpOffice\\Math\\' => 
+        'PhpOffice\\Math\\' =>
         array (
             0 => __DIR__ . '/..' . '/phpoffice/math/src/Math',
         ),
-        'Matrix\\' => 
+        'Matrix\\' =>
         array (
             0 => __DIR__ . '/..' . '/markbaker/matrix/classes/src',
         ),
-        'Masterminds\\' => 
+        'Masterminds\\' =>
         array (
             0 => __DIR__ . '/..' . '/masterminds/html5/src',
         ),
-        'FontLib\\' => 
+        'FontLib\\' =>
         array (
             0 => __DIR__ . '/..' . '/dompdf/php-font-lib/src/FontLib',
         ),
-        'Dompdf\\' => 
+        'Dompdf\\' =>
         array (
             0 => __DIR__ . '/..' . '/dompdf/dompdf/src',
         ),
-        'Composer\\Pcre\\' => 
+        'Composer\\Pcre\\' =>
         array (
             0 => __DIR__ . '/..' . '/composer/pcre/src',
         ),
-        'Complex\\' => 
+        'Complex\\' =>
         array (
             0 => __DIR__ . '/..' . '/markbaker/complex/classes/src',
         ),
     );
 
     public static $classMap = array (
-        'Voucher_Yabrov_8\\vendor\\composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
         'Safe\\DateTime' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTime.php',
         'Safe\\DateTimeImmutable' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTimeImmutable.php',
@@ -276,9 +274,9 @@ class ComposerStaticInit6481336c0990a39046ff03f76362816e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6481336c0990a39046ff03f76362816e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6481336c0990a39046ff03f76362816e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit6481336c0990a39046ff03f76362816e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit14e45a8e7d99d2e16f3c45ff26b04b19::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit14e45a8e7d99d2e16f3c45ff26b04b19::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit14e45a8e7d99d2e16f3c45ff26b04b19::$classMap;
 
         }, null, ClassLoader::class);
     }

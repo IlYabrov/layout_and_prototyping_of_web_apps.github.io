@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Engine;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\CyclicReferenceStack;
-
 class Logger
 {
     /**

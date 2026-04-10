@@ -2,9 +2,9 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Token;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\BranchPruner;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Engine\BranchPruner;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
 
 class Stack
 {

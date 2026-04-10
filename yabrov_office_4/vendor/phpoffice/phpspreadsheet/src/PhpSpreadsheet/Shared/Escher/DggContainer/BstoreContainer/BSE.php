@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer;
+use PhpOffice\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer;
 
 class BSE
 {
@@ -26,7 +26,7 @@ class BSE
     /**
      * The BLIP (Big Large Image or Picture).
      */
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE\Blip $blip = null;
+    private ?BSE\Blip $blip = null;
 
     /**
      * The BLIP type.
@@ -49,7 +49,7 @@ class BSE
     /**
      * Get the BLIP.
      */
-    public function getBlip(): ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE\Blip
+    public function getBlip(): ?BSE\Blip
     {
         return $this->blip;
     }
@@ -57,7 +57,7 @@ class BSE
     /**
      * Set the BLIP.
      */
-    public function setBlip(\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\Escher\DggContainer\BstoreContainer\BSE\Blip $blip): void
+    public function setBlip(BSE\Blip $blip): void
     {
         $this->blip = $blip;
         $blip->setParent($this);

@@ -2,9 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\FormulaToken;
-
 /**
  * PARTLY BASED ON:
  * Copyright (c) 2007 E. W. Bachtal, Inc.

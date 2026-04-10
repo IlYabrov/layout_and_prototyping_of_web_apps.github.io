@@ -2,8 +2,8 @@
 
 namespace Matrix\Decomposition;
 
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Exception;
-use Voucher_Yabrov_8\vendor\markbaker\matrix\classes\src\Matrix;
+use Matrix\Exception;
+use Matrix\Matrix;
 
 class LU
 {

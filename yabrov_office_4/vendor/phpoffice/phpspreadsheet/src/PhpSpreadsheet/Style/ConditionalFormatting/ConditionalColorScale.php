@@ -2,9 +2,8 @@
 
 namespace PhpOffice\PhpSpreadsheet\Style\ConditionalFormatting;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Statistical\Percentiles;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\Color;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Style\ConditionalFormatting\ConditionalFormatValueObject;
+use PhpOffice\PhpSpreadsheet\Calculation\Statistical\Percentiles;
+use PhpOffice\PhpSpreadsheet\Style\Color;
 
 class ConditionalColorScale
 {
@@ -31,7 +30,7 @@ class ConditionalColorScale
 
     private float $midValue = 0;
 
-    private ?\Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet = null;
+    private ?\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet = null;
 
     public function getMinimumConditionalFormatValueObject(): ?ConditionalFormatValueObject
     {
@@ -110,7 +109,7 @@ class ConditionalColorScale
         return $this->sqref;
     }
 
-    public function setSqRef(string $sqref, \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Worksheet $worksheet): self
+    public function setSqRef(string $sqref, \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet $worksheet): self
     {
         $this->sqref = $sqref;
         $this->worksheet = $worksheet;

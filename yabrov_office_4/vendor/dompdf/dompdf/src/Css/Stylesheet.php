@@ -14,7 +14,6 @@ use Dompdf\Exception;
 use Dompdf\FontMetrics;
 use Dompdf\Frame\FrameTree;
 use Dompdf\Helpers;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\Cell\Style;
 
 /**
  * The master stylesheet class

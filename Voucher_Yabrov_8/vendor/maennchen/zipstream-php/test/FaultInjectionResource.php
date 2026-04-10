@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Voucher_Yabrov_8\vendor\maennchen\zipstream-php\test;
+namespace ZipStream\Test;
 
 class FaultInjectionResource
 {

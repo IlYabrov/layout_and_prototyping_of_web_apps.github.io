@@ -2,8 +2,6 @@
 
 namespace PhpOffice\PhpSpreadsheet;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\IComparable;
-
 /**
  * @template T of IComparable
  */

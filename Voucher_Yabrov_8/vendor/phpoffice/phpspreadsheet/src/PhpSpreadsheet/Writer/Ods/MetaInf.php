@@ -2,8 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Writer\Ods;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\XMLWriter;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Writer\Ods\WriterPart;
+use PhpOffice\PhpSpreadsheet\Shared\XMLWriter;
 
 class MetaInf extends WriterPart
 {

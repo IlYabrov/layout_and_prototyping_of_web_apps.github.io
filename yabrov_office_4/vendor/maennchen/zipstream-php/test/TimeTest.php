@@ -6,8 +6,8 @@ namespace ZipStream\Test;
 
 use DateTimeImmutable;
 use PHPUnit\Framework\TestCase;
-use php\src\Exception\DosTimeOverflowException;
-use php\src\Time;
+use ZipStream\Exception\DosTimeOverflowException;
+use ZipStream\Time;
 
 class TimeTest extends TestCase
 {

@@ -10,10 +10,10 @@ use DateTimeInterface;
 use GuzzleHttp\Psr7\StreamWrapper;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
-use Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse php\src\Exception\FileNotFoundException;
-use Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse Voucher_Yabrov_8\vendor\maennchen\zipstreamuse php\src\Exception\FileNotReadableException;
-use php\src\Exception\OverflowException;
-use php\src\Exception\ResourceActionException;
+use ZipStream\Exception\FileNotFoundException;
+use ZipStream\Exception\FileNotReadableException;
+use ZipStream\Exception\OverflowException;
+use ZipStream\Exception\ResourceActionException;
 
 /**
  * Streamed, dynamically generated zip archives.
@@ -301,8 +301,8 @@ class ZipStream
      * );
      * ```
      *
-     * @throws php\src\Exception\FileNotFoundException
-     * @throws php\src\Exception\FileNotReadableException
+     * @throws \ZipStream\Exception\FileNotFoundException
+     * @throws \ZipStream\Exception\FileNotReadableException
      */
     public function addFileFromPath(
         /**
@@ -719,7 +719,7 @@ class ZipStream
                 throw new OverflowException();
             }
 
-            $this->send(php\src\Zip64\EndOfCentralDirectory::generate(
+            $this->send(Zip64\EndOfCentralDirectory::generate(
                 versionMadeBy: self::ZIP_VERSION_MADE_BY,
                 versionNeededToExtract: Version::ZIP64->value,
                 numberOfThisDisk: 0,
@@ -731,7 +731,7 @@ class ZipStream
                 extensibleDataSector: '',
             ));
 
-            $this->send(php\src\Zip64\EndOfCentralDirectoryLocator::generate(
+            $this->send(Zip64\EndOfCentralDirectoryLocator::generate(
                 numberOfTheDiskWithZip64CentralDirectoryStart: 0x00,
                 zip64centralDirectoryStartOffsetOnDisk: $centralDirectoryStartOffsetOnDisk + $sizeOfCentralDirectory,
                 totalNumberOfDisks: 1,

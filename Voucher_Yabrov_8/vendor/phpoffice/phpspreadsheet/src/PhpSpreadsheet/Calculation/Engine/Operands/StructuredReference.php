@@ -2,13 +2,12 @@
 
 namespace PhpOffice\PhpSpreadsheet\Calculation\Engine\Operands;
 
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Calculation;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Exception;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Calculation\Engine\Operands\Operand;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Cell;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Cell\Coordinate;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Shared\StringHelper;
-use Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Worksheet\Table;
+use PhpOffice\PhpSpreadsheet\Calculation\Calculation;
+use PhpOffice\PhpSpreadsheet\Calculation\Exception;
+use PhpOffice\PhpSpreadsheet\Cell\Cell;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
+use PhpOffice\PhpSpreadsheet\Worksheet\Table;
 use Stringable;
 
 final class StructuredReference implements Operand, Stringable
@@ -84,7 +83,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     public function parse(Cell $cell): string
     {
@@ -107,7 +106,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function getTableStructure(Cell $cell): void
     {
@@ -135,7 +134,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function getTableForCell(Cell $cell): Table
     {
@@ -155,7 +154,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function getTableByName(Cell $cell): Table
     {
@@ -232,7 +231,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function getColumnReference(): string
     {
@@ -256,7 +255,7 @@ final class StructuredReference implements Operand, Stringable
 
     /**
      * @throws Exception
-     * @throws \Voucher_Yabrov_8\vendor\phpoffice\phpspreadsheet\src\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
      */
     private function validateParsedReference(string $reference): string
     {
