@@ -23,9 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login_submit'])) {
 }
 
 $isLoggedIn = false;
+//true, если есть валидная сессия,
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === 'true') {
     $isLoggedIn = true;
-} elseif (isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === 'true') {
+
+} elseif (isset($_COOKIE['admin_logged_in']) && $_COOKIE['admin_logged_in'] === 'true') { //true, если есть куки
     $isLoggedIn = true;
     $_SESSION['admin_logged_in'] = 'true';
 }

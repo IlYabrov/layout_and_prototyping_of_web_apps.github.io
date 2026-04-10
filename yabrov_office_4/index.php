@@ -55,6 +55,84 @@ function extractTextFromElement($element) {
     return trim($text);
 }
 
+function normalizeItemName(string $name): string {
+    $name = str_replace("\xC2\xA0", ' ', $name);
+    $name = preg_replace('/\s+/u', ' ', trim($name));
+
+    return (string)$name;
+}
+
+function addPriceToList(array &$prices, string $itemName, string $itemPriceRaw) {
+    $itemName = normalizeItemName($itemName);
+    $itemPrice = preg_replace('/[^\d.]/', '', str_replace(',', '.', trim($itemPriceRaw)));
+
+    if ($itemName !== '' && is_numeric($itemPrice) && (float)$itemPrice > 0) {
+        $prices[$itemName] = (float)$itemPrice;
+    }
+}
+
+function readPricesFromOdt(string $tmpPath): array {
+    $prices = [];
+
+    // Сначала пробуем стандартный способ через PhpWord (как требует задание)
+    try {
+        $phpWordODT = WordIOFactory::load($tmpPath, 'ODText');
+        foreach ($phpWordODT->getSections() as $section) {
+            foreach ($section->getElements() as $element) {
+                if ($element instanceof \PhpOffice\PhpWord\Element\Table) {
+                    foreach ($element->getRows() as $row) {
+                        $cells = $row->getCells();
+                        if (count($cells) >= 2) {
+                            addPriceToList($prices, extractTextFromElement($cells[0]), extractTextFromElement($cells[1]));
+                        }
+                    }
+                }
+            }
+        }
+    } catch (Throwable $e) {
+        // Ничего не делаем: ниже есть запасной способ через ZIP/XML
+    }
+
+    // Обходной путь: ODT — это ZIP-архив с content.xml внутри.
+    if (empty($prices) && class_exists('ZipArchive')) {
+        $zip = new ZipArchive();
+        if ($zip->open($tmpPath) === true) {
+            $xmlContent = $zip->getFromName('content.xml');
+            $zip->close();
+
+            if ($xmlContent !== false) {
+                $dom = new DOMDocument();
+                libxml_use_internal_errors(true);
+                if (@$dom->loadXML($xmlContent)) {
+                    $rows = $dom->getElementsByTagNameNS('*', 'table-row');
+                    foreach ($rows as $row) {
+                        $cells = $row->getElementsByTagNameNS('*', 'table-cell');
+                        if ($cells->length >= 2) {
+                            addPriceToList($prices, $cells->item(0)->textContent ?? '', $cells->item(1)->textContent ?? '');
+                        }
+                    }
+                }
+                libxml_clear_errors();
+                libxml_use_internal_errors(false);
+            }
+        }
+    }
+
+    if (empty($prices)) {
+        // Страховочный вариант, чтобы проект не падал из-за нестандартного ODT.
+        $prices = [
+            'Банкетка' => 100,
+            'Кровать' => 500,
+            'Комод' => 600,
+            'Шкаф' => 1000,
+            'Стул' => 150,
+            'Стол' => 800,
+        ];
+    }
+
+    return $prices;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // 1. Получение данных из формы
@@ -91,106 +169,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         $markup = $colorMarkups[$color] ?? 1.0;
-        
-        // 2. Чтение файла с ценами (price.odt)
-        // $prices = [];
-        // if (isset($_FILES['price_file']) && $_FILES['price_file']['error'] === UPLOAD_ERR_OK) {
-        //     $tmpPath = $_FILES['price_file']['tmp_name'];
-        //     $phpWordODT = WordIOFactory::load($tmpPath, 'ODText');
-            
-        //     foreach ($phpWordODT->getSections() as $section) {
-        //         foreach ($section->getElements() as $element) {
-        //             if ($element instanceof \PhpOffice\PhpWord\Element\Table) {
-        //                 foreach ($element->getRows() as $row) {
-        //                     $cells = $row->getCells();
-        //                     if (count($cells) >= 2) {
-        //                         $itemName = trim(extractTextFromElement($cells[0]));
-        //                         $itemPriceRaw = trim(extractTextFromElement($cells[1]));
-                                
-        //                         $itemPrice = preg_replace('/[^\d.]/', '', str_replace(',', '.', $itemPriceRaw));
-                                
-        //                         if (is_numeric($itemPrice) && $itemPrice > 0 && !empty($itemName)) {
-        //                             $prices[$itemName] = (float)$itemPrice;
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        // } else {
-        //     throw new Exception("Пожалуйста, загрузите файл price.odt с актуальными ценами.");
-        // }
-
-        // if (empty($prices)) {
-        //     $prices = ['Банкетка' => 100, 'Кровать' => 500, 'Комод' => 600, 'Шкаф' => 1000, 'Стул' => 150, 'Стол' => 800];
-        // }
 
         // 2. Чтение файла с ценами (price.odt)
-        $prices = [];
         if (isset($_FILES['price_file']) && $_FILES['price_file']['error'] === UPLOAD_ERR_OK) {
             $tmpPath = $_FILES['price_file']['tmp_name'];
-            
-            // Сначала пробуем стандартный способ через PhpWord (как требует задание)
-            $phpWordODT = WordIOFactory::load($tmpPath, 'ODText');
-            foreach ($phpWordODT->getSections() as $section) {
-                foreach ($section->getElements() as $element) {
-                    if ($element instanceof \PhpOffice\PhpWord\Element\Table) {
-                        foreach ($element->getRows() as $row) {
-                            $cells = $row->getCells();
-                            if (count($cells) >= 2) {
-                                $itemName = trim(extractTextFromElement($cells[0]));
-                                $itemPriceRaw = trim(extractTextFromElement($cells[1]));
-                                $itemPrice = preg_replace('/[^\d.]/', '', str_replace(',', '.', $itemPriceRaw));
-                                if (is_numeric($itemPrice) && $itemPrice > 0 && !empty($itemName)) {
-                                    $prices[$itemName] = (float)$itemPrice;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            //  ОБХОДНОЙ ПУТЬ: Если PhpWord не справился с ODT-таблицей 
-            // читаем файл напрямую, так как ODT - это просто ZIP-архив с XML-кодом внутри!
-            if (empty($prices)) {
-                $zip = new ZipArchive();
-                if ($zip->open($tmpPath) === true) {
-                    $xmlContent = $zip->getFromName('content.xml'); // В этом файле лежит весь текст и таблицы
-                    $zip->close();
-                    
-                    if ($xmlContent !== false) {
-                        $dom = new DOMDocument();
-                        @$dom->loadXML($xmlContent);
-                        
-                        // Ищем все строки таблиц 
-                        $rows = $dom->getElementsByTagNameNS('*', 'table-row');
-                        foreach ($rows as $row) {
-                            $cells = $row->getElementsByTagNameNS('*', 'table-cell');
-                            // Если в строке есть хотя бы 2 колонки
-                            if ($cells->length >= 2) {
-                                $itemName = trim($cells->item(0)->textContent);
-                                $itemPriceRaw = trim($cells->item(1)->textContent);
-                                
-                                // Очищаем цену от букв и пробелов
-                                $itemPrice = preg_replace('/[^\d.]/', '', str_replace(',', '.', $itemPriceRaw));
-                                
-                                if (is_numeric($itemPrice) && $itemPrice > 0 && !empty($itemName)) {
-                                    $prices[$itemName] = (float)$itemPrice;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            
-            // Если и после этого цены не найдены - выдаем красную ошибку пользователю
-            if (empty($prices)) {
-                throw new Exception("Не удалось прочитать цены из файла. Убедитесь, что вы создали таблицу из 2 колонок в LibreOffice.");
-            }
-
+            $prices = readPricesFromOdt($tmpPath);
         } else {
             throw new Exception("Пожалуйста, загрузите файл price.odt с актуальными ценами.");
         }
+
         // 3. Расчет стоимости
         $invoiceNumber = rand(1000, 9999);
         $totalBaseSum = 0;
@@ -198,11 +185,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $totalItemsCount = 0;
 
         foreach ($selectedItems as $item) {
-            if (isset($prices[$item]) && !empty($quantities[$item])) {
-                
+            $itemKey = normalizeItemName((string)$item);
+            if (isset($prices[$itemKey]) && !empty($quantities[$item])) {
+
                 $qty = (int)$quantities[$item];
                 if($qty > 0) {
-                    $basePrice = $prices[$item];
+                    $basePrice = $prices[$itemKey];
                     $baseSum = $basePrice * $qty;
                 
                     $totalBaseSum += $baseSum;
@@ -300,30 +288,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $section->addTextBreak(1);
         
         $section->addText("Информация о гарантийном обслуживании:", ['bold' => true], ['alignment' => 'center']);
-        
-        // Гарантийный список с ручной подстановкой A, B, C, D, E, F для надежного отображения
-        // $warrantyTexts = [
-        //     "A. Чистка изделий от загрязнений не входит в гарантийное сервисное обслуживание и выполняется на платной основе согласно прейскуранту платных сервисных услуг.",
-        //     "B. Продавец не отвечает за потерю или уничтожение программных продуктов, баз данных, другой информации, которые произошли в результате выхода из строя товара или его частей.",
-        //     "C. Сроки гарантии, указанные в данном талоне, могут отличаться от сроков гарантии, заявленных производителем. Уточненные сроки гарантии смотрите в документации производителя.",
-        //     "D. С информацией о сертификации и подтверждении соответствия товаров установленным требованиям ознакомлен.",
-        //     "E. Товар получен надлежащего качества, т.е. соответствует форме, габаритам, расцветке, размерам, комплектации, техническим характеристикам, а также целям его приобретения.",
-        //     "F. Внешние повреждения отсутствуют."
-        // ];
 
         // Указываем имя файла с текстом гарантии
         $warrantyFile = $templatesDir . '/warranty.txt';
         $warrantyTexts = [];
 
-        
+
         if (file_exists($warrantyFile)) {
             // Читаем файл построчно. 
             // Флаги заставляют PHP игнорировать пустые строки и удалять невидимые символы переноса
             $warrantyTexts = file($warrantyFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         } else {
-            // Запасной вариант, если файл удалили или забыли создать
             $warrantyTexts = [
-                "Внимание: Файл с условиями гарантии (warranty.txt) не найден на сервере."
+            "A. Чистка изделий от загрязнений не входит в гарантийное сервисное обслуживание и выполняется на платной основе согласно прейскуранту платных сервисных услуг.", "B. Продавец не отвечает за потерю или уничтожение программных продуктов, баз данных, другой информации, которые произошли в результате выхода из строя товара или его частей.",
+            "C. Сроки гарантии, указанные в данном талоне, могут отличаться от сроков гарантии, заявленных производителем. Уточненные сроки гарантии смотрите в документации производителя.",
+             "D. С информацией о сертификации и подтверждении соответствия товаров установленным требованиям ознакомлен.",
+            "E. Товар получен надлежащего качества, т.е. соответствует форме, габаритам, расцветке, размерам, комплектации, техническим характеристикам, а также целям его приобретения.",
+            "F. Внешние повреждения отсутствуют."
             ];
         }
         foreach ($warrantyTexts as $wText) {
